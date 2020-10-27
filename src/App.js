@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.scss';
 import Counter from './features/counter/Counter';
 
 function App() {
