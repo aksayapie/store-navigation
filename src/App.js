@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.scss';
-import Counter from './features/counter/Counter';
+import ListPopup from './components/listPopup';
 
 function App() {
   return (
     <div>
-      <Counter />
+      <ListPopup />
     </div>
   );
 }
