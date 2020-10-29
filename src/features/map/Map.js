@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Map = () => <div>map</div>;
+const Map = () => <div>Google Map</div>;
 
 export default Map;
