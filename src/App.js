@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.scss';
-import Counter from './features/counter/Counter';
+import Covid from './regulations/Covid';
 
 function App() {
   return (
     <div>
-      <Counter />
+      <Covid />
     </div>
   );
 }
