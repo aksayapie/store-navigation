@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import ListPopup from './components/listPopup';
+import ListPopup from './components/listPopup/listPopup';
 
 function App() {
   return (

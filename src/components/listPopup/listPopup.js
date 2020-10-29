@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Sheet from 'react-modal-sheet';
-import useWindowDimensions from '../util/windowDimensions';
+import { Heading } from '@shopify/polaris/';
+import useWindowDimensions from '../../util/windowDimensions';
+import './listPopup.scss';
 
 const ListPopup = () => {
   const [isOpen, setOpen] = useState(true);
@@ -18,14 +20,20 @@ const ListPopup = () => {
     <Sheet
       isOpen={isOpen}
       onClose={() => closeSequence()}
-      snapPoints={[height - height / 10, height / 2, height / 10]}
+      snapPoints={[height - height / 10, height / 2, 100]}
       initialSnap={2}
       ref={ref}
     >
       <Sheet.Container>
-        <Sheet.Header />
+        <Sheet.Header>
+          <Sheet.Header />
+          <Heading>My Shopping List</Heading>
+        </Sheet.Header>
+        <br />
+        <hr />
+        <br />
         <Sheet.Content>
-          <div>Im here</div>
+          whatever
         </Sheet.Content>
       </Sheet.Container>
     </Sheet>
