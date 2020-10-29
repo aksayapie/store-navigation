@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.scss';
-import Counter from './features/counter/Counter';
+import Scan from './scan/Scan';
 
 function App() {
   return (
     <div>
-      <Counter />
+      <Scan />
     </div>
   );
 }
