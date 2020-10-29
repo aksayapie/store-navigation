@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@shopify/polaris';
-import './ShopMode.css';
+import './ShopMode.scss';
 import { FaAngleRight } from 'react-icons/fa';
 
 const ShopMode = () => {
@@ -15,7 +15,7 @@ const ShopMode = () => {
 
   return (
     <div className="shop-mode-container">
-      <h1>Select your shopping experience</h1>
+      <h1 className="bold">Select your shopping experience</h1>
       <h2>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua.
