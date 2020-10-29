@@ -23,8 +23,10 @@ code {
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 75px 75px 75px 75px;
 }
-.line1 {
-  margin-top: 20px;
-  grid-row: 1/4;
+.item {
+  margin-top: 10px;
   border-style: solid;
+}
+.quantityDiv {
+  max-width: 50px;
 }

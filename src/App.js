@@ -1,13 +1,17 @@
 import React from 'react';
 import './App.scss';
-import Counter from './features/counter/Counter';
-import ShoppingList from './Components/ShoppingList';
+import '@shopify/polaris/dist/styles.css';
+import enTranslations from '@shopify/polaris/locales/en.json';
+import { AppProvider } from '@shopify/polaris';
+// import Counter from './features/counter/Counter';
+import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList';
 
 function App() {
   return (
     <div>
-      <Counter />
-      <ShoppingList />
+      <AppProvider i18n={enTranslations}>
+        <FrontPageShoppingList />
+      </AppProvider>
     </div>
   );
 }
