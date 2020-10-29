@@ -1,6 +1,15 @@
-hr {
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+hr.style-six {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: #0000001e;
+  height: 1px;
+}
+.popupheader {
+  margin: 0 20px 0;
+}
+
+.popupbody {
+  margin: 0 20px 0;
 }
