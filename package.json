@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-google-maps/api": "^1.13.0",
     "@reduxjs/toolkit": "^1.4.0",
     "@shopify/polaris": "^5.9.1",
     "@testing-library/jest-dom": "^5.11.5",
