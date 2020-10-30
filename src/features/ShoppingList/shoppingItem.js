@@ -12,7 +12,7 @@ function ShoppingItem(item) {
     <ResourceItem id={id}>
       <Stack>
         <Thumbnail source={imageLink} alt={name} size="large" />
-        <p>
+        <div>
           <h3>
             <TextStyle variation="strong">{name}</TextStyle>
           </h3>
@@ -21,7 +21,7 @@ function ShoppingItem(item) {
             {id}
           </Caption>
           <p>{price}</p>
-        </p>
+        </div>
       </Stack>
       <Stack alignment="center" spacing="extraLoose">
         <div>
