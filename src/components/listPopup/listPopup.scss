@@ -9,7 +9,37 @@ hr.style-six {
 .popupheader {
   margin: 0 20px 0;
 }
+.popupcontainer {
+  /* give the outermost container a predefined size */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
 
 .popupbody {
-  margin: 0 20px 0;
+  margin: 10px 20px 10px;
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  /* for Firefox */
+  min-height: 0;
+}
+.list {
+  flex-grow: 1;
+
+  overflow: auto;
+
+  /* for Firefox */
+  min-height: 0;
+}
+
+.buttons {
+  margin: 10px;
 }

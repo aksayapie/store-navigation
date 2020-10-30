@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Sheet from 'react-modal-sheet';
 import { Button, DisplayText } from '@shopify/polaris/';
 import useWindowDimensions from '../../util/windowDimensions';
+import ShoppingList from '../../features/ShoppingList/ShoppingList';
 import './listPopup.scss';
 
 const ListPopup = () => {
@@ -37,16 +38,20 @@ const ListPopup = () => {
         <hr className="style-six" />
         <br />
         <Sheet.Content>
-          <div className="popupbody">
-            <div className="list" />
-            <div className="buttons">
-              <Button primary fullWidth size="slim">
-                Proceed to Checkout
-              </Button>
-              <br />
-              <Button fullWidth size="slim">
-                Exit Shopping
-              </Button>
+          <div className="popupcontainer">
+            <div className="popupbody">
+              <div className="list">
+                <ShoppingList />
+              </div>
+              <div className="buttons">
+                <Button primary fullWidth size="slim">
+                  Proceed to Checkout
+                </Button>
+                <br />
+                <Button fullWidth size="slim">
+                  Exit Shopping
+                </Button>
+              </div>
             </div>
           </div>
         </Sheet.Content>

@@ -1,6 +1,5 @@
 import {
-  Caption,
-  ResourceItem, Stack, TextStyle, Thumbnail, Button,
+  Caption, ResourceItem, Stack, TextStyle, Thumbnail, Button,
 } from '@shopify/polaris';
 import React from 'react';
 // import { useSelector } from 'react-redux';
@@ -10,15 +9,9 @@ function ShoppingItem(item) {
     id, name, price, imageLink,
   } = item;
   return (
-    <ResourceItem
-      id={id}
-    >
+    <ResourceItem id={id}>
       <Stack>
-        <Thumbnail
-          source={imageLink}
-          alt={name}
-          size="large"
-        />
+        <Thumbnail source={imageLink} alt={name} size="large" />
         <p>
           <h3>
             <TextStyle variation="strong">{name}</TextStyle>
@@ -37,7 +30,6 @@ function ShoppingItem(item) {
         </div>
         <Button destructive>Delete Item</Button>
       </Stack>
-
     </ResourceItem>
   );
 }

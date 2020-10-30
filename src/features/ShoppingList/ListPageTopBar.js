@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Button,
-  Card, Stack,
-} from '@shopify/polaris';
+import { Button, Card, Stack } from '@shopify/polaris';
 
 export default function ListPageTopBar() {
   return (

@@ -6,9 +6,7 @@ export const shoppingListSlice = createSlice({
   initialState: {
     items,
   },
-  reducers: {
-
-  },
+  reducers: {},
 });
 export const selectItems = (state) => state.shoppingList.items;
 
