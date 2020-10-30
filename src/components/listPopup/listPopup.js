@@ -29,6 +29,7 @@ const ListPopup = () => {
       snapPoints={[height - height / 10, height / 2, 100]}
       initialSnap={2}
       ref={ref}
+      className="sheet"
     >
       <Sheet.Container>
         <Sheet.Header>
@@ -75,9 +76,7 @@ const ListPopup = () => {
                   >
                     <Modal.Section>
                       <TextContainer>
-                        <p>
-                          Are you sure you want to end your shopping trip?
-                        </p>
+                        <p>Are you sure you want to end your shopping trip?</p>
                       </TextContainer>
                     </Modal.Section>
                   </Modal>

@@ -9,6 +9,7 @@ import { selectPath } from './mapSlice';
 import { BOUNDS, CENTER } from '../../constants';
 import './map.scss';
 import Bounty from '../../assets/bounty.png';
+import ListPopup from '../../components/listPopup/listPopup';
 
 // path polyline options
 const options = {
@@ -39,8 +40,7 @@ const Map = () => {
 
   return (
     <>
-      {isLoaded
-      && (
+      {isLoaded && (
         <GoogleMap
           id="costco-map"
           mapContainerClassName="mapStyles"
@@ -49,35 +49,28 @@ const Map = () => {
           options={mapOptions}
         >
           {/* Overlay an image of Costco within the bounds */}
-          <GroundOverlay
-            url={costco}
-            bounds={BOUNDS}
-          />
+          <GroundOverlay url={costco} bounds={BOUNDS} />
           {
             // render polylines if there are paths to render
             path.length > 0 && (
-            <>
-              <Polyline
-                path={path}
-                options={options}
-              />
-              {
-              // render item positions
-              path.map((position) => (
-                <Marker
-                  key={position.lat}
-                  icon={
-                  { url: Bounty, scaledSize: new window.google.maps.Size(40, 40) }
+              <>
+                <Polyline path={path} options={options} />
+                {
+                  // render item positions
+                  path.map((position) => (
+                    <Marker
+                      key={position.lat}
+                      icon={{ url: Bounty, scaledSize: new window.google.maps.Size(40, 40) }}
+                      position={position}
+                    />
+                  ))
                 }
-                  position={position}
-                />
-              ))
-            }
-            </>
+              </>
             )
-        }
+          }
         </GoogleMap>
       )}
+      <ListPopup />
     </>
   );
 };
