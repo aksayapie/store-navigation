@@ -4,8 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 // for polaris
-import enTranslations from '@shopify/polaris/locales/en.json';
-import { AppProvider } from '@shopify/polaris';
+
 import '@shopify/polaris/dist/styles.css';
 
 import './index.scss';
@@ -16,9 +15,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Provider store={store}>
-        <AppProvider i18n={enTranslations}>
-          <App />
-        </AppProvider>
+        <App />
       </Provider>
     </Router>
   </React.StrictMode>,
