@@ -7,6 +7,23 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: $font-stack, monospace;
+}
+.single-photo {
+  max-width: 100px;
+  margin: 0 auto;
+  display: flex;
+  background: #fff;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 75px 75px 75px 75px;
+}
+.item {
+  margin-top: 10px;
+  border-style: solid;
+}
+.quantityDiv {
+  max-width: 50px;
 }
