@@ -1,0 +1,45 @@
+.direction-modal-container {
+  position: absolute;
+  z-index: 10;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4rem;
+  left: 0;
+  right: 0;
+}
+
+.direction-title {
+  display: flex;
+  align-items: center;
+
+  p {
+    font-size: 2.2rem;
+    font-weight: 800;
+  }
+}
+
+.direction-arrow {
+  color: rgb(50, 50, 50);
+  font-size: 4.5rem;
+}
+
+.direction-item {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+
+  img {
+    width: 7rem;
+    margin-right: 1rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
