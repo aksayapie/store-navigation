@@ -11,18 +11,10 @@ function Covid() {
         must wear a face covering that covers their mouth and nose at all
         times while at Costco.
       </div>
-      {/* <Button>
-        <div className="back">Back</div>
-      </Button>
-      <Button>
-        <div className="start">Start Shopping</div>
-      </Button> */}
       <ButtonGroup>
         <Button>Back</Button>
         <div className="shopping"><Button>Shopping</Button></div>
       </ButtonGroup>
-      {/* <Button>Back</Button>
-      <div className="shopping"><Button>Shopping</Button></div> */}
     </div>
   );
 }
