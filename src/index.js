@@ -14,9 +14,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Provider store={store}>
-        <AppProvider i18n={enTranslations}>
-          <App />
-        </AppProvider>
+        <App />
       </Provider>
     </Router>
   </React.StrictMode>,

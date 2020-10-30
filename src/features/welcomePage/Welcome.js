@@ -4,11 +4,11 @@ import './Welcome.scss';
 import { Button } from '@shopify/polaris';
 import LocationSelect from './LocationSelect';
 
-const Welcome = ({ setShowWelcomeProp, setShowShopModeProp }) => {
+const Welcome = ({ setShowWelcomeProp, setShowCovidProp }) => {
   const [storeName, setStoreName] = useState(' Chicago Clybourne');
   const toNextScreen = () => {
     setShowWelcomeProp(false);
-    setShowShopModeProp(true);
+    setShowCovidProp(true);
   };
   const updateStore = (newStore) => {
     setStoreName(newStore);
@@ -32,7 +32,7 @@ const Welcome = ({ setShowWelcomeProp, setShowShopModeProp }) => {
 
 Welcome.propTypes = {
   setShowWelcomeProp: PropTypes.func.isRequired,
-  setShowShopModeProp: PropTypes.func.isRequired,
+  setShowCovidProp: PropTypes.func.isRequired,
 };
 
 export default Welcome;

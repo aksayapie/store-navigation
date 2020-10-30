@@ -1,8 +1,13 @@
 import React from 'react';
-import { Button, ButtonGroup } from '@shopify/polaris';
+import PropTypes from 'prop-types';
+import { Button } from '@shopify/polaris';
 import './Covid.scss';
 
-function Covid() {
+function Covid({ setShowCovidProp, setShowShopModeProp }) {
+  const toNextScreen = () => {
+    setShowShopModeProp(true);
+    setShowCovidProp(false);
+  };
   return (
     <div className="content">
       <div className="main-text">COVID-19 Policies</div>
@@ -11,12 +16,16 @@ function Covid() {
         must wear a face covering that covers their mouth and nose at all
         times while at Costco.
       </div>
-      <ButtonGroup>
-        <Button>Back</Button>
-        <div className="shopping"><Button>Shopping</Button></div>
-      </ButtonGroup>
+      <div className="shopping">
+        <Button onClick={toNextScreen}>Start Shopping</Button>
+      </div>
     </div>
   );
 }
+
+Covid.propTypes = {
+  setShowShopModeProp: PropTypes.func.isRequired,
+  setShowCovidProp: PropTypes.func.isRequired,
+};
 
 export default Covid;
