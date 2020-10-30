@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 
-import counterReducer from '../features/counter/counterSlice';
+import mapReducer from '../features/map/mapSlice';
+import shoppingListReducer from '../features/ShoppingList/shoppingListSlice';
 
 const reducer = combineReducers({
-  counter: counterReducer,
+  map: mapReducer,
+  shoppingList: shoppingListReducer,
 });
+// import postReducer from '../redux/reducer';
+
 const store = configureStore({
   reducer,
 });
