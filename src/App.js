@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.scss';
 
+import Directions from './features/directions/Directions';
+
 function App() {
   return (
     <div className="app">
-      {/* Everything goes in here */}
+      <Directions />
     </div>
   );
 }
