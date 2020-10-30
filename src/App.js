@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.scss';
-import ShopMode from './features/shopMode/ShopMode';
+import Welcome from './features/welcomePage/Welcome';
 
 function App() {
   return (
     <div className="app">
       {/* Everything goes in here */}
-      <ShopMode />
+      <Welcome />
     </div>
   );
 }
