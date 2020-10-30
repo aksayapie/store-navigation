@@ -1,6 +1,7 @@
 h1 {
   font-size: 2em;
   margin-bottom: 1em;
+  line-height: 1em;
 }
 h2 {
   font-size: 1.5em;
@@ -8,14 +9,15 @@ h2 {
 }
 
 h3 {
-  font-size: .9em;
+  font-size: 1.3em;
   font-weight: bold;
+  margin-bottom: 7px;
 }
 .shop-mode-container {
   margin: 50px 30px;
 
   .button-text {
-    font-size: .9em;
+    font-size: 1.3em;
     display: inline-block;
     width: 90%;
   }
