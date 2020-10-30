@@ -16,7 +16,6 @@ export default function FrontPageShoppingList() {
         <br />
         <ShoppingList />
         <ShoppingListBottomButtons />
-
       </Page>
     </div>
 
