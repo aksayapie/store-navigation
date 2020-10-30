@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './Welcome.scss';
 import { Button } from '@shopify/polaris';
 import LocationSelect from './LocationSelect';
 
-const ShopMode = () => {
+const Welcome = ({ setShowWelcomeProp, setShowShopModeProp }) => {
   const [storeName, setStoreName] = useState(' Chicago Clybourne');
   const toNextScreen = () => {
-    console.log('button clicked');
+    setShowWelcomeProp(false);
+    setShowShopModeProp(true);
   };
   const updateStore = (newStore) => {
     setStoreName(newStore);
@@ -28,4 +30,9 @@ const ShopMode = () => {
   );
 };
 
-export default ShopMode;
+Welcome.propTypes = {
+  setShowWelcomeProp: PropTypes.func.isRequired,
+  setShowShopModeProp: PropTypes.func.isRequired,
+};
+
+export default Welcome;
