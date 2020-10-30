@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Sheet from 'react-modal-sheet';
-import { Button, DisplayText } from '@shopify/polaris/';
+import {
+  Button, DisplayText, Modal, TextContainer,
+} from '@shopify/polaris/';
 import useWindowDimensions from '../../util/windowDimensions';
 import ShoppingList from '../../features/ShoppingList/ShoppingList';
 import './listPopup.scss';
 
 const ListPopup = () => {
   const [isOpen, setOpen] = useState(true);
+  const [active, setActive] = useState(false);
+
+  const handleChange = useCallback(() => setActive(!active), [active]);
   const { height } = useWindowDimensions();
   const ref = React.useRef();
   const snapTo = (i) => ref.current?.snapTo(i);
@@ -47,10 +52,36 @@ const ListPopup = () => {
                 <Button primary fullWidth size="slim">
                   Proceed to Checkout
                 </Button>
-                <br />
-                <Button fullWidth size="slim">
-                  Exit Shopping
-                </Button>
+
+                <div>
+                  <Modal
+                    activator={(
+                      <Button fullWidth size="slim" onClick={handleChange}>
+                        Exit Shopping
+                      </Button>
+                    )}
+                    open={active}
+                    onClose={handleChange}
+                    primaryAction={{
+                      content: 'Confirm',
+                      onAction: handleChange,
+                    }}
+                    secondaryActions={[
+                      {
+                        content: 'Cancel',
+                        onAction: handleChange,
+                      },
+                    ]}
+                  >
+                    <Modal.Section>
+                      <TextContainer>
+                        <p>
+                          Are you sure you want to end your shopping trip?
+                        </p>
+                      </TextContainer>
+                    </Modal.Section>
+                  </Modal>
+                </div>
               </div>
             </div>
           </div>

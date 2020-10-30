@@ -22,7 +22,8 @@ hr.style-six {
 }
 
 .popupbody {
-  margin: 10px 20px 10px;
+  margin: 0px 0px 10px 0px;
+
   flex-grow: 1;
 
   display: flex;
@@ -33,7 +34,7 @@ hr.style-six {
 }
 .list {
   flex-grow: 1;
-
+  padding: 5px 20px 20px;
   overflow: auto;
 
   /* for Firefox */
@@ -41,5 +42,24 @@ hr.style-six {
 }
 
 .buttons {
-  margin: 10px;
+  margin: 0px 10px 10px;
+  padding: 0px 20px 0px;
+  .Polaris-Button {
+    margin-top: 10px;
+  }
+}
+
+.Polaris-Modal-Dialog__Modal {
+  z-index: 999999999999;
+  margin-bottom: 61%;
+  margin-left: 8%;
+  width: 85%;
+}
+
+.Polaris-Backdrop {
+  z-index: 99999999;
+}
+
+.Polaris-Modal-Dialog__Container {
+  z-index: 999999999999;
 }
