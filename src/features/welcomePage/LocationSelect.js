@@ -28,7 +28,7 @@ function LocationSelect({ updateStoreProp, storeNameProp }) {
   };
   const activator = <Button onClick={handleModalChange} plain>Change Location</Button>;
   return (
-    <div style={{ height: '500px' }}>
+    <div>
       <Modal
         activator={activator}
         open={active}
