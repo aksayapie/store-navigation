@@ -1,12 +1,17 @@
 import React from 'react';
 import './App.scss';
+import enTranslations from '@shopify/polaris/locales/en.json';
+import { AppProvider } from '@shopify/polaris';
+
 import Covid from './regulations/Covid';
 
 function App() {
   return (
-    <div>
-      <Covid />
-    </div>
+    <AppProvider i18n={enTranslations}>
+      <div>
+        <Covid />
+      </div>
+    </AppProvider>
   );
 }
 
