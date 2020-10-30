@@ -22,7 +22,7 @@ const Welcome = ({ setShowWelcomeProp, setShowCovidProp }) => {
       </h2>
       <h2>
         My store is
-        {storeName}
+        <b>{storeName}</b>
         <LocationSelect updateStoreProp={updateStore} />
       </h2>
       <Button primary onClick={toNextScreen}>Continue</Button>

@@ -17,7 +17,7 @@ function Covid({ setShowCovidProp, setShowShopModeProp }) {
         times while at Costco.
       </div>
       <div className="shopping">
-        <Button onClick={toNextScreen}>Start Shopping</Button>
+        <Button onClick={toNextScreen}>I Understand</Button>
       </div>
     </div>
   );
