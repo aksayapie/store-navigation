@@ -2,10 +2,9 @@ import React from 'react';
 import {
   GoogleMap, GroundOverlay, Polyline, Marker, useJsApiLoader,
 } from '@react-google-maps/api';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import costco from '../../assets/costco.png';
-import { selectPath } from './mapSlice';
 import { BOUNDS, CENTER } from '../../constants';
 import './map.scss';
 import Bounty from '../../assets/bounty.png';
@@ -31,12 +30,11 @@ const mapOptions = {
   minZoom: 19,
 };
 
-const Map = () => {
+const Map = ({ path }) => {
   // load the google map javascript scripts
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });
-  const path = useSelector(selectPath);
 
   return (
     <>
@@ -75,4 +73,14 @@ const Map = () => {
   );
 };
 
+Map.propTypes = {
+  path: PropTypes.arrayOf(PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  })),
+};
+
+Map.defaultProps = {
+  path: [],
+};
 export default React.memo(Map);
