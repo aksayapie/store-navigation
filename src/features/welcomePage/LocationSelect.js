@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import {
   Modal, Stack, ChoiceList, Button,
 } from '@shopify/polaris';
+import './Welcome.scss';
 
 //  much of this code was taken from the shopify polaris website
 //  where they give code for the modal component
-function LocationSelect({ updateStoreProp, storeNameProp }) {
+function LocationSelect({ updateStoreProp }) {
   const CHICAGO = ' Chicago Clybourne';
   const BROOKLYN = ' Brooklyn';
   const SANFRANCISCO = ' San Francisco';
@@ -24,7 +25,6 @@ function LocationSelect({ updateStoreProp, storeNameProp }) {
   );
   const handleClose = () => {
     handleModalChange();
-    updateStoreProp(storeNameProp);
   };
   const activator = <Button onClick={handleModalChange} plain>Change Location</Button>;
   return (
@@ -64,7 +64,6 @@ function LocationSelect({ updateStoreProp, storeNameProp }) {
 
 LocationSelect.propTypes = {
   updateStoreProp: PropTypes.func.isRequired,
-  storeNameProp: PropTypes.string.isRequired,
 };
 
 export default LocationSelect;

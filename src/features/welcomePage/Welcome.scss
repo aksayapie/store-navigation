@@ -18,4 +18,22 @@ p {
   .Polaris-Button--primary {
     background: #005DAA;
   }
+  .Polaris-Button--plain {
+    color: #005DAA;
+  }
+}
+.Polaris-Modal-Dialog__Modal {
+  .Polaris-Button--primary {
+    background: #005DAA;
+  }
+  
+  .Polaris-RadioButton .Polaris-RadioButton__Icon {
+    background: #005DAA;
+  }
+  .Polaris-RadioButton .Polaris-RadioButton__Input:focus 
+  + .Polaris-RadioButton__Backdrop, .Polaris-RadioButton .Polaris-RadioButton__Input:active 
+  + .Polaris-RadioButton__Backdrop, .Polaris-RadioButton:not(.Polaris-RadioButton--newDesignLanguage) .Polaris-RadioButton__Input:checked 
+  + .Polaris-RadioButton__Backdrop {
+    background: #005DAA;
+  }
 }

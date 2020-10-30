@@ -21,7 +21,7 @@ const ShopMode = () => {
       <h2>
         My store is
         {storeName}
-        <LocationSelect updateStoreProp={updateStore} storeNameProp={storeName} />
+        <LocationSelect updateStoreProp={updateStore} />
       </h2>
       <Button primary onClick={toNextScreen}>Continue</Button>
     </div>
