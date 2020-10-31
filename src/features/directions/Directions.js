@@ -1,11 +1,13 @@
+import React from 'react';
 import { Card, Button, ButtonGroup } from '@shopify/polaris';
 import { BsArrowUp } from 'react-icons/bs';
-import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
-import ItemImage from '../../assets/paper-towels.png';
+import ItemImage from '../../assets/paper-towel.png';
 import './directions.scss';
 
-const Directions = () => (
+const Directions = ({ currentItem, onScan }) => (
   <div className="direction-modal-container">
     <Card>
       <Card.Section>
@@ -13,17 +15,35 @@ const Directions = () => (
           <BsArrowUp className="direction-arrow" />
           <p>Continue down Aisle 12</p>
         </div>
-        <div className="direction-item">
-          <img src={ItemImage} alt="Toilet Paper" />
-          <p>Bounty Paper Towel, 450 ft Rolls, 12 - count</p>
+        <AnimatePresence>
+          <motion.div className="direction-item">
+            <img src={ItemImage} alt={currentItem.name} />
+            <p>{currentItem.name}</p>
+          </motion.div>
+        </AnimatePresence>
+        <div className="direction-footer">
+          <ButtonGroup fullWidth>
+            <Button>Remove Item</Button>
+            <Button primary onClick={() => onScan(currentItem)}>Scan &amp; Confirm</Button>
+          </ButtonGroup>
         </div>
-        <ButtonGroup fullWidth>
-          <Button>Remove Item</Button>
-          <Button primary>Scan &amp; Confirm</Button>
-        </ButtonGroup>
       </Card.Section>
     </Card>
   </div>
 );
+
+Directions.propTypes = {
+  currentItem: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    inStock: PropTypes.bool.isRequired,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  }).isRequired,
+  onScan: PropTypes.func.isRequired,
+};
+
+Directions.defaultProps = {
+};
 
 export default Directions;
