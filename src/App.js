@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import './App.scss';
 import FlowContainer from './features/flowContainer/FlowContainer';
 import MapPage from './features/map/MapPage';
+import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList';
 
 function App() {
   return (
@@ -26,8 +27,7 @@ function App() {
             {/* <ScanPage /> */}
           </Route>
           <Route path="/">
-            <p>Shopping List / Account</p>
-            {/* <ShoppingListPage /> */}
+            <FrontPageShoppingList />
           </Route>
         </Switch>
       </div>
