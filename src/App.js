@@ -1,12 +1,17 @@
 import React from 'react';
 import './App.scss';
-import ProgressBar from './progressBar/ProgressBar';
+import enTranslations from '@shopify/polaris/locales/en.json';
+import { AppProvider } from '@shopify/polaris';
+
+import Bar from './progressBar/Bar';
 
 function App() {
   return (
-    <div className="app">
-      <ProgressBar />
-    </div>
+    <AppProvider i18n={enTranslations}>
+      <div>
+        <Bar />
+      </div>
+    </AppProvider>
   );
 }
 
