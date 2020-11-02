@@ -32,7 +32,7 @@ const ScanPage = () => {
     };
 
     scanBarcode();
-  });
+  }, []);
 
   return (
     <div className="video-container">
