@@ -42,28 +42,18 @@ const ListPopup = () => {
         <Sheet.Header>
           <div className="popupheader">
             <Sheet.Header />
-            <Stack>
+            <Stack wrap={false} distribution="fillEvenly">
               <DisplayText size="large" element="h1">
                 My Shopping List
               </DisplayText>
               <ButtonGroup>
-                <Button
-                  textAlign="center"
-                  size="slim"
-                >
+                <Button textAlign="center" size="slim">
                   <BiPlus />
-                  <div className="smallButtonText">
-                    Add Item
-                  </div>
+                  <div className="smallButtonText">Add Item</div>
                 </Button>
-                <Button
-                  textAlign="center"
-                  size="slim"
-                >
+                <Button textAlign="center" size="slim">
                   <AiOutlineScan />
-                  <div className="smallButtonText">
-                    Scan Item
-                  </div>
+                  <div className="smallButtonText">Scan Item</div>
                 </Button>
               </ButtonGroup>
             </Stack>
