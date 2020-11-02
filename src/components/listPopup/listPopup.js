@@ -3,7 +3,8 @@ import Sheet from 'react-modal-sheet';
 import {
   Button, ButtonGroup, DisplayText, Modal, Stack, TextContainer,
 } from '@shopify/polaris/';
-import { AiOutlinePlus, AiOutlineScan } from 'react-icons/ai';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { BiPlus } from 'react-icons/bi';
 import useWindowDimensions from '../../util/windowDimensions';
 import ShoppingList from '../../features/ShoppingList/ShoppingList';
 import './listPopup.scss';
@@ -45,19 +46,19 @@ const ListPopup = () => {
                   textAlign="center"
                   size="slim"
                 >
-                  <AiOutlinePlus />
-                  <p className="smallButtonText">
+                  <BiPlus />
+                  <div className="smallButtonText">
                     Add Item
-                  </p>
+                  </div>
                 </Button>
                 <Button
                   textAlign="center"
                   size="slim"
                 >
                   <AiOutlineScan />
-                  <p className="smallButtonText">
+                  <div className="smallButtonText">
                     Scan Item
-                  </p>
+                  </div>
                 </Button>
               </ButtonGroup>
             </Stack>
