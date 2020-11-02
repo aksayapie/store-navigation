@@ -21,6 +21,7 @@
     "rules": {
         "linebreak-style": "off",
         "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
-        "no-param-reassign": 0
+        "no-param-reassign": 0,
+        "jsx-a11y/media-has-caption":  [0]
     }
 }
