@@ -36,11 +36,9 @@ function FlowContainer() {
         <div className="flow-back">
           {showWelcome ? null : <Button plain onClick={handleBackClick}><FaArrowLeft className="back-icon" /></Button> }
         </div>
-        <div className="flow-ex">
-          <Button plain onClick={handleExClick}>
-            <FaTimes className="ex-icon" />
-          </Button>
-        </div>
+        <Button plain onClick={handleExClick}>
+          <FaTimes className="ex-icon" />
+        </Button>
       </div>
       {/* for hiding and showing, using this stack overflow format that seems up to date
       https://stackoverflow.com/questions/24502898/show-or-hide-element-in-react */}
