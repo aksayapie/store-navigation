@@ -11,9 +11,11 @@ const Welcome = ({
     setShowWelcomeProp(false);
     setShowCovidProp(true);
   };
+
   const updateStore = (newStore) => {
     setStoreNameProp(newStore);
   };
+
   return (
     <div className="welcome-container">
       <h1>Welcome to your In-store experience</h1>
@@ -24,6 +26,7 @@ const Welcome = ({
       <h2>
         My store is
         <b>{storeNameProp}</b>
+        {/* opens modal for user to change their city */}
         <LocationSelect updateStoreProp={updateStore} />
       </h2>
       <Button primary onClick={toNextScreen}>Continue</Button>

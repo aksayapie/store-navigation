@@ -20,6 +20,7 @@ function FlowContainer() {
     console.log(shopMode);
   };
 
+  //  hides current page and shows previous page
   const handleBackClick = () => {
     if (showCovid === true) {
       setShowCovid(false);
@@ -34,6 +35,7 @@ function FlowContainer() {
     <div className="flow-container">
       <div className="icon-container">
         <div className="flow-back">
+          {/* hide back button on first page-- welcome page, then show for rest of pages */}
           {showWelcome ? null : <Button plain onClick={handleBackClick}><FaArrowLeft className="back-icon" /></Button> }
         </div>
         <Button plain onClick={handleExClick}>
