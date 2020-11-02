@@ -39,7 +39,7 @@ const pathLineOptions = {
 const mapOptions = {
   disableDefaultUI: true,
   maxZoom: 20,
-  minZoom: 19,
+  minZoom: 18,
 };
 
 const Map = ({ path, items }) => {
