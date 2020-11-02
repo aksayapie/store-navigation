@@ -4,6 +4,8 @@ import { AppProvider } from '@shopify/polaris';
 import { Switch, Route } from 'react-router-dom';
 import './App.scss';
 import FlowContainer from './features/flowContainer/FlowContainer';
+import MapPage from './features/map/MapPage';
+import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList';
 
 function App() {
   return (
@@ -15,8 +17,7 @@ function App() {
           {/* Wrap your page component in a <Route> component and it will display
               when the url matches the path. */}
           <Route path="/map">
-            <p>Map</p>
-            {/* <MapPage /> */}
+            <MapPage />
           </Route>
           <Route path="/welcome">
             <FlowContainer />
@@ -26,8 +27,7 @@ function App() {
             {/* <ScanPage /> */}
           </Route>
           <Route path="/">
-            <p>Shopping List / Account</p>
-            {/* <ShoppingListPage /> */}
+            <FrontPageShoppingList />
           </Route>
         </Switch>
       </div>
