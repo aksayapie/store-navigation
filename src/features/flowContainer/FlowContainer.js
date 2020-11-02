@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
 import { FaTimes, FaArrowLeft } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { Button } from '@shopify/polaris';
 import Welcome from '../welcomePage/Welcome';
 import ShopMode from '../shopMode/ShopMode';
 import Covid from '../regulations/Covid';
+import Bar from '../progressBar/Bar';
 import './FlowContainer.scss';
 
 function FlowContainer() {
+  // as of right now these state varibles all reset each time flow
+  // container is navigated to
   const [showWelcome, setShowWelcome] = useState(true);
   const [showShopMode, setShowShopMode] = useState(false);
   const [showCovid, setShowCovid] = useState(false);
   const [shopMode, setshopMode] = useState('');
   const [storeName, setStoreName] = useState(' Chicago Clybourne');
-
-  const handleExClick = () => {
-    // go back to list page or whatever is before this
-    console.log('ex click');
-    //  just for right now making sure shopMode is set correctly
-    console.log(shopMode);
-  };
+  const [progBar] = useState(0);
 
   //  hides current page and shows previous page
   const handleBackClick = () => {
@@ -29,6 +27,9 @@ function FlowContainer() {
       setShowShopMode(false);
       setShowCovid(true);
     }
+    // must use the variable to avoid compile errors but not ready to
+    // use in map yet
+    console.log(shopMode);
   };
 
   return (
@@ -38,10 +39,28 @@ function FlowContainer() {
           {/* hide back button on first page-- welcome page, then show for rest of pages */}
           {showWelcome ? null : <Button plain onClick={handleBackClick}><FaArrowLeft className="back-icon" /></Button> }
         </div>
-        <Button plain onClick={handleExClick}>
-          <FaTimes className="ex-icon" />
-        </Button>
+        <Link to="/">
+          <Button plain>
+            <FaTimes className="ex-icon" />
+          </Button>
+        </Link>
       </div>
+      {/* updates length of progress bar as we go through the pages */}
+      {showWelcome ? (
+        <Bar
+          setProgBarProp={progBar + 30}
+        />
+      ) : null }
+      {showCovid ? (
+        <Bar
+          setProgBarProp={progBar + 60}
+        />
+      ) : null }
+      {showShopMode ? (
+        <Bar
+          setProgBarProp={progBar + 90}
+        />
+      ) : null }
       {/* for hiding and showing, using this stack overflow format that seems up to date
       https://stackoverflow.com/questions/24502898/show-or-hide-element-in-react */}
       {/* show welcome screen if boolean is true, otherwise hide it */}

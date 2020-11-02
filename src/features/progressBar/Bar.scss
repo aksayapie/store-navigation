@@ -1,0 +1,13 @@
+.loading-bar {
+    margin-top: 50px;
+
+    .Polaris-ProgressBar {
+        height: 0.8rem;
+        width: 85%;
+        margin-left: 7.5%;
+    }
+
+    .Polaris-ProgressBar__Indicator {
+        background-color: #005DAA;
+    }
+}

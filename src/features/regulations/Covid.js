@@ -10,12 +10,12 @@ function Covid({ setShowCovidProp, setShowShopModeProp }) {
   };
   return (
     <div className="content">
-      <div className="main-text">COVID-19 Policies</div>
-      <div className="sub-text">
+      <h1>COVID-19 Policies</h1>
+      <h2>
         To protect our members and employees, all Costco members and guests
         must wear a face covering that covers their mouth and nose at all
         times while at Costco.
-      </div>
+      </h2>
       <div className="shopping">
         <Button onClick={toNextScreen}>I Understand</Button>
       </div>
