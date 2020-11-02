@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserMultiFormatReader, BrowserCodeReader } from '@zxing/browser';
+import { AiOutlineClose } from 'react-icons/ai';
+import './ScanPage.scss';
 
-function Scan() {
+const ScanPage = () => {
   const [code, setCode] = useState(null);
   useEffect(() => {
-    async function Scanbarcode() {
+    const scanBarcode = async () => {
       const codeReader = new BrowserMultiFormatReader();
       const videoInputDevices = await BrowserCodeReader.listVideoInputDevices();
 
@@ -27,20 +29,26 @@ function Scan() {
           }
         },
       );
-    }
+    };
 
-    Scanbarcode();
+    scanBarcode();
   });
 
   return (
-    <div>
-      <video id="video" width="300" height="200" style={{ border: '1px solid gray' }} />
-      <br />
-      code =
-      {' '}
-      {code}
+    <div className="video-container">
+      <video id="video" style={{ border: '1px solid gray' }} />
+      <div className="rectangle-4" />
+      <div className="info">
+        <div className="cancel">
+          <AiOutlineClose />
+        </div>
+
+        <h1>Scanner</h1>
+        <p>Center the viewer over a barcode to add an item to your list</p>
+        <p>{code}</p>
+      </div>
     </div>
   );
-}
+};
 
-export default Scan;
+export default ScanPage;

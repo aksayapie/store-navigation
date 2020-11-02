@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import './App.scss';
 import MapPage from './features/map/MapPage';
+import ScanPage from './features/scan/ScanPage';
 
 function App() {
   return (
@@ -23,8 +24,7 @@ function App() {
             {/* <WelcomePage /> */}
           </Route>
           <Route path="/scan">
-            <p>Scan</p>
-            {/* <ScanPage /> */}
+            <ScanPage />
           </Route>
           <Route path="/">
             <p>Shopping List / Account</p>
