@@ -1,5 +1,6 @@
 .sheet {
-  position: static !important;
+  max-width: 425px;
+  margin: auto;
 
   hr.style-six {
     border: 0;
@@ -57,8 +58,8 @@
   }
   .Polaris-Modal-Dialog__Modal {
     z-index: 999999999999;
-    margin-bottom: 61%;
-    margin-left: 8%;
+    margin: auto;
+    bottom: 50%;
     width: 85%;
   }
 

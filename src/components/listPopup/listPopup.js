@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Sheet from 'react-modal-sheet';
 import {
   Button, ButtonGroup, DisplayText, Modal, Stack, TextContainer,
@@ -24,13 +25,14 @@ const ListPopup = () => {
     setOpen(true);
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     document.querySelector('#app').appendChild(document.querySelector('#sheet'));
-  });
-
+  }); */
   useEffect(() => {
     if (active) {
-      document.querySelector('#sheet').appendChild(document.querySelector('#PolarisPortalsContainer'));
+      document
+        .querySelector('#sheet')
+        .appendChild(document.querySelector('#PolarisPortalsContainer'));
     }
   }, [active]);
 
@@ -57,10 +59,12 @@ const ListPopup = () => {
                   <BiPlus />
                   <div className="smallButtonText">Add Item</div>
                 </Button>
-                <Button textAlign="center" size="slim">
-                  <AiOutlineScan />
-                  <div className="smallButtonText">Scan Item</div>
-                </Button>
+                <Link to="/scan">
+                  <Button textAlign="center" size="slim">
+                    <AiOutlineScan />
+                    <div className="smallButtonText">Scan Item</div>
+                  </Button>
+                </Link>
               </ButtonGroup>
             </Stack>
           </div>
