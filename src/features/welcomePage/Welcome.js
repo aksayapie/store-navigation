@@ -20,8 +20,8 @@ const Welcome = ({
     <div className="welcome-container">
       <h1>Welcome to your In-store experience</h1>
       <h2>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua.
+        Our in-store navigator will help you locate items within
+        our stores based on how you prefer to shop.
       </h2>
       <h2>
         My store is
