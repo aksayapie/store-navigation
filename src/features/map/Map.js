@@ -66,10 +66,10 @@ const Map = ({ path, items }) => {
             path.length > 0 && <Polyline path={path} options={pathLineOptions} />
           }
           {
-          // render item markers if there are items to render
-            items.length > 0 && (
+            // render item markers if there are items to render
+            items.length > 0
               // only render items not in cart
-              items.map((item) => {
+              && items.map((item) => {
                 if (item.inCart) return null;
                 return (
                   <Marker
@@ -79,7 +79,6 @@ const Map = ({ path, items }) => {
                   />
                 );
               })
-            )
           }
         </GoogleMap>
       )}
@@ -90,17 +89,21 @@ const Map = ({ path, items }) => {
 
 // Prop Validation
 Map.propTypes = {
-  path: PropTypes.arrayOf(PropTypes.shape({
-    lat: PropTypes.number.isRequired,
-    lng: PropTypes.number.isRequired,
-  })),
-  items: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    inStock: PropTypes.bool.isRequired,
-    lat: PropTypes.number.isRequired,
-    lng: PropTypes.number.isRequired,
-  })),
+  path: PropTypes.arrayOf(
+    PropTypes.shape({
+      lat: PropTypes.number.isRequired,
+      lng: PropTypes.number.isRequired,
+    }),
+  ),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      inStock: PropTypes.bool.isRequired,
+      lat: PropTypes.number.isRequired,
+      lng: PropTypes.number.isRequired,
+    }),
+  ),
 };
 
 Map.defaultProps = {
