@@ -4,6 +4,7 @@ import { Button } from '@shopify/polaris';
 import Welcome from '../welcomePage/Welcome';
 import ShopMode from '../shopMode/ShopMode';
 import Covid from '../regulations/Covid';
+import Bar from '../progressBar/Bar';
 import './FlowContainer.scss';
 
 function FlowContainer() {
@@ -12,6 +13,7 @@ function FlowContainer() {
   const [showCovid, setShowCovid] = useState(false);
   const [shopMode, setshopMode] = useState('');
   const [storeName, setStoreName] = useState(' Chicago Clybourne');
+  const [progBar] = useState(0);
 
   const handleExClick = () => {
     // go back to list page or whatever is before this
@@ -42,6 +44,22 @@ function FlowContainer() {
           <FaTimes className="ex-icon" />
         </Button>
       </div>
+      {/* updates length of progress bar as we go through the pages */}
+      {showWelcome ? (
+        <Bar
+          setProgBarProp={progBar + 30}
+        />
+      ) : null }
+      {showCovid ? (
+        <Bar
+          setProgBarProp={progBar + 60}
+        />
+      ) : null }
+      {showShopMode ? (
+        <Bar
+          setProgBarProp={progBar + 90}
+        />
+      ) : null }
       {/* for hiding and showing, using this stack overflow format that seems up to date
       https://stackoverflow.com/questions/24502898/show-or-hide-element-in-react */}
       {/* show welcome screen if boolean is true, otherwise hide it */}
