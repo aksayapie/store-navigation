@@ -3,7 +3,7 @@ import Sheet from 'react-modal-sheet';
 import {
   Button, ButtonGroup, DisplayText, Modal, Stack, TextContainer,
 } from '@shopify/polaris/';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineScan } from 'react-icons/ai';
 import { BiPlus } from 'react-icons/bi';
 import useWindowDimensions from '../../util/windowDimensions';
 import ShoppingList from '../../features/ShoppingList/ShoppingList';
