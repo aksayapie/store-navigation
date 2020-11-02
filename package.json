@@ -6,6 +6,7 @@
     "@react-google-maps/api": "^1.13.0",
     "@reduxjs/toolkit": "^1.4.0",
     "@shopify/polaris": "^5.10.0",
+    "@shopify/polaris-icons": "^4.1.0",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
