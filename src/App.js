@@ -10,7 +10,7 @@ import ScanPage from './features/scan/ScanPage';
 function App() {
   return (
     <AppProvider i18n={enTranslations}>
-      <div className="app">
+      <div className="app" id="app">
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>

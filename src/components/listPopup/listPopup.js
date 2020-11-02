@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Sheet from 'react-modal-sheet';
 import {
   Button, DisplayText, Modal, TextContainer,
@@ -22,6 +22,10 @@ const ListPopup = () => {
     setOpen(true);
   };
 
+  useEffect(() => {
+    document.querySelector('#app').appendChild(document.querySelector('#sheet'));
+  });
+
   return (
     <Sheet
       isOpen={isOpen}
@@ -30,12 +34,13 @@ const ListPopup = () => {
       initialSnap={2}
       ref={ref}
       className="sheet"
+      id="sheet"
     >
       <Sheet.Container>
         <Sheet.Header>
           <div className="popupheader">
             <Sheet.Header />
-            <DisplayText size="extraLarge" element="h1">
+            <DisplayText size="Medium" element="h1">
               My Shopping List
             </DisplayText>
           </div>
