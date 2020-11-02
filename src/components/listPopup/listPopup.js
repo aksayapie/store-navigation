@@ -26,7 +26,13 @@ const ListPopup = () => {
 
   useEffect(() => {
     document.querySelector('#app').appendChild(document.querySelector('#sheet'));
-  }, []);
+  });
+
+  useEffect(() => {
+    if (active) {
+      document.querySelector('#sheet').appendChild(document.querySelector('#PolarisPortalsContainer'));
+    }
+  }, [active]);
 
   return (
     <Sheet
@@ -75,6 +81,7 @@ const ListPopup = () => {
 
                 <div>
                   <Modal
+                    className="modal-fix"
                     activator={(
                       <Button fullWidth size="slim" onClick={handleChange}>
                         Exit Shopping
