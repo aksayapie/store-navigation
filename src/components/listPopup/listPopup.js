@@ -40,7 +40,7 @@ const ListPopup = () => {
         <Sheet.Header>
           <div className="popupheader">
             <Sheet.Header />
-            <DisplayText size="Medium" element="h1">
+            <DisplayText size="Large" element="h1">
               My Shopping List
             </DisplayText>
           </div>
