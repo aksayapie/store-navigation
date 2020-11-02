@@ -1,13 +1,18 @@
 import React from 'react';
 import { ProgressBar } from '@shopify/polaris/';
+import PropTypes from 'prop-types';
 import './Bar.scss';
 
-function Bar() {
+function Bar({ setProgBarProp }) {
   return (
     <div className="loading-bar">
-      <ProgressBar progress={30} size="small" />
+      <ProgressBar progress={setProgBarProp} size="small" />
     </div>
   );
 }
+
+Bar.propTypes = {
+  setProgBarProp: PropTypes.number.isRequired,
+};
 
 export default Bar;
