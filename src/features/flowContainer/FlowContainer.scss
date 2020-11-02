@@ -1,0 +1,18 @@
+.flow-container {
+  margin: 50px 30px;
+  .icon-container {
+    margin-top: 25px;
+    display: flex;
+  }
+  .flow-back {
+    flex: 1;
+  }
+  .Polaris-Button--plain svg {
+    fill: darkgray;
+    font-size: 25px;
+    :hover {
+      fill: gray;
+    }
+  }
+}
+

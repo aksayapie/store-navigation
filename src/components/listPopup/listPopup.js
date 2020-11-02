@@ -1,8 +1,10 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Sheet from 'react-modal-sheet';
 import {
-  Button, DisplayText, Modal, TextContainer,
+  Button, ButtonGroup, DisplayText, Modal, Stack, TextContainer,
 } from '@shopify/polaris/';
+import { AiOutlineScan } from 'react-icons/ai';
+import { BiPlus } from 'react-icons/bi';
 import useWindowDimensions from '../../util/windowDimensions';
 import ShoppingList from '../../features/ShoppingList/ShoppingList';
 import './listPopup.scss';
@@ -40,9 +42,31 @@ const ListPopup = () => {
         <Sheet.Header>
           <div className="popupheader">
             <Sheet.Header />
-            <DisplayText size="Large" element="h1">
-              My Shopping List
-            </DisplayText>
+            <Stack>
+              <DisplayText size="large" element="h1">
+                My Shopping List
+              </DisplayText>
+              <ButtonGroup>
+                <Button
+                  textAlign="center"
+                  size="slim"
+                >
+                  <BiPlus />
+                  <div className="smallButtonText">
+                    Add Item
+                  </div>
+                </Button>
+                <Button
+                  textAlign="center"
+                  size="slim"
+                >
+                  <AiOutlineScan />
+                  <div className="smallButtonText">
+                    Scan Item
+                  </div>
+                </Button>
+              </ButtonGroup>
+            </Stack>
           </div>
         </Sheet.Header>
         <br />

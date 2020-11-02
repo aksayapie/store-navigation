@@ -2,10 +2,11 @@ import React from 'react';
 import enTranslations from '@shopify/polaris/locales/en.json';
 import { AppProvider } from '@shopify/polaris';
 import { Switch, Route } from 'react-router-dom';
-
 import './App.scss';
+import FlowContainer from './features/flowContainer/FlowContainer';
 import MapPage from './features/map/MapPage';
 import ScanPage from './features/scan/ScanPage';
+import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList';
 
 function App() {
   return (
@@ -20,15 +21,13 @@ function App() {
             <MapPage />
           </Route>
           <Route path="/welcome">
-            <p>Welcome</p>
-            {/* <WelcomePage /> */}
+            <FlowContainer />
           </Route>
           <Route path="/scan">
             <ScanPage />
           </Route>
           <Route path="/">
-            <p>Shopping List / Account</p>
-            {/* <ShoppingListPage /> */}
+            <FrontPageShoppingList />
           </Route>
         </Switch>
       </div>
