@@ -18,7 +18,7 @@ function LocationSelect({ updateStoreProp }) {
   const handleModalChange = useCallback(() => setActive(!active), [active]);
   const handleSelectedCity = useCallback(
     (value) => {
-      updateStoreProp(value);
+      updateStoreProp(value[0]);
       setSelectedCity(value);
     },
     [],

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaTimes, FaArrowLeft } from 'react-icons/fa';
+import { Button } from '@shopify/polaris';
 import Welcome from '../welcomePage/Welcome';
 import ShopMode from '../shopMode/ShopMode';
 import Covid from '../regulations/Covid';
@@ -9,11 +10,14 @@ function FlowContainer() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showShopMode, setShowShopMode] = useState(false);
   const [showCovid, setShowCovid] = useState(false);
-  // const [lastPage, setLastPage] = useState('Welcome');
+  const [shopMode, setshopMode] = useState('');
+  const [storeName, setStoreName] = useState(' Chicago Clybourne');
 
   const handleExClick = () => {
     // go back to list page or whatever is before this
     console.log('ex click');
+    //  just for right now making sure shopMode is set correctly
+    console.log(shopMode);
   };
 
   const handleBackClick = () => {
@@ -30,10 +34,12 @@ function FlowContainer() {
     <div className="flow-container">
       <div className="icon-container">
         <div className="flow-back">
-          {showWelcome ? null : <FaArrowLeft className="back-icon" onClick={handleBackClick} />}
+          {showWelcome ? null : <Button plain onClick={handleBackClick}><FaArrowLeft className="back-icon" /></Button> }
         </div>
         <div className="flow-ex">
-          <FaTimes className="ex-icon" onClick={handleExClick} />
+          <Button plain onClick={handleExClick}>
+            <FaTimes className="ex-icon" />
+          </Button>
         </div>
       </div>
       {/* for hiding and showing, using this stack overflow format that seems up to date
@@ -43,12 +49,13 @@ function FlowContainer() {
         <Welcome
           setShowWelcomeProp={setShowWelcome}
           setShowCovidProp={setShowCovid}
+          storeNameProp={storeName}
+          setStoreNameProp={setStoreName}
         />
       ) : null }
       {/* show Covid screen if boolean is true, otherwise hide it */}
       {showCovid ? (
         <Covid
-          style={{ visibility: showShopMode }}
           setShowCovidProp={setShowCovid}
           setShowShopModeProp={setShowShopMode}
         />
@@ -56,8 +63,7 @@ function FlowContainer() {
       {/* show Shop Mode screen if boolean is true, otherwise hide it */}
       {showShopMode ? (
         <ShopMode
-          style={{ visibility: showShopMode }}
-          setShowShopModeProp={setShowShopMode}
+          setShopModeProp={setshopMode}
         />
       ) : null }
     </div>

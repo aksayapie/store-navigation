@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Welcome.scss';
 import { Button } from '@shopify/polaris';
 import LocationSelect from './LocationSelect';
 
-const Welcome = ({ setShowWelcomeProp, setShowCovidProp }) => {
-  const [storeName, setStoreName] = useState(' Chicago Clybourne');
+const Welcome = ({
+  setShowWelcomeProp, setShowCovidProp, storeNameProp, setStoreNameProp,
+}) => {
   const toNextScreen = () => {
     setShowWelcomeProp(false);
     setShowCovidProp(true);
   };
   const updateStore = (newStore) => {
-    setStoreName(newStore);
+    setStoreNameProp(newStore);
   };
   return (
     <div className="welcome-container">
@@ -22,7 +23,7 @@ const Welcome = ({ setShowWelcomeProp, setShowCovidProp }) => {
       </h2>
       <h2>
         My store is
-        <b>{storeName}</b>
+        <b>{storeNameProp}</b>
         <LocationSelect updateStoreProp={updateStore} />
       </h2>
       <Button primary onClick={toNextScreen}>Continue</Button>
@@ -33,6 +34,8 @@ const Welcome = ({ setShowWelcomeProp, setShowCovidProp }) => {
 Welcome.propTypes = {
   setShowWelcomeProp: PropTypes.func.isRequired,
   setShowCovidProp: PropTypes.func.isRequired,
+  storeNameProp: PropTypes.string.isRequired,
+  setStoreNameProp: PropTypes.func.isRequired,
 };
 
 export default Welcome;

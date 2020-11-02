@@ -7,9 +7,11 @@ import PropTypes from 'prop-types';
 //  assume our container will have the state variable for shopmode and
 // method to update and we just pass our value into prop method
 
-function ShopModeButton({ shopModeProp, headerProp, bodyProp }) {
+function ShopModeButton({
+  shopModeProp, headerProp, bodyProp, setShopModeProp,
+}) {
   const updateShopMode = (value) => {
-    console.log(value);
+    setShopModeProp(value);
   };
 
   return (
@@ -29,6 +31,7 @@ ShopModeButton.propTypes = {
   shopModeProp: PropTypes.string.isRequired,
   headerProp: PropTypes.string.isRequired,
   bodyProp: PropTypes.string.isRequired,
+  setShopModeProp: PropTypes.func.isRequired,
 };
 
 export default ShopModeButton;
