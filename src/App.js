@@ -13,9 +13,11 @@ function App() {
   return (
     <AppProvider i18n={enTranslations}>
       <div className="app" id="app">
-        <MainNavBar />
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <MainNavBar />
+        </div>
         {/* using margin top to give nav bar enough space */}
-        <div style={{ marginTop: 16 }}>
+        <div style={{ marginTop: 16, position: 'relative', zIndex: 1 }}>
           {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
           <Switch>
