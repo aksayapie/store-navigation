@@ -1,11 +1,16 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Sheet from 'react-modal-sheet';
 import {
-  Button, ButtonGroup, DisplayText, Modal, Stack, TextContainer, Icon,
+  Button,
+  ButtonGroup,
+  DisplayText,
+  Modal,
+  Stack,
+  TextContainer,
+  Icon,
 } from '@shopify/polaris/';
-import {
-  MobilePlusMajor, BarcodeMajor,
-} from '@shopify/polaris-icons';
+import { MobilePlusMajor, BarcodeMajor } from '@shopify/polaris-icons';
 import useWindowDimensions from '../../util/windowDimensions';
 import ShoppingList from '../../features/ShoppingList/ShoppingList';
 import './listPopup.scss';
@@ -26,12 +31,10 @@ const ListPopup = () => {
   };
 
   useEffect(() => {
-    document.querySelector('#app').appendChild(document.querySelector('#sheet'));
-  });
-
-  useEffect(() => {
     if (active) {
-      document.querySelector('#sheet').appendChild(document.querySelector('#PolarisPortalsContainer'));
+      document
+        .querySelector('#sheet')
+        .appendChild(document.querySelector('#PolarisPortalsContainer'));
     }
   }, [active]);
 
@@ -58,10 +61,12 @@ const ListPopup = () => {
                   <Icon source={MobilePlusMajor} />
                   <div className="smallButtonText">Add Item</div>
                 </Button>
-                <Button textAlign="center" size="slim">
-                  <Icon source={BarcodeMajor} />
-                  <div className="smallButtonText">Scan Item</div>
-                </Button>
+                <Link to="/scan">
+                  <Button textAlign="center" size="slim">
+                    <Icon source={BarcodeMajor} />
+                    <div className="smallButtonText">Scan Item</div>
+                  </Button>
+                </Link>
               </ButtonGroup>
             </Stack>
           </div>
