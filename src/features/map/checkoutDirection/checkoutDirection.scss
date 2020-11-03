@@ -33,44 +33,4 @@
       }
     }
   }
-
-  .footer {
-  }
-}
-
-.direction-title {
-  display: flex;
-  align-items: center;
-
-  p {
-    font-size: 2rem;
-    font-weight: 800;
-  }
-}
-
-.direction-arrow {
-  font-size: 4.5rem !important;
-}
-
-.direction-item {
-  display: flex;
-  margin: 1rem auto;
-  width: 85%;
-
-  img {
-    width: 8rem;
-    margin-right: 1rem;
-  }
-
-  p {
-    margin-top: 2rem;
-    font-size: 1.75rem;
-    text-transform: capitalize;
-  }
-}
-
-.direction-footer {
-  margin-left: auto;
-  margin-right: auto;
-  width: 85%;
 }
