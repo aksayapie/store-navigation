@@ -22,20 +22,22 @@ const ScanPage = () => {
       const previewElem = document.querySelector('video');
 
       // you can use the controls to stop() the scan or switchTorch() if available
-      setControls(await codeReader.decodeFromVideoDevice(
-        selectedDeviceId,
-        previewElem,
-        (result, _error, controls) => {
-          // use the result and error values to choose your actions
-          // you can also use controls API in this scope like the controls
-          // returned from the method.
-          if (result) {
-            setCode(result.text);
-            controls.stop();
-            history.push('/map');
-          }
-        },
-      ));
+      setControls(
+        await codeReader.decodeFromVideoDevice(
+          selectedDeviceId,
+          previewElem,
+          (result, _error, controls) => {
+            // use the result and error values to choose your actions
+            // you can also use controls API in this scope like the controls
+            // returned from the method.
+            if (result) {
+              setCode(result.text);
+              controls.stop();
+              history.push('/map');
+            }
+          },
+        ),
+      );
     };
 
     scanBarcode();

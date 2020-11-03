@@ -13,9 +13,13 @@ export default function FrontPageShoppingList() {
       <Page title="My Account">
         <ShoppingListHeader />
         <br />
-        <ShoppingListTitle />
+        <div className="list-title">
+          <ShoppingListTitle />
+        </div>
         <br />
-        <ShoppingList />
+        <div className="shopping-item-container">
+          <ShoppingList />
+        </div>
         <ShoppingListBottomButtons />
       </Page>
     </div>
