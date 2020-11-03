@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Page } from '@shopify/polaris';
+import { Page } from '@shopify/polaris';
 import ShoppingList, { ShoppingListTitle } from './ShoppingList';
 import ShoppingListHeader from './ShoppingListHeader';
 import ShoppingListBottomButtons from './ShoppingListBottomButtons';
@@ -10,13 +10,14 @@ export default function FrontPageShoppingList() {
   return (
     <div className="shopping-list-container">
       <ListPageTopBar />
-      <h1>My Account</h1>
-      <ShoppingListHeader />
-      <br />
-      <ShoppingListTitle />
-      <br />
-      <ShoppingList />
-      <ShoppingListBottomButtons />
+      <Page title="My Account">
+        <ShoppingListHeader />
+        <br />
+        <ShoppingListTitle />
+        <br />
+        <ShoppingList />
+        <ShoppingListBottomButtons />
+      </Page>
     </div>
   );
 }
