@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon } from '@shopify/polaris/';
-import { FaAngleRight } from 'react-icons/fa';
-import { ShopcodesMajor, MobileMajor } from '@shopify/polaris-icons';
+import { ShopcodesMajor, MobileMajor, ChevronRightMinor } from '@shopify/polaris-icons';
 
 function MethodButton({
   setCheckoutTypeProp, titleProp, contentProp, checkoutTypeProp, iconNameProp,
@@ -22,7 +21,7 @@ function MethodButton({
         ) : null}
         <h3>{titleProp}</h3>
         <h4>{contentProp}</h4>
-        <FaAngleRight />
+        <Icon source={ChevronRightMinor} />
       </Button>
     </div>
   );
