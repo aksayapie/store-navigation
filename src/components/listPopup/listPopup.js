@@ -2,10 +2,15 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Sheet from 'react-modal-sheet';
 import {
-  Button, ButtonGroup, DisplayText, Modal, Stack, TextContainer,
+  Button,
+  ButtonGroup,
+  DisplayText,
+  Modal,
+  Stack,
+  TextContainer,
+  Icon,
 } from '@shopify/polaris/';
-import { AiOutlineScan } from 'react-icons/ai';
-import { BiPlus } from 'react-icons/bi';
+import { MobilePlusMajor, BarcodeMajor } from '@shopify/polaris-icons';
 import useWindowDimensions from '../../util/windowDimensions';
 import ShoppingList from '../../features/ShoppingList/ShoppingList';
 import './listPopup.scss';
@@ -56,12 +61,12 @@ const ListPopup = () => {
               </DisplayText>
               <ButtonGroup>
                 <Button textAlign="center" size="slim">
-                  <BiPlus />
+                  <Icon source={MobilePlusMajor} />
                   <div className="smallButtonText">Add Item</div>
                 </Button>
                 <Link to="/scan">
                   <Button textAlign="center" size="slim">
-                    <AiOutlineScan />
+                    <Icon source={BarcodeMajor} />
                     <div className="smallButtonText">Scan Item</div>
                   </Button>
                 </Link>

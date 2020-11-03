@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button, ButtonGroup, Card } from '@shopify/polaris';
+import { Button, ButtonGroup } from '@shopify/polaris';
 import { Link } from 'react-router-dom';
+import './ShoppingList.scss';
 
 export default function ShoppingListBottomButtons() {
   return (
-    <Card>
+    <div className="bottom-buttons">
       <ButtonGroup fullWidth>
         <Button>Order for Delivery</Button>
         <div style={{ color: '#005DAA' }}>
@@ -13,6 +14,6 @@ export default function ShoppingListBottomButtons() {
           </Link>
         </div>
       </ButtonGroup>
-    </Card>
+    </div>
   );
 }

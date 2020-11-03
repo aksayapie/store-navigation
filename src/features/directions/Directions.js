@@ -1,6 +1,8 @@
 import React from 'react';
-import { Card, Button, ButtonGroup } from '@shopify/polaris';
-import { BsArrowUp } from 'react-icons/bs';
+import {
+  Card, Button, ButtonGroup, Icon,
+} from '@shopify/polaris';
+import { ArrowUpMinor } from '@shopify/polaris-icons';
 import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 
@@ -12,7 +14,7 @@ const Directions = ({ currentItem, onScan }) => (
     <Card>
       <Card.Section>
         <div className="direction-title">
-          <BsArrowUp className="direction-arrow" />
+          <Icon source={ArrowUpMinor} className="direction-arrow" />
           <p>Continue down Aisle 12</p>
         </div>
         <AnimatePresence>
