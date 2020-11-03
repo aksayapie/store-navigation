@@ -1,16 +1,15 @@
 .sheet {
   max-width: 425px;
   margin: auto;
-  position: static !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  touch-action: none;
 
-  hr.style-six {
-    border: 0;
-    clear: both;
-    display: block;
-    width: 96%;
-    background-color: #0000001e;
-    height: 1px;
+  .react-modal-sheet-container {
+    pointer-events: auto;
+    touch-action: auto;
   }
+
   .popupheader {
     margin: 0 20px 0;
   }
@@ -57,7 +56,7 @@
   .smallButtonText {
     font-size: xx-small;
   }
-  .Polaris-Modal-Dialog__Modal {
+  .modal {
     z-index: 999999999999;
     margin: auto;
     bottom: 50%;
@@ -67,8 +66,17 @@
   .Polaris-Backdrop {
     z-index: 99999999;
   }
+}
 
-  .Polaris-Modal-Dialog__Container {
-    z-index: 999999999999;
-  }
+hr.style-six {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: #0000001e;
+  height: 1px;
+}
+
+.Polaris-ButtonGroup {
+  justify-content: center;
 }
