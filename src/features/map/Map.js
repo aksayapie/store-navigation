@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   GoogleMap, Polyline, Marker, useJsApiLoader, Polygon,
 } from '@react-google-maps/api';
@@ -9,6 +10,8 @@ import { CENTER, AISLE_BOUNDS } from '../../constants';
 import './map.scss';
 import PaperTowel from '../../assets/paper-towel.png';
 import ListPopup from '../../components/listPopup/listPopup';
+
+import testData from '../../data3.json';
 
 // TODO: customize lines to look better
 // path polyline options
@@ -35,6 +38,8 @@ const Map = ({ path, shoppingList }) => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   });
 
+  useEffect();
+
   return (
     <>
       {isLoaded && (
@@ -51,7 +56,7 @@ const Map = ({ path, shoppingList }) => {
             // render the "shelves"
             AISLE_BOUNDS.map((shelfBounds) => <Polygon path={shelfBounds} />)
           }
-          {
+          {/* {
             // render lines if there is a path to render
             path && path.length > 0 && (
             <Polyline
@@ -62,8 +67,14 @@ const Map = ({ path, shoppingList }) => {
               options={pathLineOptions}
             />
             )
+          } */}
+          {
+            console.log(testData.length)
           }
           {
+            testData.map((data) => <Marker position={{ lat: data.lat, lng: data.lng }} />)
+          }
+          {/* {
             shoppingList && shoppingList.length > 0
               && shoppingList.map((item) => {
                 if (item.inCart) return null;
@@ -75,7 +86,7 @@ const Map = ({ path, shoppingList }) => {
                   />
                 );
               })
-          }
+          } */}
         </GoogleMap>
       )}
       <ListPopup />
