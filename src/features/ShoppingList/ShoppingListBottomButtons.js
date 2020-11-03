@@ -6,10 +6,10 @@ import './ShoppingList.scss';
 export default function ShoppingListBottomButtons() {
   return (
     <div className="bottom-buttons">
-      <Button fullWidth>Order for Delivery</Button>
+      <Button>Order for Delivery</Button>
       <div style={{ color: '#005DAA' }}>
         <Link to="/welcome" className="link">
-          <Button fullWidth primary>Shop in Store</Button>
+          <Button primary>Shop in Store</Button>
         </Link>
       </div>
     </div>
