@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ResourceList, Card, DisplayText } from '@shopify/polaris';
+import { ResourceList, Card, Button } from '@shopify/polaris';
 import { selectItems } from './shoppingListSlice';
 import ShoppingItem from './shoppingItem';
 
@@ -22,9 +22,16 @@ function ShoppingList() {
   );
 }
 export function ShoppingListTitle() {
+  const items = useSelector(selectItems);
   return (
     <div>
-      <DisplayText size="medium">Shopping List</DisplayText>
+      <h1 size="medium">
+        My Shopping List (
+        {items.length }
+        {items.length === 1 ? ' item' : ' items'}
+        )
+      </h1>
+      <Button plain>Edit</Button>
     </div>
   );
 }

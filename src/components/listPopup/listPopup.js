@@ -96,7 +96,7 @@ const ListPopup = () => {
         <Sheet.Content>
           <div className="popupcontainer">
             <div className="popupbody">
-              <div className="list">
+              <div className="list shopping-item-container">
                 <ShoppingList />
               </div>
               <div className="buttons">
