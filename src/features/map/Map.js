@@ -14,25 +14,12 @@ import ListPopup from '../../components/listPopup/listPopup';
 // path polyline options
 const pathLineOptions = {
   strokeColor: '#E31837',
-  strokeOpacity: 0,
+  strokeOpacity: 0.7,
   clickable: false,
   draggable: false,
   editable: false,
   visible: true,
   zIndex: 1,
-  icons: [
-    {
-      // symbol using SVG path notation
-      icon: {
-        path: 'M 0,-1 0,1',
-        strokeOpacity: 0.8,
-        scale: 3,
-      },
-      offset: '0',
-      // Repeat the symbol at intervals of 20 pixels to create the dashed effect
-      repeat: '15px',
-    },
-  ],
 };
 
 // TODO: add more extensive options
@@ -42,7 +29,7 @@ const mapOptions = {
   minZoom: 18,
 };
 
-const Map = ({ allItems, path, shoppingList }) => {
+const Map = ({ path, shoppingList }) => {
   // load the google map javascript scripts
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -57,35 +44,32 @@ const Map = ({ allItems, path, shoppingList }) => {
           zoom={20}
           // if there's a path, center the map to the first node
           // else center it to the center of the store
-          center={path.length > 0 ? path[0] : CENTER}
+          center={path?.length > 0 ? path[0] : CENTER}
           options={mapOptions}
         >
           {
-            // render lines if there is a path to render
-            path.length > 0 && <Polyline path={path} options={pathLineOptions} />
-          }
-          {
-            allItems.length > 0 && allItems.map((i) => {
-              if (!i.stock) return null;
-
-              return (
-                <Marker
-                  key={i.name}
-                  position={{ lat: i.lat, lng: i.lng }}
-                />
-              );
-            })
-          }
-          {
+            // render the "shelves"
             AISLE_BOUNDS.map((shelfBounds) => <Polygon path={shelfBounds} />)
           }
           {
-            shoppingList.length > 0
+            // render lines if there is a path to render
+            path && path.length > 0 && (
+            <Polyline
+              path={path.map((point) => ({
+                lat: point.lat,
+                lng: point.lng,
+              }))}
+              options={pathLineOptions}
+            />
+            )
+          }
+          {
+            shoppingList && shoppingList.length > 0
               && shoppingList.map((item) => {
                 if (item.inCart) return null;
                 return (
                   <Marker
-                    key={item.name}
+                    key={item.id}
                     icon={{ url: PaperTowel, scaledSize: new window.google.maps.Size(25, 25) }}
                     position={{ lat: item.lat, lng: item.lng }}
                   />
@@ -103,6 +87,7 @@ const Map = ({ allItems, path, shoppingList }) => {
 Map.propTypes = {
   path: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number,
       lat: PropTypes.number.isRequired,
       lng: PropTypes.number.isRequired,
     }),

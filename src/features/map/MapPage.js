@@ -15,18 +15,16 @@ const MapPage = () => {
   const allItems = useSelector(selectAllItems);
 
   const onScan = (currentScanningItem) => {
-    console.log(currentScanningItem);
     dispatch(scanItem(currentScanningItem.id));
   };
 
-  // set first item to navigate to from shoppingList array
+  // set first item for navigation
   useEffect(() => {
     // wait for items to populate from API
     if (allItems && shoppingList) {
-      console.log(shoppingList[0].id);
       dispatch(setCurrentItem(shoppingList[0].id));
     }
-  }, []);
+  }, [allItems]);
 
   return (
     <>
@@ -36,7 +34,7 @@ const MapPage = () => {
           onScan={onScan}
         />
       )}
-      <Map allItems={allItems} path={path} shoppingList={shoppingList} />
+      <Map path={path} shoppingList={shoppingList} />
     </>
   );
 };

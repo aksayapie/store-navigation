@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ALL_ITEMS, SHOPPING_LIST } from './sampleData';
+import { ALL_ITEMS, SHOPPING_LIST, PATH } from './sampleData';
 
 // TODO: read data from backend API
 // TODO: ask for ID on each item
 // TODO: item data maybe should be in itemList slice
 // TODO: Normalize data
 const initialState = {
-  path: [],
+  path: null,
   items: null,
   itemsById: null,
-  shoppingList: [],
+  shoppingList: null,
   currentItem: null,
 };
 
@@ -20,11 +20,13 @@ export const mapSlice = createSlice({
     // simulate API call
     fetchItems: (state) => {
       state.items = ALL_ITEMS;
+      // normalization
       state.itemsById = ALL_ITEMS.reduce((byId, item) => {
         byId[item.id] = item;
         return byId;
       });
       state.shoppingList = SHOPPING_LIST;
+      state.path = PATH;
     },
     scanItem: (state, action) => {
       const scannedItemId = action.payload;
@@ -41,7 +43,8 @@ export const mapSlice = createSlice({
       // next item in the items array not inCart.
       // Possibly error prone because array might not keep item order.
       // Solution could be to number items in scan order on the path.
-      state.currentItem = state.itemsById[scannedItemId];
+      state.currentItem = state.itemsById[state.shoppingList.find((i) => i.inCart === false).id];
+      state.path = state.path.filter((p) => p.id !== scannedItemId);
     },
     setCurrentItem: (state, action) => {
       const itemId = action.payload;
