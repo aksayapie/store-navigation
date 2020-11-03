@@ -3,7 +3,6 @@ import {
   Card, Button, ButtonGroup, Icon,
 } from '@shopify/polaris';
 import { ArrowUpMinor } from '@shopify/polaris-icons';
-import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
@@ -21,12 +20,10 @@ const Directions = ({ currentItem }) => {
             <Icon source={ArrowUpMinor} className="direction-arrow" />
             <p>Continue down Aisle 12</p>
           </div>
-          <AnimatePresence>
-            <motion.div className="direction-item">
-              <img src={ItemImage} alt={currentItem.name} />
-              <p>{currentItem.name}</p>
-            </motion.div>
-          </AnimatePresence>
+          <div className="direction-item">
+            <img src={ItemImage} alt={currentItem.name} />
+            <p>{currentItem.name}</p>
+          </div>
           <div className="direction-footer">
             <ButtonGroup fullWidth>
               <Button>Remove Item</Button>
