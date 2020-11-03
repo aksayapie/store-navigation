@@ -1,10 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Sheet from 'react-modal-sheet';
 import {
-  Button, ButtonGroup, DisplayText, Modal, Stack, TextContainer,
+  Button, ButtonGroup, DisplayText, Modal, Stack, TextContainer, Icon,
 } from '@shopify/polaris/';
-import { AiOutlineScan } from 'react-icons/ai';
-import { BiPlus } from 'react-icons/bi';
+import {
+  MobilePlusMajor, BarcodeMajor,
+} from '@shopify/polaris-icons';
 import useWindowDimensions from '../../util/windowDimensions';
 import ShoppingList from '../../features/ShoppingList/ShoppingList';
 import './listPopup.scss';
@@ -26,7 +27,13 @@ const ListPopup = () => {
 
   useEffect(() => {
     document.querySelector('#app').appendChild(document.querySelector('#sheet'));
-  }, []);
+  });
+
+  useEffect(() => {
+    if (active) {
+      document.querySelector('#sheet').appendChild(document.querySelector('#PolarisPortalsContainer'));
+    }
+  }, [active]);
 
   return (
     <Sheet
@@ -48,11 +55,11 @@ const ListPopup = () => {
               </DisplayText>
               <ButtonGroup>
                 <Button textAlign="center" size="slim">
-                  <BiPlus />
+                  <Icon source={MobilePlusMajor} />
                   <div className="smallButtonText">Add Item</div>
                 </Button>
                 <Button textAlign="center" size="slim">
-                  <AiOutlineScan />
+                  <Icon source={BarcodeMajor} />
                   <div className="smallButtonText">Scan Item</div>
                 </Button>
               </ButtonGroup>
@@ -75,6 +82,7 @@ const ListPopup = () => {
 
                 <div>
                   <Modal
+                    className="modal-fix"
                     activator={(
                       <Button fullWidth size="slim" onClick={handleChange}>
                         Exit Shopping

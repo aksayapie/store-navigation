@@ -1,7 +1,9 @@
 import React from 'react';
-import { Button } from '@shopify/polaris';
+import { Button, Icon } from '@shopify/polaris';
 import './ShopMode.scss';
-import { FaAngleRight } from 'react-icons/fa';
+import {
+  ChevronRightMinor,
+} from '@shopify/polaris-icons';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -23,7 +25,7 @@ function ShopModeButton({
           <div className="button-text">
             {bodyProp}
           </div>
-          <FaAngleRight className="button-icon" />
+          <Icon source={ChevronRightMinor} className="button-icon" />
         </Button>
       </Link>
     </div>

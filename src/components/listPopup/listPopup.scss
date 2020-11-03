@@ -52,6 +52,9 @@
     }
   }
 
+  .smallButtonText {
+    font-size: xx-small;
+  }
   .Polaris-Modal-Dialog__Modal {
     z-index: 999999999999;
     margin-bottom: 61%;
@@ -65,9 +68,5 @@
 
   .Polaris-Modal-Dialog__Container {
     z-index: 999999999999;
-  }
-
-  .smallButtonText {
-    font-size: xx-small;
   }
 }

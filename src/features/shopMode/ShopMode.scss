@@ -9,38 +9,43 @@ h2 {
 }
 
 h3 {
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 7px;
+  text-align: left;
 }
 .shop-mode-container {
   margin: 50px 30px;
 
   .button-text {
-    font-size: 1.3em;
+    font-size: 1.2em;
     display: inline-block;
     width: 90%;
+    text-align: left;
+  }
+
+  .Polaris-Button__Text {
+    margin: 15px 30px;
   }
   
   .Polaris-Button--outline {
-    border-radius: 50px;
+    border-radius: 60px;
     margin-bottom: 2em;
   }
   
   .Polaris-Button--outline:hover{
     background: #005DAA;
     color: white;
-    fill:white;
   }
-  .button-icon {
+  .Polaris-Icon {
     display: inline-block;
     width: 10%;
     vertical-align: top;
-    margin-top: 5px;
   }
-  .Polaris-Button--outline:hover .button-icon {
+  .Polaris-Button--outline:hover svg {
     fill: white;
   }
+ 
 }
 .bold {
   font-weight: bold;
