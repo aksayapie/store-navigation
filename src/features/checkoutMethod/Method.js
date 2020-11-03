@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MethodButton from './MethodButton';
+import './Method.scss';
 
 function Method() {
   const [checkoutType, setCheckoutType] = useState(null);
