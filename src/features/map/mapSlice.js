@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import ITEM_DATA from './sampleData';
 
 // TODO: read data from backend API
 // TODO: ask for ID on each item
@@ -10,17 +11,19 @@ const initialState = {
     { lat: 40.65564081818183, lng: -74.00875449840511 },
     { lat: 40.655692090909106, lng: -74.00869968022329 },
     { lat: 40.65574336363637, lng: -74.00864486204148 }],
-  items: [{
-    id: 1, name: 'hygiene articles', price: 22.6, inStock: true, lat: 40.65553827272728, lng: -74.00886413476874, inCart: false,
-  }, {
-    id: 2, name: 'artif. sweetener', price: 70.44, inStock: false, lat: 40.65558954545454, lng: -74.00880931658693, inCart: false,
-  }, {
-    id: 3, name: 'light bulbs', price: 87.12, inStock: true, lat: 40.65564081818183, lng: -74.00875449840511, inCart: false,
-  }, {
-    id: 4, name: 'canned vegetables', price: 17.68, inStock: true, lat: 40.655692090909106, lng: -74.00869968022329, inCart: false,
-  }, {
-    id: 5, name: 'chewing gum', price: 25.27, inStock: true, lat: 40.65574336363637, lng: -74.00864486204148, inCart: false,
-  }],
+  items: ITEM_DATA,
+  shoppingList: [{ id: 4, inCart: false },
+    { id: 18, inCart: false },
+    { id: 24, inCart: false },
+    { id: 33, inCart: false },
+    { id: 42, inCart: false },
+    { id: 47, inCart: false },
+    { id: 53, inCart: false },
+    { id: 61, inCart: false },
+    { id: 78, inCart: false },
+    { id: 81, inCart: false },
+    { id: 89, inCart: false },
+    { id: 92, inCart: false }],
   currentItem: null,
 };
 
@@ -34,7 +37,7 @@ export const mapSlice = createSlice({
     scanItem: (state, action) => {
       const scannedItemId = action.payload;
       // set the scanned item inCart property to true
-      state.items = state.items.map((item) => {
+      state.shoppingList = state.shoppingList.map((item) => {
         if (item.id === scannedItemId) {
           item.inCart = true;
         }
@@ -46,10 +49,11 @@ export const mapSlice = createSlice({
       // next item in the items array not inCart.
       // Possibly error prone because array might not keep item order.
       // Solution could be to number items in scan order on the path.
-      state.currentItem = state.items.find((item) => !item.inCart);
+      state.currentItem = state.shoppingList.find((item) => !item.inCart);
     },
     setCurrentItem: (state, action) => {
-      state.currentItem = action.payload;
+      const itemId = action.payload;
+      state.currentItem = state.items.find((item) => item.id === itemId);
     },
   },
 });
@@ -59,13 +63,14 @@ export const { removeFirstPath, setCurrentItem, scanItem } = mapSlice.actions;
 
 // selectors
 export const selectPath = (state) => state.map.path;
-export const selectItems = (state) => state.map.items;
+export const selectShoppingList = (state) => state.mapshoppingList;
 export const selectCurrentItem = (state) => state.map.currentItem;
-export const selectRemainingItemsCount = (state) => state.map.items.reduce((acc, curr) => {
-  if (curr.inCart) {
-    return acc + 1;
-  }
-  return acc;
-}, 0);
+export const selectShoppingListRemainingCount = (state) => (
+  state.mapshoppingList.reduce((acc, curr) => {
+    if (curr.inCart) {
+      return acc + 1;
+    }
+    return acc;
+  }, 0));
 
 export default mapSlice.reducer;

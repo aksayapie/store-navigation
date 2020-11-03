@@ -42,7 +42,7 @@ const mapOptions = {
   minZoom: 18,
 };
 
-const Map = ({ path, items }) => {
+const Map = ({ path, shoppingList }) => {
   // load the google map javascript scripts
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -66,10 +66,10 @@ const Map = ({ path, items }) => {
             path.length > 0 && <Polyline path={path} options={pathLineOptions} />
           }
           {
-            // render item markers if there are items to render
-            items.length > 0
-              // only render items not in cart
-              && items.map((item) => {
+            // render item markers if there are shoppingList to render
+            shoppingList.length > 0
+              // only render shoppingList not in cart
+              && shoppingList.map((item) => {
                 if (item.inCart) return null;
                 return (
                   <Marker
@@ -95,19 +95,16 @@ Map.propTypes = {
       lng: PropTypes.number.isRequired,
     }),
   ),
-  items: PropTypes.arrayOf(
+  shoppingList: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      inStock: PropTypes.bool.isRequired,
-      lat: PropTypes.number.isRequired,
-      lng: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
+      inCart: PropTypes.bool.isRequired,
     }),
   ),
 };
 
 Map.defaultProps = {
   path: [],
-  items: [],
+  shoppingList: [],
 };
 export default React.memo(Map);

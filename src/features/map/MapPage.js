@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  selectPath, selectItems, selectCurrentItem, setCurrentItem, scanItem,
+  selectPath, selectCurrentItem, setCurrentItem, scanItem, selectShoppingList,
 } from './mapSlice';
 import Directions from '../directions/Directions';
 import Map from './Map';
@@ -10,16 +10,16 @@ import Map from './Map';
 const MapPage = () => {
   const dispatch = useDispatch();
   const path = useSelector(selectPath);
-  const items = useSelector(selectItems);
+  const shoppingList = useSelector(selectShoppingList);
   const currentItem = useSelector(selectCurrentItem);
 
   const onScan = (currentScanningItem) => {
     dispatch(scanItem(currentScanningItem.id));
   };
 
-  // set first item to navigate to from items array
+  // set first item to navigate to from shoppingList array
   useEffect(() => {
-    if (items) dispatch(setCurrentItem(items[0]));
+    if (shoppingList) dispatch(setCurrentItem(shoppingList[0]));
   }, []);
 
   return (
@@ -30,7 +30,7 @@ const MapPage = () => {
           onScan={onScan}
         />
       )}
-      <Map path={path} items={items} />
+      <Map path={path} shoppingList={shoppingList} />
     </>
   );
 };
