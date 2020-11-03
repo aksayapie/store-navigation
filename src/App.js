@@ -7,6 +7,7 @@ import FlowContainer from './features/flowContainer/FlowContainer';
 import MapPage from './features/map/MapPage';
 import ScanPage from './features/scan/ScanPage';
 import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList';
+import Method from './features/checkoutMethod/Method';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/scan">
             <ScanPage />
+          </Route>
+          <Route path="/checkout">
+            <Method />
           </Route>
           <Route path="/">
             <FrontPageShoppingList />
