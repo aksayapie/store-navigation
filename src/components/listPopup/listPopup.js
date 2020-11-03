@@ -30,9 +30,6 @@ const ListPopup = () => {
     setOpen(true);
   };
 
-  /* useEffect(() => {
-    document.querySelector('#app').appendChild(document.querySelector('#sheet'));
-  }); */
   useEffect(() => {
     if (active) {
       document
