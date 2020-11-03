@@ -21,8 +21,10 @@ function MainNavBar() {
           <img src={costco} alt="Costco Logo" height={30} width={104.18} />
         </div>
         <div className="account-img">
-          <Icon source={ProfileMajor} />
-          <p>My Account</p>
+          <Button plain>
+            <Icon source={ProfileMajor} />
+            <p>My Account</p>
+          </Button>
         </div>
       </Card>
     </div>

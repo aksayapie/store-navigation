@@ -32,12 +32,13 @@
     text-align: center;
     margin-top: 5px;
     color: #005DAA;
+    .Polaris-Icon svg {
+      fill:#005DAA;
+    }
   }
-  .Polaris-Icon {
-    fill:#005DAA;
-  }
+  
   .Polaris-Button--primary {
     width: 50px;
-    background: #005DAA;
+    // background: #005DAA;
   }
 }
