@@ -4,10 +4,11 @@ import ShoppingList, { ShoppingListTitle } from './ShoppingList';
 import ShoppingListHeader from './ShoppingListHeader';
 import ShoppingListBottomButtons from './ShoppingListBottomButtons';
 import ListPageTopBar from './ListPageTopBar';
+import './ShoppingList.scss';
 
 export default function FrontPageShoppingList() {
   return (
-    <div>
+    <div className="shopping-list-container">
       <ListPageTopBar />
       <Page title="My Account">
         <ShoppingListHeader />
