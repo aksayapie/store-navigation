@@ -13,30 +13,30 @@ function App() {
   return (
     <AppProvider i18n={enTranslations}>
       <div className="app" id="app">
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <MainNavBar />
-        </div>
+        {/* <div style={{ position: 'relative', zIndex: 2 }}> */}
+        <MainNavBar />
+        {/* </div> */}
         {/* using margin top to give nav bar enough space */}
-        <div style={{ marginTop: 16, position: 'relative', zIndex: 1 }}>
-          {/* A <Switch> looks through its children <Route>s and
-          renders the first one that matches the current URL. */}
-          <Switch>
-            {/* Wrap your page component in a <Route> component and it will display
-                when the url matches the path. */}
-            <Route path="/map">
-              <MapPage />
-            </Route>
-            <Route path="/welcome">
-              <FlowContainer />
-            </Route>
-            <Route path="/scan">
-              <ScanPage />
-            </Route>
-            <Route path="/">
-              <FrontPageShoppingList />
-            </Route>
-          </Switch>
-        </div>
+        {/* <div style={{ marginTop: 16, position: 'relative', zIndex: 1 }}> */}
+        {/* A <Switch> looks through its children <Route>s and
+        renders the first one that matches the current URL. */}
+        <Switch>
+          {/* Wrap your page component in a <Route> component and it will display
+              when the url matches the path. */}
+          <Route path="/map">
+            <MapPage />
+          </Route>
+          <Route path="/welcome">
+            <FlowContainer />
+          </Route>
+          <Route path="/scan">
+            <ScanPage />
+          </Route>
+          <Route path="/">
+            <FrontPageShoppingList />
+          </Route>
+        </Switch>
+        {/* </div> */}
       </div>
     </AppProvider>
   );
