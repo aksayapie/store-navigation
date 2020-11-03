@@ -11,21 +11,10 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
-@media screen and (max-aspect-ratio: 1920/1080) {
+@media screen {
   .video-container > video {
     height: 100%;
   }
-}
-@media screen and (min-aspect-ratio: 1920/1080) {
-  .video-container > video {
-    width: 100%;
-  }
-}
-
-.cancel {
-  position: absolute;
-  top: 26px;
-  right: 32px;
 }
 
 .rectangle-4 {
@@ -56,6 +45,11 @@
   justify-content: top;
   align-items: center;
   flex-direction: column;
+  .Polaris-Button {
+    position: absolute;
+    top: 26px;
+    right: 32px;
+  }
   h1 {
     height: 31px;
     width: 103px;

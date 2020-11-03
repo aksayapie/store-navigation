@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import enTranslations from '@shopify/polaris/locales/en.json';
 import { AppProvider } from '@shopify/polaris';
 import { Switch, Route } from 'react-router-dom';
@@ -9,33 +10,44 @@ import ScanPage from './features/scan/ScanPage';
 import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList';
 import Method from './features/checkoutMethod/Method';
 import MainNavBar from './components/mainNavBar/MainNavBar';
+import { fetchItems } from './data/itemListSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  const { items, isLoading: itemsLoading } = useSelector((state) => state.itemList);
+
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, []);
+
   return (
     <AppProvider i18n={enTranslations}>
       <div className="app" id="app">
         <MainNavBar />
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
-          {/* Wrap your page component in a <Route> component and it will display
+        {console.log(items)}
+        {itemsLoading ? <p>Loading...</p> : (
+          <Switch>
+            {/* Wrap your page component in a <Route> component and it will display
               when the url matches the path. */}
-          <Route path="/map">
-            <MapPage />
-          </Route>
-          <Route path="/welcome">
-            <FlowContainer />
-          </Route>
-          <Route path="/scan">
-            <ScanPage />
-          </Route>
-          <Route path="/checkout">
-            <Method />
-          </Route>
-          <Route path="/">
-            <FrontPageShoppingList />
-          </Route>
-        </Switch>
+            <Route path="/map">
+              <MapPage />
+            </Route>
+            <Route path="/welcome">
+              <FlowContainer />
+            </Route>
+            <Route path="/scan">
+              <ScanPage />
+            </Route>
+            <Route path="/checkout">
+              <Method />
+            </Route>
+            <Route path="/">
+              <FrontPageShoppingList />
+            </Route>
+          </Switch>
+        )}
       </div>
     </AppProvider>
   );

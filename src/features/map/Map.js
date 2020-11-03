@@ -87,7 +87,7 @@ const Map = ({ path, shoppingList }) => {
 Map.propTypes = {
   path: PropTypes.arrayOf(
     PropTypes.shape({
-      upc: PropTypes.number,
+      upc: PropTypes.string,
       lat: PropTypes.number.isRequired,
       lng: PropTypes.number.isRequired,
     }),
@@ -96,10 +96,11 @@ Map.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
-      stock: PropTypes.bool.isRequired,
+      inStock: PropTypes.bool.isRequired,
       lat: PropTypes.number.isRequired,
       lng: PropTypes.number.isRequired,
-      aisle: PropTypes.number.isRequired,
+      aisleNumber: PropTypes.number.isRequired,
+      shelfNumber: PropTypes.number.isRequired,
       upc: PropTypes.string.isRequired,
       imageURL: PropTypes.string,
       inCart: PropTypes.bool.isRequired,

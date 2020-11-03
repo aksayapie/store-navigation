@@ -4,7 +4,7 @@ import {
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import { remoteItemFromList } from './shoppingListSlice';
-// import { useSelector } from 'react-redux';
+import './ShoppingList.scss';
 
 function ShoppingItem(item) {
   const {
@@ -17,7 +17,9 @@ function ShoppingItem(item) {
   return (
     <ResourceItem id={id}>
       <Stack>
-        <Thumbnail source={imageLink} alt={name} size="large" />
+        <div className="item-image">
+          <Thumbnail source={imageLink} alt={name} size="large" />
+        </div>
         <div>
           <h3>
             <TextStyle variation="strong">{name}</TextStyle>
@@ -26,11 +28,13 @@ function ShoppingItem(item) {
             Item #
             {id}
           </Caption>
-          <p>{price}</p>
+          <div className="item-price">
+            <p>{price}</p>
+          </div>
         </div>
       </Stack>
       <Stack alignment="center" spacing="extraLoose">
-        <div>
+        <div className="item-quantity">
           <p>Quantity:</p>
           <input type="number" className="quantityDiv" disabled placeholder="1" />
         </div>
