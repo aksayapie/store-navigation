@@ -7,19 +7,13 @@ import FlowContainer from './features/flowContainer/FlowContainer';
 import MapPage from './features/map/MapPage';
 import ScanPage from './features/scan/ScanPage';
 import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList';
-import MainNavBar from './components/mainNavBar/MainNavBar';
 
 function App() {
   return (
     <AppProvider i18n={enTranslations}>
       <div className="app" id="app">
-        {/* <div style={{ position: 'relative', zIndex: 2 }}> */}
-        <MainNavBar />
-        {/* </div> */}
-        {/* using margin top to give nav bar enough space */}
-        {/* <div style={{ marginTop: 16, position: 'relative', zIndex: 1 }}> */}
         {/* A <Switch> looks through its children <Route>s and
-        renders the first one that matches the current URL. */}
+            renders the first one that matches the current URL. */}
         <Switch>
           {/* Wrap your page component in a <Route> component and it will display
               when the url matches the path. */}
@@ -36,7 +30,6 @@ function App() {
             <FrontPageShoppingList />
           </Route>
         </Switch>
-        {/* </div> */}
       </div>
     </AppProvider>
   );
