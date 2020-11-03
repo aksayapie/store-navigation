@@ -1,11 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  GoogleMap, GroundOverlay, Polyline, Marker, useJsApiLoader,
+  GoogleMap, Polyline, Marker, useJsApiLoader, Polygon,
 } from '@react-google-maps/api';
 import PropTypes from 'prop-types';
 
-import costco from '../../assets/costco.png';
-import { BOUNDS, CENTER } from '../../constants';
+import { CENTER, AISLE_BOUNDS } from '../../constants';
 import './map.scss';
 import PaperTowel from '../../assets/paper-towel.png';
 import ListPopup from '../../components/listPopup/listPopup';
@@ -42,7 +42,7 @@ const mapOptions = {
   minZoom: 18,
 };
 
-const Map = ({ path, shoppingList }) => {
+const Map = ({ allItems, path, shoppingList }) => {
   // load the google map javascript scripts
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -60,15 +60,27 @@ const Map = ({ path, shoppingList }) => {
           center={path.length > 0 ? path[0] : CENTER}
           options={mapOptions}
         >
-          <GroundOverlay url={costco} bounds={BOUNDS} />
           {
             // render lines if there is a path to render
             path.length > 0 && <Polyline path={path} options={pathLineOptions} />
           }
           {
-            // render item markers if there are shoppingList to render
+            allItems.length > 0 && allItems.map((i) => {
+              if (!i.stock) return null;
+
+              return (
+                <Marker
+                  key={i.name}
+                  position={{ lat: i.lat, lng: i.lng }}
+                />
+              );
+            })
+          }
+          {
+            AISLE_BOUNDS.map((shelfBounds) => <Polygon path={shelfBounds} />)
+          }
+          {
             shoppingList.length > 0
-              // only render shoppingList not in cart
               && shoppingList.map((item) => {
                 if (item.inCart) return null;
                 return (

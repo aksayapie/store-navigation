@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import enTranslations from '@shopify/polaris/locales/en.json';
 import { AppProvider } from '@shopify/polaris';
 import { Switch, Route } from 'react-router-dom';
@@ -7,8 +8,15 @@ import FlowContainer from './features/flowContainer/FlowContainer';
 import MapPage from './features/map/MapPage';
 import ScanPage from './features/scan/ScanPage';
 import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList';
+import { fetchItems } from './features/map/mapSlice';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, []);
+
   return (
     <AppProvider i18n={enTranslations}>
       <div className="app" id="app">
