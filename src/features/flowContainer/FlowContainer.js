@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { FaTimes, FaArrowLeft } from 'react-icons/fa';
+import {
+  MobileBackArrowMajor, MobileCancelMajor,
+} from '@shopify/polaris-icons';
 import { Link } from 'react-router-dom';
-import { Button } from '@shopify/polaris';
+import { Button, Icon } from '@shopify/polaris';
 import Welcome from '../welcomePage/Welcome';
 import ShopMode from '../shopMode/ShopMode';
 import Covid from '../regulations/Covid';
@@ -37,11 +39,11 @@ function FlowContainer() {
       <div className="icon-container">
         <div className="flow-back">
           {/* hide back button on first page-- welcome page, then show for rest of pages */}
-          {showWelcome ? null : <Button plain onClick={handleBackClick}><FaArrowLeft className="back-icon" /></Button> }
+          {showWelcome ? null : <Button plain onClick={handleBackClick}><Icon source={MobileBackArrowMajor} className="back-icon" /></Button> }
         </div>
         <Link to="/">
           <Button plain>
-            <FaTimes className="ex-icon" />
+            <Icon source={MobileCancelMajor} className="ex-icon" />
           </Button>
         </Link>
       </div>

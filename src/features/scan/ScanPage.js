@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserMultiFormatReader, BrowserCodeReader } from '@zxing/browser';
-import { AiOutlineClose } from 'react-icons/ai';
+import { Icon } from '@shopify/polaris';
+import { MobileCancelMajor } from '@shopify/polaris-icons';
 import './ScanPage.scss';
 
 const ScanPage = () => {
@@ -40,7 +41,7 @@ const ScanPage = () => {
       <div className="rectangle-4" />
       <div className="info">
         <div className="cancel">
-          <AiOutlineClose />
+          <Icon source={MobileCancelMajor} />
         </div>
 
         <h1>Scanner</h1>

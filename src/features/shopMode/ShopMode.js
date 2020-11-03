@@ -7,8 +7,7 @@ const ShopMode = ({ setShopModeProp }) => (
   <div className="shop-mode-container">
     <h1 className="bold">Select your shopping experience</h1>
     <h2>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua.
+      We have created customized routes based on how you would like to shop inside our stores.
     </h2>
     <ShopModeButton
       shopModeProp="quick"
