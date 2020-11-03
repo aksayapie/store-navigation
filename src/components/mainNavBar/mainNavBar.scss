@@ -1,8 +1,9 @@
 .nav-bar {
   position: relative;
   z-index: 2;
+  background-color: #F8F8F8;
   .Polaris-Card {
-    height: 50px;
+    height: 55px;
     display: flex;
     padding-left: 10px;
     padding-right: 10px;
@@ -30,10 +31,13 @@
   .account-img {
     flex: 1.5;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 7.5px;
     color: #005DAA;
     .Polaris-Icon svg {
       fill:#005DAA;
+    }
+    .Polaris-Button--plain {
+      height: 55px;
     }
   }
   
