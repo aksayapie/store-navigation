@@ -1,13 +1,14 @@
 import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import {
   Modal, Stack, ChoiceList, Button,
 } from '@shopify/polaris';
 import './Welcome.scss';
+import { updateLocation } from './locationSelectSlice';
 
 //  much of this code was taken from the shopify polaris website
 //  where they give code for the modal component
-function LocationSelect({ updateStoreProp }) {
+function LocationSelect() {
   // city options
   const CHICAGO = ' Chicago Clybourne';
   const BROOKLYN = ' Brooklyn';
@@ -19,12 +20,14 @@ function LocationSelect({ updateStoreProp }) {
   const [selectedCity, setSelectedCity] = useState('');
   const handleModalChange = useCallback(() => setActive(!active), [active]);
 
+  const dispatch = useDispatch();
+
   //  update selected city within function for radio buttons to work properly and
-  //  update selected city prop for use elsewhere
+  //  update selected city in redux
   const handleSelectedCity = useCallback(
     (value) => {
-      updateStoreProp(value[0]);
       setSelectedCity(value);
+      dispatch(updateLocation(value[0]));
     },
     [],
   );
@@ -68,9 +71,5 @@ function LocationSelect({ updateStoreProp }) {
     </div>
   );
 }
-
-LocationSelect.propTypes = {
-  updateStoreProp: PropTypes.func.isRequired,
-};
 
 export default LocationSelect;

@@ -16,8 +16,6 @@ function FlowContainer() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showShopMode, setShowShopMode] = useState(false);
   const [showCovid, setShowCovid] = useState(false);
-  const [shopMode, setshopMode] = useState('');
-  const [storeName, setStoreName] = useState(' Chicago Clybourne');
   const [progBar] = useState(0);
 
   //  hides current page and shows previous page
@@ -29,9 +27,6 @@ function FlowContainer() {
       setShowShopMode(false);
       setShowCovid(true);
     }
-    // must use the variable to avoid compile errors but not ready to
-    // use in map yet
-    console.log(shopMode);
   };
 
   return (
@@ -70,8 +65,6 @@ function FlowContainer() {
         <Welcome
           setShowWelcomeProp={setShowWelcome}
           setShowCovidProp={setShowCovid}
-          storeNameProp={storeName}
-          setStoreNameProp={setStoreName}
         />
       ) : null }
       {/* show Covid screen if boolean is true, otherwise hide it */}
@@ -83,9 +76,7 @@ function FlowContainer() {
       ) : null }
       {/* show Shop Mode screen if boolean is true, otherwise hide it */}
       {showShopMode ? (
-        <ShopMode
-          setShopModeProp={setshopMode}
-        />
+        <ShopMode />
       ) : null }
     </div>
   );
