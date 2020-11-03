@@ -1,0 +1,21 @@
+.bottom-buttons {
+  margin-top: 20px;
+  .Polaris-Button {
+    margin-top: 10px;
+  }
+}
+.list-top-bar {
+  .Polaris-Card {
+    box-shadow: 0 4px 10px 1px lightgray;
+  }
+  .Polaris-Stack__Item {
+    margin: 10px auto;
+    line-height: 1;
+    padding-bottom: 0px;
+  }
+}
+.shopping-list-container {
+  z-index: 1;
+  margin-top: 16px;
+  position: relative;
+}

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { FaTimes, FaArrowLeft } from 'react-icons/fa';
+import {
+  MobileBackArrowMajor, MobileCancelMajor,
+} from '@shopify/polaris-icons';
 import { Link } from 'react-router-dom';
-import { Button } from '@shopify/polaris';
+import { Button, Icon } from '@shopify/polaris';
 import Welcome from '../welcomePage/Welcome';
 import ShopMode from '../shopMode/ShopMode';
 import Covid from '../regulations/Covid';
@@ -14,8 +16,6 @@ function FlowContainer() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showShopMode, setShowShopMode] = useState(false);
   const [showCovid, setShowCovid] = useState(false);
-  const [shopMode, setshopMode] = useState('');
-  const [storeName, setStoreName] = useState(' Chicago Clybourne');
   const [progBar] = useState(0);
 
   //  hides current page and shows previous page
@@ -27,9 +27,6 @@ function FlowContainer() {
       setShowShopMode(false);
       setShowCovid(true);
     }
-    // must use the variable to avoid compile errors but not ready to
-    // use in map yet
-    console.log(shopMode);
   };
 
   return (
@@ -37,11 +34,11 @@ function FlowContainer() {
       <div className="icon-container">
         <div className="flow-back">
           {/* hide back button on first page-- welcome page, then show for rest of pages */}
-          {showWelcome ? null : <Button plain onClick={handleBackClick}><FaArrowLeft className="back-icon" /></Button> }
+          {showWelcome ? null : <Button plain onClick={handleBackClick}><Icon source={MobileBackArrowMajor} className="back-icon" /></Button> }
         </div>
         <Link to="/">
           <Button plain>
-            <FaTimes className="ex-icon" />
+            <Icon source={MobileCancelMajor} className="ex-icon" />
           </Button>
         </Link>
       </div>
@@ -68,8 +65,6 @@ function FlowContainer() {
         <Welcome
           setShowWelcomeProp={setShowWelcome}
           setShowCovidProp={setShowCovid}
-          storeNameProp={storeName}
-          setStoreNameProp={setStoreName}
         />
       ) : null }
       {/* show Covid screen if boolean is true, otherwise hide it */}
@@ -81,9 +76,7 @@ function FlowContainer() {
       ) : null }
       {/* show Shop Mode screen if boolean is true, otherwise hide it */}
       {showShopMode ? (
-        <ShopMode
-          setShopModeProp={setshopMode}
-        />
+        <ShopMode />
       ) : null }
     </div>
   );

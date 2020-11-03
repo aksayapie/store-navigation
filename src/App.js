@@ -8,11 +8,13 @@ import MapPage from './features/map/MapPage';
 import ScanPage from './features/scan/ScanPage';
 import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList';
 import Method from './features/checkoutMethod/Method';
+import MainNavBar from './components/mainNavBar/MainNavBar';
 
 function App() {
   return (
     <AppProvider i18n={enTranslations}>
       <div className="app" id="app">
+        <MainNavBar />
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
