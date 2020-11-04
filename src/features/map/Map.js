@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  GoogleMap, Marker, useJsApiLoader,
+  GoogleMap, useJsApiLoader,
 } from '@react-google-maps/api';
 import PropTypes from 'prop-types';
 
@@ -9,6 +9,7 @@ import './map.scss';
 import ListPopup from '../../components/listPopup/listPopup';
 import Shelf from './Shelf';
 import RouteLine from './RouteLine';
+import RouteMarker from './RouteMarker';
 
 // TODO: add more extensive options
 const mapOptions = {
@@ -53,11 +54,7 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
             && shoppingList.map((item) => {
               if (item.inCart) return null;
               return (
-                <Marker
-                  key={item.upc}
-                  // options={{scaledSize: new google.maps.Size(70, 70)}}
-                  position={{ lat: item.lat, lng: item.lng }}
-                />
+                <RouteMarker letter="A" position={{ lat: item.lat, lng: item.lng }} />
               );
             })
           }
