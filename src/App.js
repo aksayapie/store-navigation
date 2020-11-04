@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import enTranslations from '@shopify/polaris/locales/en.json';
 import { AppProvider } from '@shopify/polaris';
 import { Switch, Route } from 'react-router-dom';
+
 import './App.scss';
 import FlowContainer from './features/flowContainer/FlowContainer';
 import MapPage from './features/map/MapPage';
@@ -14,7 +15,7 @@ import { fetchItems } from './data/itemListSlice';
 
 function App() {
   const dispatch = useDispatch();
-  const { items, isLoading: itemsLoading } = useSelector((state) => state.itemList);
+  const { isLoading: itemsLoading } = useSelector((state) => state.itemList);
 
   useEffect(() => {
     dispatch(fetchItems());
@@ -24,13 +25,8 @@ function App() {
     <AppProvider i18n={enTranslations}>
       <div className="app" id="app">
         <MainNavBar />
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        {console.log(items)}
         {itemsLoading ? <p>Loading...</p> : (
           <Switch>
-            {/* Wrap your page component in a <Route> component and it will display
-              when the url matches the path. */}
             <Route path="/map">
               <MapPage />
             </Route>

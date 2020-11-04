@@ -1,13 +1,11 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   GoogleMap, Polyline, Marker, useJsApiLoader, Polygon,
 } from '@react-google-maps/api';
 import PropTypes from 'prop-types';
 
-import { CENTER, AISLE_BOUNDS } from '../../constants';
+import { CENTER } from '../../constants';
 import './map.scss';
-import PaperTowel from '../../assets/paper-towel.png';
 import ListPopup from '../../components/listPopup/listPopup';
 
 // TODO: customize lines to look better
@@ -29,7 +27,7 @@ const mapOptions = {
   minZoom: 18,
 };
 
-const Map = ({ path, shoppingList }) => {
+const Map = ({ path, shelfPolygons, shoppingList }) => {
   // load the google map javascript scripts
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -38,22 +36,19 @@ const Map = ({ path, shoppingList }) => {
   return (
     <>
       {isLoaded && (
-        <GoogleMap
-          id="costco-map"
-          mapContainerClassName="mapStyles"
-          zoom={20}
+      <GoogleMap
+        id="costco-map"
+        mapContainerClassName="mapStyles"
+        zoom={20}
           // if there's a path, center the map to the first node
           // else center it to the center of the store
-          center={path?.length > 0 ? path[0] : CENTER}
-          options={mapOptions}
-        >
-          {
-            // render the "shelves"
-            AISLE_BOUNDS.map((shelfBounds) => <Polygon path={shelfBounds} />)
-          }
-          {
-            // render lines if there is a path to render
-            path && path.length > 0 && (
+        center={path?.length > 0 ? path[0] : CENTER}
+        options={mapOptions}
+      >
+        {shelfPolygons.length > 0 && shelfPolygons.map((shelf) => <Polygon path={shelf} />)}
+        {
+          // render lines if there is a path to render
+          path && path.length > 0 && (
             <Polyline
               path={path.map((point) => ({
                 lat: point.lat,
@@ -61,55 +56,56 @@ const Map = ({ path, shoppingList }) => {
               }))}
               options={pathLineOptions}
             />
-            )
+          )
+        }
+
+        {
+          shoppingList && shoppingList.length > 0
+            && shoppingList.map((item) => {
+              if (item.inCart) return null;
+              return (
+                <Marker
+                  key={item.upc}
+                  position={{ lat: item.lat, lng: item.lng }}
+                />
+              );
+            })
           }
-          {
-            shoppingList && shoppingList.length > 0
-              && shoppingList.map((item) => {
-                if (item.inCart) return null;
-                return (
-                  <Marker
-                    key={item.upc}
-                    icon={{ url: PaperTowel, scaledSize: new window.google.maps.Size(25, 25) }}
-                    position={{ lat: item.lat, lng: item.lng }}
-                  />
-                );
-              })
-          }
-        </GoogleMap>
+      </GoogleMap>
       )}
       <ListPopup />
     </>
   );
 };
 
-// Prop Validation
 Map.propTypes = {
-  path: PropTypes.arrayOf(
-    PropTypes.shape({
-      upc: PropTypes.string,
+  path: PropTypes.arrayOf(PropTypes.shape({
+    upc: PropTypes.string.isRequired,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  })),
+  shelfPolygons: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape(
+    {
       lat: PropTypes.number.isRequired,
       lng: PropTypes.number.isRequired,
-    }),
-  ),
-  shoppingList: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      inStock: PropTypes.bool.isRequired,
-      lat: PropTypes.number.isRequired,
-      lng: PropTypes.number.isRequired,
-      aisleNumber: PropTypes.number.isRequired,
-      shelfNumber: PropTypes.number.isRequired,
-      upc: PropTypes.string.isRequired,
-      imageURL: PropTypes.string,
-      inCart: PropTypes.bool.isRequired,
-    }),
-  ),
+    },
+  ))).isRequired,
+  shoppingList: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    stock: PropTypes.bool.isRequired,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+    aisle: PropTypes.number.isRequired,
+    upc: PropTypes.string.isRequired,
+    imageURL: PropTypes.string,
+    inCart: PropTypes.bool.isRequired,
+  })),
 };
 
 Map.defaultProps = {
   path: [],
   shoppingList: [],
 };
+
 export default React.memo(Map);
