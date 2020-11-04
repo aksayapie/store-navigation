@@ -51,10 +51,14 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
 
         {
           shoppingList && shoppingList.length > 0
-            && shoppingList.map((item) => {
+            && shoppingList.map((item, index) => {
               if (item.inCart) return null;
               return (
-                <RouteMarker key={item.lat} letter="A" position={{ lat: item.lat, lng: item.lng }} />
+                <RouteMarker
+                  key={item.lat}
+                  step={index.toString()}
+                  position={{ lat: item.lat, lng: item.lng }}
+                />
               );
             })
           }

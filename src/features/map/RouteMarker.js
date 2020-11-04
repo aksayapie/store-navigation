@@ -4,17 +4,21 @@ import PropTypes from 'prop-types';
 
 import outline from '../../assets/outline.svg';
 
-const RouteMarker = ({ letter = 'A', position }) => (
+const RouteMarker = ({ step, position }) => (
   <Marker
     key={position.lat}
-    label={{ text: letter, color: 'black' }}
-    icon={{ url: outline, scaledSize: new window.google.maps.Size(25, 25) }}
+    label={{ text: step, color: 'black' }}
+    icon={{
+      url: outline,
+      scaledSize: new window.google.maps.Size(25, 25),
+      anchor: new window.google.maps.Point(13, 13),
+    }}
     position={position}
   />
 );
 
 RouteMarker.propTypes = {
-  letter: PropTypes.string.isRequired,
+  step: PropTypes.string.isRequired,
   position: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lng: PropTypes.number.isRequired,
