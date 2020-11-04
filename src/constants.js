@@ -32,13 +32,3 @@ export const AISLE_BOUNDS = [
     { lat: 40.65574336, lng: -74.00864486 },
     { lat: 40.65528191, lng: -74.00913823 }],
 ];
-
-export const TRANSLATE_SHELF = {
-  lat: -0.000007799994,
-  lng: 0.00001299999,
-};
-
-export const EXPAND_SHELF = {
-  lat: -0.000022199994,
-  lng: 0.00003699999,
-};
