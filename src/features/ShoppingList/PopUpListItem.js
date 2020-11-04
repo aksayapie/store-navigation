@@ -1,8 +1,11 @@
 import {
-  Caption, ResourceItem, Stack, TextStyle, Thumbnail, Button,
+  Caption, ResourceItem, Stack, TextStyle, Thumbnail, Button, Icon,
 } from '@shopify/polaris';
 import { useDispatch } from 'react-redux';
 import React from 'react';
+import {
+  CircleTickMajor,
+} from '@shopify/polaris-icons';
 import { remoteItemFromList } from './shoppingListSlice';
 import './ShoppingList.scss';
 
@@ -17,7 +20,10 @@ function PopUpListItem(item) {
   return (
     <div className="pop-up-item">
       <ResourceItem id={UPC}>
-        <Stack>
+        <Stack alignment="center">
+          <div className="confirmed-icon">
+            <Icon source={CircleTickMajor} />
+          </div>
           <div className="item-image">
             <Thumbnail source={imageLink} alt={name} size="large" />
           </div>

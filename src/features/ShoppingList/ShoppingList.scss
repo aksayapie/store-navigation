@@ -67,6 +67,9 @@ h1 {
     }
   }
   .pop-up-item {
+    .confirmed-icon {
+      fill: green;
+    }
     .Polaris-ResourceItem__ListItem:first-of-type {
       border-top: 0.1rem solid var(--p-divider, #dfe3e8);
     }
@@ -83,7 +86,9 @@ h1 {
       padding-left: 5px;
       padding-right: 5px;
     }
-
+    .Polaris-Stack:first-child {
+      margin-bottom: 10px;
+    }
     .item-text {
       font-size: 14px;
     }
