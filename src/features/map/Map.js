@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  GoogleMap, Polyline, Marker, useJsApiLoader,
+  GoogleMap, Marker, useJsApiLoader,
 } from '@react-google-maps/api';
 import PropTypes from 'prop-types';
 
@@ -8,18 +8,7 @@ import { CENTER } from '../../constants';
 import './map.scss';
 import ListPopup from '../../components/listPopup/listPopup';
 import Shelf from './Shelf';
-
-// TODO: customize lines to look better
-// path polyline options
-const pathLineOptions = {
-  strokeColor: '#E31837',
-  strokeOpacity: 0.7,
-  clickable: false,
-  draggable: false,
-  editable: false,
-  visible: true,
-  zIndex: 1,
-};
+import RouteLine from './RouteLine';
 
 // TODO: add more extensive options
 const mapOptions = {
@@ -47,16 +36,14 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
         options={mapOptions}
       >
         {shelfPolygons.length > 0
-          && shelfPolygons.map((shelfPolygon) => <Shelf path={shelfPolygon} />)}
+          && shelfPolygons.map((shelfPolygon) => <Shelf paths={shelfPolygon} />)}
         {
           // render lines if there is a path to render
           path && path.length > 0 && (
-            <Polyline
-              path={path.map((point) => ({
-                lat: point.lat,
-                lng: point.lng,
-              }))}
-              options={pathLineOptions}
+            <RouteLine path={path.map((point) => ({
+              lat: point.lat,
+              lng: point.lng,
+            }))}
             />
           )
         }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Polygon } from '@react-google-maps/api';
 import PropTypes from 'prop-types';
 
-const Shelf = ({ path }) => {
+const Shelf = ({ paths }) => {
   const options = {
     fillColor: 'white',
     fillOpacity: 0.9,
@@ -16,11 +16,11 @@ const Shelf = ({ path }) => {
     zIndex: 1,
   };
 
-  return <Polygon paths={path} options={options} />;
+  return <Polygon paths={paths} options={options} />;
 };
 
 Shelf.propTypes = {
-  path: PropTypes.shape({
+  paths: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lng: PropTypes.number.isRequired,
   }).isRequired,
