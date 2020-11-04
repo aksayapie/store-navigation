@@ -4,12 +4,16 @@ import {
 } from '@react-google-maps/api';
 import PropTypes from 'prop-types';
 
-import { CENTER } from '../../constants';
+import {
+  CENTER, EXIT_DOOR, ENTRANCE_DOOR, SCALE_DOOR,
+} from '../../constants';
 import './map.scss';
 import ListPopup from '../../components/listPopup/listPopup';
+import { polylineToPolygon } from '../../util/mapUtil';
 import Shelf from './Shelf';
 import RouteLine from './RouteLine';
 import RouteMarker from './RouteMarker';
+import Door from './Door';
 
 // TODO: add more extensive options
 const mapOptions = {
@@ -61,6 +65,9 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
               />
             ))
           }
+
+        <Door paths={polylineToPolygon(ENTRANCE_DOOR, SCALE_DOOR)} color="#27ae60" />
+        <Door paths={polylineToPolygon(EXIT_DOOR, SCALE_DOOR)} color="#c0392b" />
       </GoogleMap>
       )}
       <ListPopup />

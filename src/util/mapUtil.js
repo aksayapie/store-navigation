@@ -18,7 +18,7 @@ const shiftPath = (aislePaths, shiftByLatLng) => aislePaths.map((cur) => ({
   lng: cur.lng + shiftByLatLng.lng,
 }));
 
-const makeShelfPolygon = (aisleEndPoints, scaleByLatLng) => {
+export const polylineToPolygon = (aisleEndPoints, scaleByLatLng) => {
   const cornerOne = aisleEndPoints[0];
   const cornerTwo = aisleEndPoints[1];
   const cornerThree = {
@@ -50,8 +50,8 @@ const processAisles = (aisle) => {
   const shelfPolylineTwo = shiftPath(aisleEndpointsTwo, TRANSLATE_SHELF);
 
   // scale shelf endpoints to make a polyline rectangle for shelf shape
-  const shelfPolygonOne = makeShelfPolygon(shelfPolylineOne, SCALE_SHELF);
-  const shelfPolygonTwo = makeShelfPolygon(shelfPolylineTwo, SCALE_SHELF);
+  const shelfPolygonOne = polylineToPolygon(shelfPolylineOne, SCALE_SHELF);
+  const shelfPolygonTwo = polylineToPolygon(shelfPolylineTwo, SCALE_SHELF);
 
   // returns two polygons for each shelf in an aisle divided by the middle of the store
   return [shelfPolygonOne, shelfPolygonTwo];
