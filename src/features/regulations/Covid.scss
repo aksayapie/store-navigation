@@ -25,7 +25,7 @@
 .reusable-bag {
     display: flex;
     align-items: center;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
     p {
         color:  #637381;
         font-size: 18px;
@@ -39,8 +39,11 @@
     margin-left: 8px;
 }
 
-.Polaris-Icon {
-    float: right;
-    fill: #637381;
-    margin-right: 8px;
+.covid-icon {
+    .Polaris-Icon {
+        float: right;
+        fill: #637381;
+        margin-right: 8px;
+    }
+    
 }
