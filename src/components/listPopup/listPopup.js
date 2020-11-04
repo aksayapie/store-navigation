@@ -106,7 +106,13 @@ const ListPopup = () => {
           <div className="popupcontainer">
             <div className="popupbody">
               <div className="list shopping-item-container">
-                <ShoppingList />
+                <DisplayText size="small">Up Next</DisplayText>
+                <ShoppingList isConfirmedList={false} />
+              </div>
+              <div className="list shopping-item-container">
+                <DisplayText size="small">Confirmed Items in Cart</DisplayText>
+                <hr />
+                <ShoppingList isConfirmedList />
               </div>
               <div className="buttons">
                 <Button primary fullWidth size="slim">

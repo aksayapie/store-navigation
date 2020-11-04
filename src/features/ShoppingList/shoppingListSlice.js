@@ -5,6 +5,7 @@ export const shoppingListSlice = createSlice({
   name: 'shoppingList',
   initialState: {
     items,
+    confirmedItemsInCart: [],
   },
   reducers: {
     remoteItemFromList(state, action) {
@@ -25,9 +26,19 @@ export const shoppingListSlice = createSlice({
         },
       );
     },
+    addItemToCart(state, action) {
+      const itemToBeAdded = action.payload;
+      const found = state.confirmedItemsInCart.findIndex(
+        (element) => element.UPC === itemToBeAdded.UPC,
+      );
+      if (found < 0) {
+        state.confirmedItemsInCart.push(itemToBeAdded);
+      }
+    },
   },
 });
 export const selectItems = (state) => state.shoppingList.items;
+export const selectConfirmedItems = (state) => state.shoppingList.confirmedItemsInCart;
 
 export const { remoteItemFromList, addItemToList } = shoppingListSlice.actions;
 
