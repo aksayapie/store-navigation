@@ -53,16 +53,13 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
 
         {
           shoppingList && shoppingList.length > 0
-            && shoppingList.map((item, index) => {
-              if (item.inCart) return null;
-              return (
-                <RouteMarker
-                  key={item.lat}
-                  step={index.toString()}
-                  position={{ lat: item.lat, lng: item.lng }}
-                />
-              );
-            })
+            && shoppingList.map((item) => (
+              <RouteMarker
+                key={item.lat}
+                step={item.step?.toString()}
+                position={{ lat: item.lat, lng: item.lng }}
+              />
+            ))
           }
       </GoogleMap>
       )}
@@ -94,6 +91,7 @@ Map.propTypes = {
     upc: PropTypes.string.isRequired,
     imageURL: PropTypes.string,
     inCart: PropTypes.bool.isRequired,
+    step: PropTypes.number,
   })),
 };
 
