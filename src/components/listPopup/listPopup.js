@@ -10,6 +10,7 @@ import {
 import Modal from 'react-modal';
 import useWindowDimensions from '../../util/windowDimensions';
 import ShoppingList from '../../features/ShoppingList/ShoppingList';
+import SearchModal from './searchModal';
 import './listPopup.scss';
 
 Modal.setAppElement('#root');
@@ -18,10 +19,14 @@ const ListPopup = () => {
   const [isOpen, setOpen] = useState(true);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [addModalIsOpen, setAddIsOpen] = React.useState(false);
+  const [activeSearchModal, setActiveSearchModal] = useState(false);
   const { height } = useWindowDimensions();
   const ref = React.useRef();
   const snapTo = (i) => ref.current?.snapTo(i);
-
+  const closeAddOpenSearch = () => {
+    setActiveSearchModal(true);
+    setAddIsOpen(false);
+  };
   const closeSequence = () => {
     setOpen(false);
     snapTo(2);
@@ -38,11 +43,15 @@ const ListPopup = () => {
       className="sheet"
       id="sheet"
     >
+      <SearchModal
+        activeSearchModal={activeSearchModal}
+        setActiveSearchModal={setActiveSearchModal}
+      />
       <Sheet.Container>
         <Sheet.Header>
           <div className="popupheader">
             <Sheet.Header />
-            <Stack wrap={false} distribution="equalSpacing" alignment="center">
+            <Stack wrap distribution="equalSpacing" alignment="center">
               <DisplayText size="large" element="h1">
                 My Shopping List
               </DisplayText>
@@ -61,12 +70,6 @@ const ListPopup = () => {
                   <Icon source={MobilePlusMajor} />
                   <div className="smallButtonText">Add Item</div>
                 </Button>
-                <Link to="/scan">
-                  <Button textAlign="center" size="slim">
-                    <Icon source={BarcodeMajor} />
-                    <div className="smallButtonText">Scan Item</div>
-                  </Button>
-                </Link>
               </ButtonGroup>
             </Stack>
             <Modal
@@ -88,7 +91,7 @@ const ListPopup = () => {
               <p>How do you want to add a new item?</p>
               <hr className="style-six" />
               <ButtonGroup>
-                <Button textAlign="center" size="slim">
+                <Button textAlign="center" size="slim" onClick={closeAddOpenSearch}>
                   <Icon source={SearchMajor} />
                   <div className="smallButtonText">Search Item</div>
                 </Button>
@@ -108,8 +111,14 @@ const ListPopup = () => {
         <Sheet.Content>
           <div className="popupcontainer">
             <div className="popupbody">
+              <div className="list shopping-item-container" style={{ maxHeight: '300px' }}>
+                <DisplayText size="small">Up Next</DisplayText>
+                <ShoppingList isItemPopUpProp isConfirmedList={false} />
+              </div>
               <div className="list shopping-item-container">
-                <ShoppingList />
+                <DisplayText size="small">Confirmed Items in Cart</DisplayText>
+                <hr />
+                <ShoppingList isItemPopUpProp isConfirmedList />
               </div>
               <div className="buttons">
                 <Button primary fullWidth size="slim">

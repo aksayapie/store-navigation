@@ -1,24 +1,15 @@
 import React from 'react';
 import {
-  GoogleMap, Polyline, Marker, useJsApiLoader, Polygon,
+  GoogleMap, useJsApiLoader,
 } from '@react-google-maps/api';
 import PropTypes from 'prop-types';
 
 import { CENTER } from '../../constants';
 import './map.scss';
 import ListPopup from '../../components/listPopup/listPopup';
-
-// TODO: customize lines to look better
-// path polyline options
-const pathLineOptions = {
-  strokeColor: '#E31837',
-  strokeOpacity: 0.7,
-  clickable: false,
-  draggable: false,
-  editable: false,
-  visible: true,
-  zIndex: 1,
-};
+import Shelf from './Shelf';
+import RouteLine from './RouteLine';
+import RouteMarker from './RouteMarker';
 
 // TODO: add more extensive options
 const mapOptions = {
@@ -27,6 +18,8 @@ const mapOptions = {
   minZoom: 18,
 };
 
+// TODO: hide item step label if zoom is far out enough (looks giant otherwise)
+// TODO: add exit and entrance
 const Map = ({ path, shelfPolygons, shoppingList }) => {
   // load the google map javascript scripts
   const { isLoaded } = useJsApiLoader({
@@ -40,36 +33,33 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
         id="costco-map"
         mapContainerClassName="mapStyles"
         zoom={20}
-          // if there's a path, center the map to the first node
-          // else center it to the center of the store
+        // if there's a path, center the map to the first node
+        // else center it to the center of the store
         center={path?.length > 0 ? path[0] : CENTER}
         options={mapOptions}
       >
-        {shelfPolygons.length > 0 && shelfPolygons.map((shelf) => <Polygon path={shelf} />)}
+        {shelfPolygons.length > 0
+          && shelfPolygons.map((shelfPolygon) => <Shelf paths={shelfPolygon} />)}
         {
           // render lines if there is a path to render
           path && path.length > 0 && (
-            <Polyline
-              path={path.map((point) => ({
-                lat: point.lat,
-                lng: point.lng,
-              }))}
-              options={pathLineOptions}
+            <RouteLine path={path.map((point) => ({
+              lat: point.lat,
+              lng: point.lng,
+            }))}
             />
           )
         }
 
         {
           shoppingList && shoppingList.length > 0
-            && shoppingList.map((item) => {
-              if (item.inCart) return null;
-              return (
-                <Marker
-                  key={item.upc}
-                  position={{ lat: item.lat, lng: item.lng }}
-                />
-              );
-            })
+            && shoppingList.map((item) => (
+              <RouteMarker
+                key={item.lat}
+                step={item.step?.toString()}
+                position={{ lat: item.lat, lng: item.lng }}
+              />
+            ))
           }
       </GoogleMap>
       )}
@@ -80,7 +70,8 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
 
 Map.propTypes = {
   path: PropTypes.arrayOf(PropTypes.shape({
-    upc: PropTypes.string.isRequired,
+    upc: PropTypes.string,
+    aisle: PropTypes.number.isRequired,
     lat: PropTypes.number.isRequired,
     lng: PropTypes.number.isRequired,
   })),
@@ -100,6 +91,7 @@ Map.propTypes = {
     upc: PropTypes.string.isRequired,
     imageURL: PropTypes.string,
     inCart: PropTypes.bool.isRequired,
+    step: PropTypes.number,
   })),
 };
 

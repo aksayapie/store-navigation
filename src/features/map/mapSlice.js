@@ -4,8 +4,8 @@ import { SHOPPING_LIST, PATH } from './sampleData';
 import getShelfPolygons from '../../util/mapUtil';
 
 const initialState = {
-  path: PATH,
-  shoppingList: SHOPPING_LIST,
+  path: PATH || [],
+  shoppingList: SHOPPING_LIST || [],
   shelfPolygons: [],
 };
 
@@ -13,6 +13,13 @@ export const mapSlice = createSlice({
   name: 'map',
   initialState,
   reducers: {
+    addStepsToShoppingList(state) {
+      state.shoppingList = state.shoppingList.reduce((acc, curr, index) => {
+        curr.step = index + 1;
+        acc.push(curr);
+        return acc;
+      }, []);
+    },
     removeItem(state) {
       const currentItem = state.shoppingList.find((item) => !item.inCart);
       state.shoppingList = state.shoppingList.filter((item) => item.upc !== currentItem.upc);
@@ -35,6 +42,6 @@ export const selectRemainingItemsCount = (state) => state.map.shoppingList.reduc
 }, 0);
 
 // actions
-export const { removeItem, calculateShelfPolygons } = mapSlice.actions;
+export const { removeItem, calculateShelfPolygons, addStepsToShoppingList } = mapSlice.actions;
 
 export default mapSlice.reducer;
