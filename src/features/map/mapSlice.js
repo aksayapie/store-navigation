@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { SHOPPING_LIST, PATH } from './sampleData';
+import getShelfPolygons from '../../util/mapUtil';
 
 const initialState = {
   path: PATH,
   shoppingList: SHOPPING_LIST,
+  shelfPolygons: [],
 };
 
 export const mapSlice = createSlice({
@@ -14,11 +17,14 @@ export const mapSlice = createSlice({
       const currentItem = state.shoppingList.find((item) => !item.inCart);
       state.shoppingList = state.shoppingList.filter((item) => item.upc !== currentItem.upc);
     },
+    calculateShelfPolygons(state, action) {
+      const itemLocations = action.payload;
+      state.shelfPolygons = getShelfPolygons(itemLocations);
+    },
   },
 });
 
 // selectors
-export const selectPath = (state) => state.map.path;
 export const selectShoppingList = (state) => state.map.shoppingList;
 export const selectCurrentItem = (state) => state.map.shoppingList.find((item) => !item.inCart);
 export const selectRemainingItemsCount = (state) => state.map.shoppingList.reduce((acc, curr) => {
@@ -29,6 +35,6 @@ export const selectRemainingItemsCount = (state) => state.map.shoppingList.reduc
 }, 0);
 
 // actions
-export const { removeItem } = mapSlice.actions;
+export const { removeItem, calculateShelfPolygons } = mapSlice.actions;
 
 export default mapSlice.reducer;
