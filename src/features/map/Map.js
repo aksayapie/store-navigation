@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-  GoogleMap, Polyline, Marker, useJsApiLoader, Polygon,
+  GoogleMap, Polyline, Marker, useJsApiLoader,
 } from '@react-google-maps/api';
 import PropTypes from 'prop-types';
 
 import { CENTER } from '../../constants';
 import './map.scss';
 import ListPopup from '../../components/listPopup/listPopup';
+import Shelf from './Shelf';
 
 // TODO: customize lines to look better
 // path polyline options
@@ -45,7 +46,8 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
         center={path?.length > 0 ? path[0] : CENTER}
         options={mapOptions}
       >
-        {shelfPolygons.length > 0 && shelfPolygons.map((shelf) => <Polygon path={shelf} />)}
+        {shelfPolygons.length > 0
+          && shelfPolygons.map((shelfPolygon) => <Shelf path={shelfPolygon} />)}
         {
           // render lines if there is a path to render
           path && path.length > 0 && (
