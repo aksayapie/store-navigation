@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  Card, Button, ButtonGroup, Icon,
+  Card, Button, ButtonGroup, Icon, Tooltip,
 } from '@shopify/polaris';
-import { ArrowUpMinor } from '@shopify/polaris-icons';
+import { ArrowUpMinor, QuestionMarkMajor } from '@shopify/polaris-icons';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
@@ -32,6 +32,16 @@ const RouteDirection = ({ currentItem }) => {
               <Button onClick={() => dispatch(removeItem())}>Remove Item</Button>
               <Button primary onClick={() => history.push('/scan')}>Scan &amp; Confirm</Button>
             </ButtonGroup>
+            <Tooltip
+              active={false}
+              preferredPosition="mostSpace"
+              content="Pick up the item outlined above. When you have the item, click
+                'Scan and Confirm' and scan the barcode to confirm the item."
+            >
+              <Icon
+                source={QuestionMarkMajor}
+              />
+            </Tooltip>
           </div>
         </Card.Section>
       </Card>
