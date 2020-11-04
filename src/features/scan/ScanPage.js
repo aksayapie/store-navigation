@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserMultiFormatReader, BrowserCodeReader } from '@zxing/browser';
-import { Button, Icon } from '@shopify/polaris';
+import { Button, Icon, ButtonGroup } from '@shopify/polaris';
 import { MobileCancelMajor } from '@shopify/polaris-icons';
+import Modal from 'react-modal';
+import { addItemToCart } from '../ShoppingList/shoppingListSlice';
 import './ScanPage.scss';
 
 const ScanPage = () => {
   const [code, setCode] = useState(null);
   const [control, setControls] = useState(null);
-
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [scannedItem, setItem] = useState(null);
+  const [scannedItemName, setItemName] = useState(null);
+  const dispatch = useDispatch();
   const history = useHistory();
-
+  const { items } = useSelector((state) => state.itemList);
   useEffect(() => {
     const scanBarcode = async () => {
       const codeReader = new BrowserMultiFormatReader();
@@ -26,14 +32,18 @@ const ScanPage = () => {
         await codeReader.decodeFromVideoDevice(
           selectedDeviceId,
           previewElem,
-          (result, _error, controls) => {
+          (result) => {
             // use the result and error values to choose your actions
             // you can also use controls API in this scope like the controls
             // returned from the method.
             if (result) {
-              setCode(result.text);
-              controls.stop();
-              history.push('/map');
+              setCode(result.text.substring(1));
+              const foundItem = items.find((item) => item.UPC === result.text.substring(1));
+              if (foundItem) {
+                setItem(foundItem);
+                setIsOpen(true);
+                setItemName(foundItem.name);
+              }
             }
           },
         ),
@@ -42,6 +52,12 @@ const ScanPage = () => {
 
     scanBarcode();
   }, []);
+
+  const addItem = () => {
+    control.stop();
+    dispatch(addItemToCart([scannedItem]));
+    history.push('/map');
+  };
 
   return (
     <div className="video-container">
@@ -57,6 +73,37 @@ const ScanPage = () => {
         <p>Center the viewer over a barcode to add an item to your list</p>
         <p>{code}</p>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setIsOpen(false)}
+        style={{
+          overlay: {
+            zIndex: 3,
+            backgroundColor: 'rgba(134,134,134,0.4)',
+          },
+          content: {
+            bottom: '50%',
+            top: 'auto',
+            fontSize: '1.4em',
+            lineHeight: '28px',
+          },
+        }}
+      >
+        <p>
+          Would you like to add
+          {' \''}
+          {scannedItemName}
+          {'\' '}
+          to your cart?
+        </p>
+        <hr className="style-six" />
+        <ButtonGroup>
+          <Button onClick={() => setIsOpen(false)}>Cancel</Button>
+          <Button primary onClick={() => addItem()}>
+            Confirm
+          </Button>
+        </ButtonGroup>
+      </Modal>
     </div>
   );
 };
