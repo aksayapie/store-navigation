@@ -14,11 +14,11 @@ export default function FrontPageShoppingList() {
         <ShoppingListHeader />
         <br />
         <div className="list-title">
-          <ShoppingListTitle isItemPopUpProp={false} />
+          <ShoppingListTitle />
         </div>
         <br />
         <div className="shopping-item-container">
-          <ShoppingList />
+          <ShoppingList isItemPopUpProp={false} isConfirmedList={false} />
         </div>
         <ShoppingListBottomButtons />
       </Page>

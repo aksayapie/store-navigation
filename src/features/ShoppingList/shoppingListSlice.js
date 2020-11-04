@@ -5,12 +5,12 @@ export const shoppingListSlice = createSlice({
   name: 'shoppingList',
   initialState: {
     items,
+    confirmedItemsInCart: [],
   },
   reducers: {
     remoteItemFromList(state, action) {
       const { UPC } = action.payload;
       const indexOfCurrentPost = state.items.indexOf(state.items.find((item) => item.UPC === UPC));
-      // console.log(indexOfCurrentPost);
       state.items = [...state.items.slice(0, indexOfCurrentPost),
         ...state.items.slice(indexOfCurrentPost + 1)];
     },
@@ -25,10 +25,31 @@ export const shoppingListSlice = createSlice({
         },
       );
     },
+    addItemToCart(state, action) {
+      const itemsToBeAdded = action.payload;
+      Object.keys(itemsToBeAdded).forEach(
+        (key) => {
+          const found = state.confirmedItemsInCart.findIndex(
+            (element) => element.UPC === itemsToBeAdded[key].UPC,
+          );
+          if (found < 0) {
+            const indexOfCurrentPost = state.items.indexOf(
+              state.items.find((item) => item.UPC === itemsToBeAdded[key].UPC),
+            );
+            if (indexOfCurrentPost > -1) {
+              state.items = [...state.items.slice(0, indexOfCurrentPost),
+                ...state.items.slice(indexOfCurrentPost + 1)];
+            }
+            state.confirmedItemsInCart.push(itemsToBeAdded[key]);
+          }
+        },
+      );
+    },
   },
 });
 export const selectItems = (state) => state.shoppingList.items;
+export const selectConfirmedItems = (state) => state.shoppingList.confirmedItemsInCart;
 
-export const { remoteItemFromList, addItemToList } = shoppingListSlice.actions;
+export const { remoteItemFromList, addItemToList, addItemToCart } = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;
