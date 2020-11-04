@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import enTranslations from '@shopify/polaris/locales/en.json';
@@ -16,7 +17,7 @@ function App() {
   const { items, isLoading: itemsLoading } = useSelector((state) => state.itemList);
 
   useEffect(() => {
-    dispatch(fetchItems());
+    // dispatch(fetcxhItems());
   }, []);
 
   return (
