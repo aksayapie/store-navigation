@@ -49,7 +49,7 @@ const ListPopup = () => {
         <Sheet.Header>
           <div className="popupheader">
             <Sheet.Header />
-            <Stack wrap={false} distribution="equalSpacing" alignment="center">
+            <Stack wrap distribution="equalSpacing" alignment="center">
               <DisplayText size="large" element="h1">
                 My Shopping List
               </DisplayText>
@@ -58,12 +58,6 @@ const ListPopup = () => {
                   <Icon source={MobilePlusMajor} />
                   <div className="smallButtonText">Add Item</div>
                 </Button>
-                <Link to="/scan">
-                  <Button textAlign="center" size="slim">
-                    <Icon source={BarcodeMajor} />
-                    <div className="smallButtonText">Scan Item</div>
-                  </Button>
-                </Link>
               </ButtonGroup>
             </Stack>
             <Modal

@@ -1,6 +1,7 @@
 import {
   Caption, ResourceItem, Stack, TextStyle, Thumbnail, Button, Icon,
 } from '@shopify/polaris';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import {
@@ -58,7 +59,9 @@ function PopUpListItem(item) {
         <Stack alignment="center" spacing="extraLoose">
           <div className="filler-stack-item" />
           <Button onClick={onRemoveItemClicked}>Delete Item</Button>
-          <Button primary>Scan & Confirm</Button>
+          <Link to="/scan" className="link">
+            <Button primary>Scan & Confirm</Button>
+          </Link>
         </Stack>
       </ResourceItem>
     </div>
