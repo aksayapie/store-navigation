@@ -18,7 +18,7 @@ function SearchModal({ activeSearchModal, setActiveSearchModal }) {
             backgroundColor: 'rgba(134,134,134,0.4)',
           },
           content: {
-            bottom: '50%',
+            bottom: '40%',
             top: 'auto',
             fontSize: '1.4em',
             lineHeight: '28px',

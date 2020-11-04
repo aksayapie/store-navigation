@@ -31,17 +31,17 @@ const RouteDirection = ({ currentItem }) => {
             <ButtonGroup fullWidth>
               <Button onClick={() => dispatch(removeItem())}>Remove Item</Button>
               <Button primary onClick={() => history.push('/scan')}>Scan &amp; Confirm</Button>
+              <Tooltip
+                active={false}
+                preferredPosition="mostSpace"
+                content="Pick up the item outlined above. When you have the item, click
+                  'Scan and Confirm' and scan the barcode to confirm the item."
+              >
+                <Icon
+                  source={QuestionMarkMajor}
+                />
+              </Tooltip>
             </ButtonGroup>
-            <Tooltip
-              active={false}
-              preferredPosition="mostSpace"
-              content="Pick up the item outlined above. When you have the item, click
-                'Scan and Confirm' and scan the barcode to confirm the item."
-            >
-              <Icon
-                source={QuestionMarkMajor}
-              />
-            </Tooltip>
           </div>
         </Card.Section>
       </Card>
