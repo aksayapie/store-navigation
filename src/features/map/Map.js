@@ -55,6 +55,7 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
               return (
                 <Marker
                   key={item.upc}
+                  // options={{scaledSize: new google.maps.Size(70, 70)}}
                   position={{ lat: item.lat, lng: item.lng }}
                 />
               );
