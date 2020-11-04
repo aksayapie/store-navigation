@@ -13,7 +13,7 @@ function AutoCompleteSearchField({ handleCloseProp }) {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.itemList);
   const itemList = items;
-  const stringMiddleWare = ' - ';
+  const stringMiddleWare = ' - $';
   const transformed = itemList.map(({
     name, UPC, price, xLocation, yLocaiton, imageLink,
   }) => ({
