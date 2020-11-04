@@ -1,13 +1,46 @@
-// .content {
-//     margin-left: 30px;
-//     margin-right: 30px;
-//     margin-top: 50px;
+.face-covering {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+    p {
+        color:  #637381;
+        font-size: 18px;
+        line-height: 1.2;
+        margin-right: 15px;
+    }
+}
 
-//     // .shopping {
-//     //     .Polaris-Button {
-//     //         background: #005DAA;
-//     //         color: white;
-//     //         fill: white;
-//     //     }
-//     // }
-// }
+.social-distance {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+    p {
+        color:  #637381;
+        font-size: 18px;
+        line-height: 1.2;
+        margin-right: 15px;
+    }
+}
+
+.reusable-bag {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3em;
+    p {
+        color:  #637381;
+        font-size: 18px;
+        line-height: 1.2;
+        margin-right: 15px;
+    }
+}
+
+.Polaris-Thumbnail {
+    margin-right: 15px;
+    margin-left: 8px;
+}
+
+.Polaris-Icon {
+    float: right;
+    fill: #637381;
+    margin-right: 8px;
+}

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Sheet from 'react-modal-sheet';
 import {
-  Button, ButtonGroup, DisplayText, Stack, Icon,
+  Button, ButtonGroup, DisplayText, Stack, Icon, Tooltip,
 } from '@shopify/polaris/';
-import { MobilePlusMajor, BarcodeMajor, SearchMajor } from '@shopify/polaris-icons';
+import {
+  MobilePlusMajor, BarcodeMajor, SearchMajor, QuestionMarkMajor,
+} from '@shopify/polaris-icons';
 import Modal from 'react-modal';
 import useWindowDimensions from '../../util/windowDimensions';
 import ShoppingList from '../../features/ShoppingList/ShoppingList';
@@ -53,6 +55,16 @@ const ListPopup = () => {
               <DisplayText size="large" element="h1">
                 My Shopping List
               </DisplayText>
+              <Tooltip
+                active={false}
+                preferredPosition="mostSpace"
+                content="This is your shopping list. To add items to your list press
+                the '+' button. You can either scan or search to add an item."
+              >
+                <Icon
+                  source={QuestionMarkMajor}
+                />
+              </Tooltip>
               <ButtonGroup>
                 <Button textAlign="center" size="slim" onClick={() => setAddIsOpen(true)}>
                   <Icon source={MobilePlusMajor} />
@@ -137,7 +149,7 @@ const ListPopup = () => {
                     <hr className="style-six" />
                     <ButtonGroup>
                       <Button onClick={() => setIsOpen(false)}>Cancel</Button>
-                      <Link to="/">
+                      <Link to="/checkout">
                         <Button primary>Confirm</Button>
                       </Link>
                     </ButtonGroup>
