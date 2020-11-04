@@ -14,6 +14,7 @@ import Shelf from './Shelf';
 import RouteLine from './RouteLine';
 import RouteMarker from './RouteMarker';
 import Door from './Door';
+import AisleLabelMarker from './AisleLabelMarker';
 
 // TODO: add more extensive options
 const mapOptions = {
@@ -24,7 +25,9 @@ const mapOptions = {
 
 // TODO: hide item step label if zoom is far out enough (looks giant otherwise)
 // TODO: add exit and entrance
-const Map = ({ path, shelfPolygons, shoppingList }) => {
+const Map = ({
+  path, shelfPolygons, shoppingList, aisleNumberCoords,
+}) => {
   // load the google map javascript scripts
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -33,18 +36,29 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
   return (
     <>
       {isLoaded && (
-      <GoogleMap
-        id="costco-map"
-        mapContainerClassName="mapStyles"
-        zoom={20}
-        // if there's a path, center the map to the first node
-        // else center it to the center of the store
-        center={path?.length > 0 ? path[0] : CENTER}
-        options={mapOptions}
-      >
-        {shelfPolygons.length > 0
+        <GoogleMap
+          id="costco-map"
+          mapContainerClassName="mapStyles"
+          zoom={20}
+          // if there's a path, center the map to the first node
+          // else center it to the center of the store
+          center={path?.length > 0 ? path[0] : CENTER}
+          options={mapOptions}
+        >
+          {shelfPolygons.length > 0
           && shelfPolygons.map((shelfPolygon) => <Shelf paths={shelfPolygon} />)}
-        {
+          {
+          aisleNumberCoords.length > 0
+           && aisleNumberCoords.map(
+             ({ position, aisleNumber }) => (
+               <AisleLabelMarker
+                 position={position}
+                 label={aisleNumber.toString()}
+               />
+             ),
+           )
+        }
+          {
           // render lines if there is a path to render
           path && path.length > 0 && (
             <RouteLine path={path.map((point) => ({
@@ -55,7 +69,7 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
           )
         }
 
-        {
+          {
           shoppingList && shoppingList.length > 0
             && shoppingList.map((item) => (
               <RouteMarker
@@ -66,9 +80,9 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
             ))
           }
 
-        <Door paths={polylineToPolygon(ENTRANCE_DOOR, SCALE_DOOR)} color="#27ae60" />
-        <Door paths={polylineToPolygon(EXIT_DOOR, SCALE_DOOR)} color="#c0392b" />
-      </GoogleMap>
+          <Door paths={polylineToPolygon(ENTRANCE_DOOR, SCALE_DOOR)} color="#27ae60" />
+          <Door paths={polylineToPolygon(EXIT_DOOR, SCALE_DOOR)} color="#c0392b" />
+        </GoogleMap>
       )}
       <ListPopup />
     </>
@@ -100,6 +114,13 @@ Map.propTypes = {
     inCart: PropTypes.bool.isRequired,
     step: PropTypes.number,
   })),
+  aisleNumberCoords: PropTypes.arrayOf(PropTypes.shape({
+    position: PropTypes.shape({
+      lat: PropTypes.number.isRequired,
+      lng: PropTypes.number.isRequired,
+    }).isRequired,
+    aisleNumber: PropTypes.number.isRequired,
+  })).isRequired,
 };
 
 Map.defaultProps = {

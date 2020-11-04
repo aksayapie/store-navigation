@@ -76,3 +76,19 @@ export default (itemsList) => {
     return acc;
   }, []);
 };
+
+export const getAisleLabelCoords = (shelfPolygons) => {
+  let aisleNumber = 1;
+
+  return shelfPolygons.reduce((acc, curr, index) => {
+    if (index % 2 === 0) {
+    // if even index
+      acc.push({ position: curr[1], aisleNumber });
+    } else {
+      acc.push({ position: curr[0], aisleNumber });
+      aisleNumber += 1;
+    }
+
+    return acc;
+  }, []);
+};
