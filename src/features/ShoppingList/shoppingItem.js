@@ -8,14 +8,14 @@ import './ShoppingList.scss';
 
 function ShoppingItem(item) {
   const {
-    id, name, price, imageLink,
+    UPC, name, price, imageLink,
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
-    dispatch(remoteItemFromList({ id }));
+    dispatch(remoteItemFromList({ UPC }));
   };
   return (
-    <ResourceItem id={id}>
+    <ResourceItem id={UPC}>
       <Stack>
         <div className="item-image">
           <Thumbnail source={imageLink} alt={name} size="large" />
@@ -26,7 +26,7 @@ function ShoppingItem(item) {
           </h3>
           <Caption>
             Item #
-            {id}
+            {UPC}
           </Caption>
           <div className="item-price">
             <p>{price}</p>
