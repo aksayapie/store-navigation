@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { SHOPPING_LIST, PATH } from './sampleData';
-import getShelfPolygons from '../../util/mapUtil';
+import getShelfPolygons, { getAisleLabelCoords } from '../../util/mapUtil';
 
 const initialState = {
   path: PATH || [],
   shoppingList: SHOPPING_LIST || [],
   shelfPolygons: [],
+  aisleNumberCoords: [],
 };
 
 export const mapSlice = createSlice({
@@ -27,7 +28,12 @@ export const mapSlice = createSlice({
     calculateShelfPolygons(state, action) {
       const itemLocations = action.payload;
       state.shelfPolygons = getShelfPolygons(itemLocations);
+      state.aisleNumberCoords = getAisleLabelCoords(state.shelfPolygons);
     },
+    // getAisleNumberCoords(state, action) {
+    //   const shelfPolygons = action.payload;
+    //   state.aisleNumberCoords = getAisleLabelCoords(shelfPolygons);
+    // },
   },
 });
 
@@ -42,6 +48,8 @@ export const selectRemainingItemsCount = (state) => state.map.shoppingList.reduc
 }, 0);
 
 // actions
-export const { removeItem, calculateShelfPolygons, addStepsToShoppingList } = mapSlice.actions;
+export const {
+  removeItem, calculateShelfPolygons, addStepsToShoppingList,
+} = mapSlice.actions;
 
 export default mapSlice.reducer;

@@ -14,16 +14,16 @@ import Map from './Map';
 
 const MapPage = () => {
   const dispatch = useDispatch();
-  const { path, shelfPolygons } = useSelector((state) => state.map);
+  const { path, shelfPolygons, aisleNumberCoords } = useSelector((state) => state.map);
   const { items } = useSelector((state) => state.itemList);
   const shoppingList = useSelector(selectShoppingList);
   const currentItem = useSelector(selectCurrentItem);
   const remainingItemsInShoppingListCount = useSelector(selectRemainingItemsCount);
 
   useEffect(() => {
-    if (items) dispatch(calculateShelfPolygons(items));
+    if (items && items.length > 0) dispatch(calculateShelfPolygons(items));
     dispatch(addStepsToShoppingList());
-  }, []);
+  }, [items]);
 
   return (
     <>
@@ -33,7 +33,12 @@ const MapPage = () => {
       {
         !currentItem && remainingItemsInShoppingListCount === 0 && <CheckoutDirection />
       }
-      <Map path={path} shelfPolygons={shelfPolygons} shoppingList={shoppingList} />
+      <Map
+        path={path}
+        shelfPolygons={shelfPolygons}
+        shoppingList={shoppingList}
+        aisleNumberCoords={aisleNumberCoords}
+      />
     </>
   );
 };

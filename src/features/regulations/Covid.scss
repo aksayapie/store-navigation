@@ -1,4 +1,7 @@
-.face-covering {
+.content {
+    overflow:auto;
+    height: calc(100vh - 260px);
+    .face-covering {
     display: flex;
     align-items: center;
     margin-bottom: 2em;
@@ -8,6 +11,9 @@
         line-height: 1.2;
         margin-right: 15px;
     }
+}
+.shopping {
+    margin-bottom: 10px;
 }
 
 .social-distance {
@@ -39,11 +45,10 @@
     margin-left: 8px;
 }
 
-.covid-icon {
-    .Polaris-Icon {
-        float: right;
-        fill: #637381;
-        margin-right: 8px;
-    }
-    
+.Polaris-Icon {
+    float: right;
+    fill: #637381;
+    margin-right: 8px;
+}
+
 }

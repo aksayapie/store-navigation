@@ -81,3 +81,28 @@ hr.style-six {
 .Polaris-ButtonGroup {
   justify-content: center;
 }
+
+.search-container {
+  // position: absolute;
+  // button {
+  //   position: fixed;
+  //   bottom: 77px;
+  // }
+  .option-list {
+    overflow:auto;
+    height: 465px; 
+  }
+
+  .search-box {
+    padding-bottom: 10px;
+    border-bottom: 0.1rem solid var(--p-divider, #dfe3e8);
+  }
+  .add-button {
+    padding-top: 10px;
+    border-top: 0.1rem solid var(--p-divider, #dfe3e8);
+    text-align: center;
+    .Polaris-Button {
+      display: inline-block;
+    }
+  }
+}
