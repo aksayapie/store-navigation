@@ -58,7 +58,7 @@ function AutoCompleteSearchField() {
         allowMultiple
       />
       <div>
-        <button type="button" onClick={addToCart}>Add To Cart</button>
+        <button type="button" onClick={addToCart}>Add To ShoppingList</button>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import './ShoppingList.scss';
 
 function ShoppingItem(item) {
   const {
-    UPC, name, price, imageLink,
+    UPC, name, price, imageURL,
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
@@ -18,7 +18,7 @@ function ShoppingItem(item) {
     <ResourceItem id={UPC}>
       <Stack>
         <div className="item-image">
-          <Thumbnail source={imageLink} alt={name} size="large" />
+          <Thumbnail source={imageURL} alt={name} size="large" />
         </div>
         <div>
           <h3>

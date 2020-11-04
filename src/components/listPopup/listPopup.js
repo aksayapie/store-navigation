@@ -105,7 +105,7 @@ const ListPopup = () => {
         <Sheet.Content>
           <div className="popupcontainer">
             <div className="popupbody">
-              <div className="list shopping-item-container">
+              <div className="list shopping-item-container" style={{ maxHeight: '300px' }}>
                 <DisplayText size="small">Up Next</DisplayText>
                 <ShoppingList isConfirmedList={false} />
               </div>
