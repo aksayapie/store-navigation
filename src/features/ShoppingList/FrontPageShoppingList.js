@@ -14,7 +14,7 @@ export default function FrontPageShoppingList() {
         <ShoppingListHeader />
         <br />
         <div className="list-title">
-          <ShoppingListTitle />
+          <ShoppingListTitle isItemPopUpProp={false} />
         </div>
         <br />
         <div className="shopping-item-container">

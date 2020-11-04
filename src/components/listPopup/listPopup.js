@@ -106,7 +106,7 @@ const ListPopup = () => {
           <div className="popupcontainer">
             <div className="popupbody">
               <div className="list shopping-item-container">
-                <ShoppingList />
+                <ShoppingList isItemPopUpProp />
               </div>
               <div className="buttons">
                 <Button primary fullWidth size="slim">
