@@ -18,7 +18,7 @@ function SearchModal({ activeSearchModal, setActiveSearchModal }) {
             backgroundColor: 'rgba(134,134,134,0.4)',
           },
           content: {
-            bottom: '40%',
+            bottom: '10%',
             top: 'auto',
             fontSize: '1.4em',
             lineHeight: '28px',
@@ -26,7 +26,7 @@ function SearchModal({ activeSearchModal, setActiveSearchModal }) {
         }}
       >
         <div key="searchInput">
-          <AutoCompleteSearchField />
+          <AutoCompleteSearchField handleCloseProp={handleChange} />
         </div>
       </Modal>
     </div>
