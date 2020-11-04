@@ -1,7 +1,7 @@
 // constants for calculation
 const TRANSLATE_SHELF = {
   lat: -0.000007799994,
-  lng: 0.00001299999,
+  lng: 0.00001499999,
 };
 const SCALE_SHELF = {
   lat: -0.000022199994,
