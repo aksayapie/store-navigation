@@ -137,7 +137,7 @@ const ListPopup = () => {
                     <hr className="style-six" />
                     <ButtonGroup>
                       <Button onClick={() => setIsOpen(false)}>Cancel</Button>
-                      <Link to="/">
+                      <Link to="/checkout">
                         <Button primary>Confirm</Button>
                       </Link>
                     </ButtonGroup>
