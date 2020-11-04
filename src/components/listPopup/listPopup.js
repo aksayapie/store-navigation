@@ -8,6 +8,7 @@ import { MobilePlusMajor, BarcodeMajor, SearchMajor } from '@shopify/polaris-ico
 import Modal from 'react-modal';
 import useWindowDimensions from '../../util/windowDimensions';
 import ShoppingList from '../../features/ShoppingList/ShoppingList';
+import SearchModal from './searchModal';
 import './listPopup.scss';
 
 Modal.setAppElement('#root');
@@ -16,10 +17,14 @@ const ListPopup = () => {
   const [isOpen, setOpen] = useState(true);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [addModalIsOpen, setAddIsOpen] = React.useState(false);
+  const [activeSearchModal, setActiveSearchModal] = useState(false);
   const { height } = useWindowDimensions();
   const ref = React.useRef();
   const snapTo = (i) => ref.current?.snapTo(i);
-
+  const closeAddOpenSearch = () => {
+    setActiveSearchModal(true);
+    setAddIsOpen(false);
+  };
   const closeSequence = () => {
     setOpen(false);
     snapTo(2);
@@ -36,6 +41,10 @@ const ListPopup = () => {
       className="sheet"
       id="sheet"
     >
+      <SearchModal
+        activeSearchModal={activeSearchModal}
+        setActiveSearchModal={setActiveSearchModal}
+      />
       <Sheet.Container>
         <Sheet.Header>
           <div className="popupheader">
@@ -76,7 +85,7 @@ const ListPopup = () => {
               <p>How do you want to add a new item?</p>
               <hr className="style-six" />
               <ButtonGroup>
-                <Button textAlign="center" size="slim">
+                <Button textAlign="center" size="slim" onClick={closeAddOpenSearch}>
                   <Icon source={SearchMajor} />
                   <div className="smallButtonText">Search Item</div>
                 </Button>
@@ -96,8 +105,14 @@ const ListPopup = () => {
         <Sheet.Content>
           <div className="popupcontainer">
             <div className="popupbody">
+              <div className="list shopping-item-container" style={{ maxHeight: '300px' }}>
+                <DisplayText size="small">Up Next</DisplayText>
+                <ShoppingList isConfirmedList={false} />
+              </div>
               <div className="list shopping-item-container">
-                <ShoppingList />
+                <DisplayText size="small">Confirmed Items in Cart</DisplayText>
+                <hr />
+                <ShoppingList isConfirmedList />
               </div>
               <div className="buttons">
                 <Button primary fullWidth size="slim">

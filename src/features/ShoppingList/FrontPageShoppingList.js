@@ -18,7 +18,7 @@ export default function FrontPageShoppingList() {
         </div>
         <br />
         <div className="shopping-item-container">
-          <ShoppingList />
+          <ShoppingList isConfirmedList={false} />
         </div>
         <ShoppingListBottomButtons />
       </Page>

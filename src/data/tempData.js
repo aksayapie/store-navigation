@@ -1,28 +1,39 @@
 const items = [
   {
-    id: 0,
-    name: 'Toilet Paper',
-    price: '$10',
-    xLocation: 5,
-    yLocaiton: 3,
-    imageLink:
+    UPC: '783048567123',
+    aisleNumber: 1,
+    inStock: false,
+    lat: 40.65566563636364,
+    lng: -74.00978618620414,
+    name: 'Green Apples 20ct',
+    price: 18.06,
+    shelfNumber: 1,
+    imageURL:
       'https://previews.123rf.com/images/ratoca/ratoca1109/ratoca110900334/10729072-three-rolls-of-toilet-paper.jpg',
   },
   {
-    id: 1,
-    name: 'Plates',
-    price: '$10',
-    xLocation: 5,
-    yLocaiton: 3,
-    imageLink: 'http://clipart-library.com/img1/1570208.png',
+    UPC: '783048567124',
+    aisleNumber: 2,
+    inStock: false,
+    lat: 40.65566563636364,
+    lng: -74.00978618620414,
+    name: 'citrus fruit',
+    price: 5.03,
+    shelfNumber: 1,
+    imageURL:
+      'https://previews.123rf.com/images/ratoca/ratoca1109/ratoca110900334/10729072-three-rolls-of-toilet-paper.jpg',
   },
   {
-    id: 2,
-    name: 'Cups',
-    price: '$10',
-    xLocation: 5,
-    yLocaiton: 3,
-    imageLink: 'http://clipart-library.com/data_images/208814.png',
+    UPC: '783048567125',
+    aisleNumber: 2,
+    inStock: false,
+    lat: 40.65566563636364,
+    lng: -74.00978618620414,
+    name: 'Choclate Muffins',
+    price: 8.99,
+    shelfNumber: 0,
+    imageURL:
+      'https://previews.123rf.com/images/ratoca/ratoca1109/ratoca110900334/10729072-three-rolls-of-toilet-paper.jpg',
   },
 ];
 
