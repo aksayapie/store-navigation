@@ -9,6 +9,7 @@ import FlowContainer from './features/flowContainer/FlowContainer';
 import MapPage from './features/map/MapPage';
 import ScanPage from './features/scan/ScanPage';
 import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList';
+import Method from './features/checkoutMethod/Method';
 import MainNavBar from './components/mainNavBar/MainNavBar';
 import { fetchItems } from './data/itemListSlice';
 
@@ -34,6 +35,9 @@ function App() {
             </Route>
             <Route path="/scan">
               <ScanPage />
+            </Route>
+            <Route path="/checkout">
+              <Method />
             </Route>
             <Route path="/">
               <FrontPageShoppingList />
