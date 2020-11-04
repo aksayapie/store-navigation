@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserMultiFormatReader, BrowserCodeReader } from '@zxing/browser';
 import { Button, Icon } from '@shopify/polaris';
 import { MobileCancelMajor } from '@shopify/polaris-icons';
+import { addItemToCart } from '../ShoppingList/shoppingListSlice';
 import './ScanPage.scss';
 
 const ScanPage = () => {
   const [code, setCode] = useState(null);
   const [control, setControls] = useState(null);
 
+  const dispatch = useDispatch();
   const history = useHistory();
-
+  const { items } = useSelector((state) => state.itemList);
   useEffect(() => {
     const scanBarcode = async () => {
       const codeReader = new BrowserMultiFormatReader();
@@ -31,9 +34,13 @@ const ScanPage = () => {
             // you can also use controls API in this scope like the controls
             // returned from the method.
             if (result) {
-              setCode(result.text);
-              controls.stop();
-              history.push('/map');
+              setCode(result.text.substring(1));
+              const foundItem = items.find((item) => item.UPC === result.text.substring(1));
+              if (foundItem) {
+                controls.stop();
+                dispatch(addItemToCart([foundItem]));
+                history.push('/map');
+              }
             }
           },
         ),
