@@ -2,37 +2,75 @@
     margin-top: 100px;
     margin-left: 20px;
     margin-right: 20px;
+    h1 {
+      font-size: 28px;
+      margin-bottom: 40px;
+      line-height: 1em;
+      font-weight: bold;
+      margin-right: 0;
+    }
 }
 
 .checkout-button-container {
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 7px;
+    text-align: left;
+  }
 
   .Polaris-Button__Text {
     margin: 15px 30px;
+    display: flex;
   }
   
   .Polaris-Button--outline {
     border-radius: 60px;
     margin-bottom: 2em;
+    color: #212B36;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .Polaris-Button--outline:hover{
+    background: #005DAA;
+    color: white;
+    .button-content {
+      color: white;
+    }
+  }
+
+  .button-text-content {
+    flex: 4;
   }
   
   .icon {
-    .Polaris-Icon {
-        float: left;
-        vertical-align: middle;
+    flex: 1;
+    display : flex;
+    flex-direction : column;
+    justify-content: center;
+    .left-icon {
+      .Polaris-Icon {
+        height: 3rem;
+        width:3rem;
       }
+    }
+    }
+    .Polaris-Button--outline:hover svg {
+      fill: white;
     }
 
   .button-content {
-    font-size: 1.2em;
+    font-size: 18px;
     display: inline-block;
-    width: 90%;
     text-align: left;
+    margin-left: 0;
+    color: #637381;
   }
-
-  .arrow {
-    .Polaris-Icon {
-        float: right;
-        vertical-align: middle;
-      }
+  @media (max-width: 499px) {
+    .Polaris-Button__Text {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
   }
 }
