@@ -15,15 +15,27 @@
     }
   }
 
+  @media (max-width: 499px) { 
+    h1 {
+      margin-left: 0px;
+    }
+  }
+
   h1 {
-    font-size: 24px;
-    margin-bottom: 1em;
-    line-height: 1em;
+    font-size: 28px;
+    margin-bottom: 15px;
+    //line-height: 1em;
     font-weight: bold;
+    margin-right: 0;
   }
   h2 {
     font-size: 20px;
     margin-bottom: 2em;
+    color: #637381;
   }
+}
+
+.Polaris-Page__Content {
+  margin: 20px;
 }
 

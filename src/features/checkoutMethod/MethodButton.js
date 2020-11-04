@@ -15,16 +15,20 @@ function MethodButton({
     <div className="checkout-button-container">
       <Button outline onClick={() => updateScanType(checkoutTypeProp)}>
         <div className="icon">
-          {iconNameProp === 'ShopcodesMajor' ? (
-            <Icon source={ShopcodesMajor} />
-          ) : null}
-          {iconNameProp === 'MobileMajor' ? (
-            <Icon source={MobileMajor} />
-          ) : null}
+          <div className="left-icon">
+            {iconNameProp === 'ShopcodesMajor' ? (
+              <Icon source={ShopcodesMajor} />
+            ) : null}
+            {iconNameProp === 'MobileMajor' ? (
+              <Icon source={MobileMajor} />
+            ) : null}
+          </div>
         </div>
-        <h3>{titleProp}</h3>
-        <div className="button-content">{contentProp}</div>
-        <div className="arrow">
+        <div className="button-text-content">
+          <h3>{titleProp}</h3>
+          <div className="button-content">{contentProp}</div>
+        </div>
+        <div className="icon">
           <Icon source={ChevronRightMinor} />
         </div>
       </Button>
