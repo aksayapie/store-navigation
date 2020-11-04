@@ -31,8 +31,8 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
         id="costco-map"
         mapContainerClassName="mapStyles"
         zoom={20}
-          // if there's a path, center the map to the first node
-          // else center it to the center of the store
+        // if there's a path, center the map to the first node
+        // else center it to the center of the store
         center={path?.length > 0 ? path[0] : CENTER}
         options={mapOptions}
       >
@@ -54,7 +54,7 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
             && shoppingList.map((item) => {
               if (item.inCart) return null;
               return (
-                <RouteMarker letter="A" position={{ lat: item.lat, lng: item.lng }} />
+                <RouteMarker key={item.lat} letter="A" position={{ lat: item.lat, lng: item.lng }} />
               );
             })
           }
@@ -67,7 +67,8 @@ const Map = ({ path, shelfPolygons, shoppingList }) => {
 
 Map.propTypes = {
   path: PropTypes.arrayOf(PropTypes.shape({
-    upc: PropTypes.string.isRequired,
+    upc: PropTypes.string,
+    aisle: PropTypes.number.isRequired,
     lat: PropTypes.number.isRequired,
     lng: PropTypes.number.isRequired,
   })),
