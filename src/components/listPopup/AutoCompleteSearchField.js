@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import {
-  Modal,
   OptionList,
   TextField,
 } from '@shopify/polaris/';
@@ -58,9 +57,9 @@ function AutoCompleteSearchField() {
         selected={selected}
         allowMultiple
       />
-      <Modal.Section>
+      <div>
         <button type="button" onClick={addToCart}>Add To Cart</button>
-      </Modal.Section>
+      </div>
     </div>
   );
 }
