@@ -18,6 +18,8 @@ const mapOptions = {
   minZoom: 18,
 };
 
+// TODO: hide item step label if zoom is far out enough (looks giant otherwise)
+// TODO: add exit and entrance
 const Map = ({ path, shelfPolygons, shoppingList }) => {
   // load the google map javascript scripts
   const { isLoaded } = useJsApiLoader({
