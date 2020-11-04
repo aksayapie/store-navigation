@@ -15,32 +15,37 @@ function ShoppingItem(item) {
     dispatch(remoteItemFromList({ UPC }));
   };
   return (
-    <ResourceItem id={UPC}>
-      <Stack>
-        <div className="item-image">
-          <Thumbnail source={imageURL} alt={name} size="large" />
-        </div>
-        <div>
-          <h3>
-            <TextStyle variation="strong">{name}</TextStyle>
-          </h3>
-          <Caption>
-            Item #
-            {UPC}
-          </Caption>
-          <div className="item-price">
-            <p>{price}</p>
+    <div className="account-item">
+      <ResourceItem id={UPC}>
+        <Stack>
+          <div className="item-image">
+            <Thumbnail source={imageURL} alt={name} size="large" />
           </div>
-        </div>
-      </Stack>
-      <Stack alignment="center" spacing="extraLoose">
-        <div className="item-quantity">
-          <p>Quantity:</p>
-          <input type="number" className="quantityDiv" disabled placeholder="1" />
-        </div>
-        <Button destructive onClick={onRemoveItemClicked}>Delete Item</Button>
-      </Stack>
-    </ResourceItem>
+          <div>
+            <h3>
+              <TextStyle variation="strong">{name}</TextStyle>
+            </h3>
+            <Caption>
+              Item #
+              {UPC}
+            </Caption>
+            <div className="item-price">
+              <p>
+                $
+                {price}
+              </p>
+            </div>
+          </div>
+        </Stack>
+        <Stack alignment="center" spacing="extraLoose">
+          <div className="item-quantity">
+            <p>Quantity:</p>
+            <input type="number" className="quantityDiv" disabled placeholder="1" />
+          </div>
+          <Button destructive onClick={onRemoveItemClicked}>Delete Item</Button>
+        </Stack>
+      </ResourceItem>
+    </div>
   );
 }
 export default ShoppingItem;

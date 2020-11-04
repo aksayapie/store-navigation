@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { ResourceList, Card, Button } from '@shopify/polaris';
-import PropTypes from 'prop-types';
 import { selectItems, selectConfirmedItems } from './shoppingListSlice';
 import ShoppingItem from './shoppingItem';
+import PopUpListItem from './PopUpListItem';
 
-function ShoppingList({ isConfirmedList }) {
+function ShoppingList({ isItemPopUpProp, isConfirmedList }) {
   let items = {};
   if (isConfirmedList) {
     items = useSelector(selectConfirmedItems);
@@ -18,13 +19,19 @@ function ShoppingList({ isConfirmedList }) {
     singular: 'Shopping Item',
     plural: 'Shopping Items',
   };
+  let shopItemType = null;
+  if (isItemPopUpProp) {
+    shopItemType = PopUpListItem;
+  } else {
+    shopItemType = ShoppingItem;
+  }
 
   return (
     <Card>
       <ResourceList
         resourceName={resourceName}
         items={items}
-        renderItem={ShoppingItem}
+        renderItem={shopItemType}
       />
     </Card>
   );
@@ -43,7 +50,9 @@ export function ShoppingListTitle() {
     </div>
   );
 }
+
 ShoppingList.propTypes = {
+  isItemPopUpProp: PropTypes.bool.isRequired,
   isConfirmedList: PropTypes.bool.isRequired,
 };
 export default ShoppingList;

@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  selectCurrentItem, selectShoppingList, selectRemainingItemsCount, calculateShelfPolygons,
+  selectCurrentItem,
+  selectShoppingList,
+  selectRemainingItemsCount,
+  calculateShelfPolygons,
+  addStepsToShoppingList,
 } from './mapSlice';
 import RouteDirecton from './routeDirection/RouteDirection';
 import CheckoutDirection from './checkoutDirection/CheckoutDirection';
@@ -18,6 +22,7 @@ const MapPage = () => {
 
   useEffect(() => {
     if (items) dispatch(calculateShelfPolygons(items));
+    dispatch(addStepsToShoppingList());
   }, []);
 
   return (

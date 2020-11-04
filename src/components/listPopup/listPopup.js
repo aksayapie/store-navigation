@@ -49,7 +49,7 @@ const ListPopup = () => {
         <Sheet.Header>
           <div className="popupheader">
             <Sheet.Header />
-            <Stack wrap={false} distribution="equalSpacing" alignment="center">
+            <Stack wrap distribution="equalSpacing" alignment="center">
               <DisplayText size="large" element="h1">
                 My Shopping List
               </DisplayText>
@@ -58,12 +58,6 @@ const ListPopup = () => {
                   <Icon source={MobilePlusMajor} />
                   <div className="smallButtonText">Add Item</div>
                 </Button>
-                <Link to="/scan">
-                  <Button textAlign="center" size="slim">
-                    <Icon source={BarcodeMajor} />
-                    <div className="smallButtonText">Scan Item</div>
-                  </Button>
-                </Link>
               </ButtonGroup>
             </Stack>
             <Modal
@@ -107,12 +101,12 @@ const ListPopup = () => {
             <div className="popupbody">
               <div className="list shopping-item-container" style={{ maxHeight: '300px' }}>
                 <DisplayText size="small">Up Next</DisplayText>
-                <ShoppingList isConfirmedList={false} />
+                <ShoppingList isItemPopUpProp isConfirmedList={false} />
               </div>
               <div className="list shopping-item-container">
                 <DisplayText size="small">Confirmed Items in Cart</DisplayText>
                 <hr />
-                <ShoppingList isConfirmedList />
+                <ShoppingList isItemPopUpProp isConfirmedList />
               </div>
               <div className="buttons">
                 <Button primary fullWidth size="slim">

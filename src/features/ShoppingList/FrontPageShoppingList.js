@@ -18,7 +18,7 @@ export default function FrontPageShoppingList() {
         </div>
         <br />
         <div className="shopping-item-container">
-          <ShoppingList isConfirmedList={false} />
+          <ShoppingList isItemPopUpProp={false} isConfirmedList={false} />
         </div>
         <ShoppingListBottomButtons />
       </Page>
