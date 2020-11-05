@@ -1,5 +1,5 @@
 import {
-  Caption, ResourceItem, Stack, TextStyle, Thumbnail, Button,
+  Caption, ResourceItem, Stack, TextStyle, Button,
 } from '@shopify/polaris';
 import { useDispatch } from 'react-redux';
 import React from 'react';
@@ -19,7 +19,7 @@ function ShoppingItem(item) {
       <ResourceItem id={UPC}>
         <Stack>
           <div className="item-image">
-            <Thumbnail source={imageURL} alt={name} size="large" />
+            <img src={imageURL} alt={name} size="large" />
           </div>
           <div>
             <h3>

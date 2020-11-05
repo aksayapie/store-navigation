@@ -1,5 +1,5 @@
 import {
-  Caption, ResourceItem, Stack, TextStyle, Thumbnail, Button,
+  Caption, ResourceItem, Stack, TextStyle, Button,
 } from '@shopify/polaris';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -32,7 +32,7 @@ function PopUpToBuyListItem(item) {
             <div className="item-counter">1</div>
           </div> */}
           <div className="item-image">
-            <Thumbnail source={imageURL} alt={name} size="large" />
+            <img src={imageURL} alt={name} size="large" />
           </div>
           <div className="item-text">
             <h3>
