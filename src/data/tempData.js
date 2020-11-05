@@ -1,6 +1,6 @@
 const items = [
   {
-    name: 'Marathon Jumbo Roll Bath Tissue',
+    name: 'Jumbo Roll Bath Tissue',
     price: 5.12,
     inStock: false,
     lat: 40.655946916666664,

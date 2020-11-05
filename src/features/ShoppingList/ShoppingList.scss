@@ -30,8 +30,9 @@
   z-index: 1;
   margin-top: 16px;
   position: relative;
-  overflow:auto;
-  height: calc(100vh - 73px); 
+  margin-bottom: 100px;
+  // overflow:auto;
+  // height: calc(100vh - 73px); 
   //height: 700px;
 }
 h1 {
@@ -52,7 +53,7 @@ h1 {
   }
   .account-item {
     .item-price {
-      margin-top: 22px;
+      margin-top: 5px;
     }
   
     .Polaris-ResourceItem__ListItem:first-of-type {
@@ -71,6 +72,10 @@ h1 {
       margin-top: 10px;
       margin-bottom: 15px;
     }
+    img {
+      width: 7.5rem;
+      vertical-align: top;
+    }
   }
   .pop-up-item {
     .confirmed-icon {
@@ -88,6 +93,10 @@ h1 {
     }
     .item-counter {
       line-height: 1.2;
+    }
+    img {
+      width: 7.5rem;
+      vertical-align: top;
     }
     .Polaris-ResourceItem__ListItem:first-of-type {
       border-top: 0.1rem solid var(--p-divider, #dfe3e8);
