@@ -7,6 +7,7 @@ import {
 import { selectItems, selectConfirmedItems } from './shoppingListSlice';
 import ShoppingItem from './shoppingItem';
 import PopUpListItem from './PopUpListItem';
+import PopUpToBuyList from './PopUpToBuyList';
 import './ShoppingList.scss';
 
 function ShoppingList({ isItemPopUpProp, isConfirmedList }) {
@@ -26,7 +27,11 @@ function ShoppingList({ isItemPopUpProp, isConfirmedList }) {
     listEmpty = false;
   }
   if (isItemPopUpProp) {
-    shopItemType = PopUpListItem;
+    if (isConfirmedList) {
+      shopItemType = PopUpListItem;
+    } else {
+      shopItemType = PopUpToBuyList;
+    }
   } else {
     shopItemType = ShoppingItem;
   }
