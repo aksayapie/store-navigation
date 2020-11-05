@@ -45,14 +45,17 @@
   justify-content: top;
   align-items: center;
   flex-direction: column;
-  .Polaris-Button {
-    position: absolute;
-    top: 26px;
-    right: 32px;
+  .absolute {
+    .Polaris-Button {
+      position: absolute;
+      top: 26px;
+      right: 32px;
+    }
   }
+
   h1 {
     height: 31px;
-    width: 103px;
+    width: auto;
     color: #000000;
     font-family: Helvetica;
     font-size: 26px;
@@ -74,4 +77,18 @@
     padding-left: 50px;
     padding-right: 50px;
   }
+
+  .manualEnter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .inputField {
+    margin: 5px;
+  }
+}
+
+[hidden] {
+  display: none !important;
 }
