@@ -40,7 +40,7 @@ function ShoppingItem(item) {
         <Stack alignment="center" spacing="extraLoose">
           <div className="item-quantity">
             <p>Quantity:</p>
-            <input type="number" className="quantityDiv" disabled placeholder="1" />
+            <input type="number" className="quantityDiv" placeholder="1" />
           </div>
           <Button destructive onClick={onRemoveItemClicked}>Delete Item</Button>
         </Stack>
