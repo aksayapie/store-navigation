@@ -9,7 +9,7 @@ import './ShoppingList.scss';
 
 function PopUpToBuyListItem(item) {
   const {
-    UPC, name, imageURL, aisleNumber, shelfNumber,
+    UPC, name, imageURL, aisleNumber, shelfNumber, price,
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
@@ -42,6 +42,9 @@ function PopUpToBuyListItem(item) {
               <div className="item-quantity">
                 <p>Quantity:</p>
                 <input type="number" className="quantityDiv" placeholder="1" />
+                <br />
+                Price: $
+                {price}
               </div>
             </Caption>
             <div className="item-location">
