@@ -88,7 +88,7 @@ const ListPopup = () => {
                 },
               }}
             >
-              <p>How do you want to add a new item?</p>
+              <p>Add an Item</p>
               <hr className="style-six" />
               <ButtonGroup>
                 <Button textAlign="center" size="slim" onClick={closeAddOpenSearch}>

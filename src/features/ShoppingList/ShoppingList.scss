@@ -76,6 +76,19 @@ h1 {
     .confirmed-icon {
       fill: green;
     }
+    .item-counter-circle {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 0.2rem solid;
+      border-radius: 50%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .item-counter {
+      line-height: 1.2;
+    }
     .Polaris-ResourceItem__ListItem:first-of-type {
       border-top: 0.1rem solid var(--p-divider, #dfe3e8);
     }
