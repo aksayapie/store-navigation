@@ -12,7 +12,7 @@ import './ShoppingList.scss';
 
 function PopUpListItem(item) {
   const {
-    UPC, name, imageLink, aisleNumber, shelfNumber,
+    UPC, name, imageURL, aisleNumber, shelfNumber,
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
@@ -26,7 +26,7 @@ function PopUpListItem(item) {
             <Icon source={CircleTickMajor} />
           </div>
           <div className="item-image">
-            <Thumbnail source={imageLink} alt={name} size="large" />
+            <Thumbnail source={imageURL} alt={name} size="large" />
           </div>
           <div className="item-text">
             <h3>

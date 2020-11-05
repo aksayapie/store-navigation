@@ -13,10 +13,8 @@ function ShoppingList({ isItemPopUpProp, isConfirmedList }) {
   let items = {};
   if (isConfirmedList) {
     items = useSelector(selectConfirmedItems);
-    console.log(items);
   } else {
     items = useSelector(selectItems);
-    console.log(items);
   }
   const resourceName = {
     singular: 'Shopping Item',
