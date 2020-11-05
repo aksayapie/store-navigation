@@ -8,6 +8,14 @@ export const shoppingListSlice = createSlice({
     confirmedItemsInCart: [],
   },
   reducers: {
+    remoteItemFromConfirmed(state, action) {
+      const { UPC } = action.payload;
+      const indexOfCurrentPost = state.confirmedItemsInCart.indexOf(
+        state.confirmedItemsInCart.find((item) => item.UPC === UPC),
+      );
+      state.confirmedItemsInCart = [...state.confirmedItemsInCart.slice(0, indexOfCurrentPost),
+        ...state.confirmedItemsInCart.slice(indexOfCurrentPost + 1)];
+    },
     remoteItemFromList(state, action) {
       const { UPC } = action.payload;
       const indexOfCurrentPost = state.items.indexOf(state.items.find((item) => item.UPC === UPC));
@@ -50,6 +58,8 @@ export const shoppingListSlice = createSlice({
 export const selectItems = (state) => state.shoppingList.items;
 export const selectConfirmedItems = (state) => state.shoppingList.confirmedItemsInCart;
 
-export const { remoteItemFromList, addItemToList, addItemToCart } = shoppingListSlice.actions;
+export const {
+  remoteItemFromList, addItemToList, addItemToCart, remoteItemFromConfirmed,
+} = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

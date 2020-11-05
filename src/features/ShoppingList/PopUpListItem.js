@@ -7,7 +7,7 @@ import React from 'react';
 import {
   CircleTickMajor,
 } from '@shopify/polaris-icons';
-import { remoteItemFromList } from './shoppingListSlice';
+import { remoteItemFromConfirmed } from './shoppingListSlice';
 import './ShoppingList.scss';
 
 function PopUpListItem(item) {
@@ -16,7 +16,7 @@ function PopUpListItem(item) {
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
-    dispatch(remoteItemFromList({ UPC }));
+    dispatch(remoteItemFromConfirmed({ UPC }));
   };
   return (
     <div className="pop-up-item">
@@ -35,7 +35,7 @@ function PopUpListItem(item) {
             <Caption>
               <div className="item-quantity">
                 <p>Quantity:</p>
-                <input type="number" className="quantityDiv" disabled placeholder="1" />
+                <input type="number" className="quantityDiv" placeholder="1" />
               </div>
             </Caption>
             <div className="item-location">
