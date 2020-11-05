@@ -70,7 +70,12 @@ const RouteDirection = ({ currentItem }) => {
                 <div className="item-counter-circle">
                   <div className="item-counter">{currentItem.step}</div>
                 </div>
-                <p>{`Walk to Aisle ${currentItem.aisleNumber}, Shelf ${currentItem.shelfNumber}`}</p>
+                <div className="short-card-text">
+                  <p>{`Walk to Aisle ${currentItem.aisleNumber}, Shelf ${currentItem.shelfNumber}`}</p>
+                  <div className="short-card-name">
+                    <p>{currentItem.name}</p>
+                  </div>
+                </div>
               </div>
             </Card.Section>
             <div className="up-button">

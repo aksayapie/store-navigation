@@ -53,7 +53,7 @@ h1 {
   }
   .account-item {
     .item-price {
-      margin-top: 22px;
+      margin-top: 5px;
     }
   
     .Polaris-ResourceItem__ListItem:first-of-type {
@@ -72,6 +72,10 @@ h1 {
       margin-top: 10px;
       margin-bottom: 15px;
     }
+    img {
+      width: 7.5rem;
+      vertical-align: top;
+    }
   }
   .pop-up-item {
     .confirmed-icon {
@@ -89,6 +93,10 @@ h1 {
     }
     .item-counter {
       line-height: 1.2;
+    }
+    img {
+      width: 7.5rem;
+      vertical-align: top;
     }
     .Polaris-ResourceItem__ListItem:first-of-type {
       border-top: 0.1rem solid var(--p-divider, #dfe3e8);

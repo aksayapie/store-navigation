@@ -1,5 +1,5 @@
 import {
-  Caption, ResourceItem, Stack, TextStyle, Thumbnail, Button, Icon,
+  Caption, ResourceItem, Stack, TextStyle, Button, Icon,
 } from '@shopify/polaris';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -26,7 +26,7 @@ function PopUpListItem(item) {
             <Icon source={CircleTickMajor} />
           </div>
           <div className="item-image">
-            <Thumbnail source={imageURL} alt={name} size="large" />
+            <img src={imageURL} alt={name} size="large" />
           </div>
           <div className="item-text">
             <h3>
