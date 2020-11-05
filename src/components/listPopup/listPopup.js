@@ -95,7 +95,7 @@ const ListPopup = () => {
                   <Icon source={SearchMajor} />
                   <div className="smallButtonText">Search Item</div>
                 </Button>
-                <Link to="/scan">
+                <Link to="/scan" className="link">
                   <Button textAlign="center" size="slim">
                     <Icon source={BarcodeMajor} />
                     <div className="smallButtonText">Scan Item</div>
@@ -120,9 +120,11 @@ const ListPopup = () => {
               </div>
               <hr className="style-six" />
               <div className="buttons">
-                <Button primary fullWidth size="slim">
-                  Proceed to Checkout
-                </Button>
+                <Link to="/checkout" className="link">
+                  <Button primary fullWidth size="slim">
+                    Proceed to Checkout
+                  </Button>
+                </Link>
 
                 <div>
                   <Button fullWidth size="slim" onClick={() => setIsOpen(true)}>
@@ -148,7 +150,7 @@ const ListPopup = () => {
                     <hr className="style-six" />
                     <ButtonGroup>
                       <Button onClick={() => setIsOpen(false)}>Cancel</Button>
-                      <Link to="/checkout">
+                      <Link to="/" className="link">
                         <Button primary>Confirm</Button>
                       </Link>
                     </ButtonGroup>
