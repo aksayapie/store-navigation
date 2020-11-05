@@ -9,7 +9,8 @@ const initialState = {
   shoppingList: [],
   shelfPolygons: [],
   aisleNumberCoords: [],
-  currentItemStep: null,
+  currentPath: null,
+  currentItem: null,
   isLoading: false,
   error: null,
 };
@@ -34,9 +35,11 @@ export const mapSlice = createSlice({
         return acc;
       }, []);
     },
-    removeItem(state) {
-      const currentItem = state.shoppingList.find((item) => !item.inCart);
-      state.shoppingList = state.shoppingList.filter((item) => item.upc !== currentItem.upc);
+    nextItem(state) {
+      state.path = state.path.slice(1);
+      const [currentPath] = state.path;
+      state.currentPath = currentPath;
+      state.currentItem = state.path[0][state.path[0].length - 1];
     },
     calculateShelfPolygons(state, action) {
       const itemLocations = action.payload;
@@ -47,6 +50,7 @@ export const mapSlice = createSlice({
     getPathFailure: loadingFailed,
     getPathSuccess(state, action) {
       const { path, shoppingList, itemsByName } = action.payload;
+
       state.shoppingList = shoppingList.map(
         (item, index) => ({ ...item, step: index + 1, inCart: false }),
       );
@@ -57,21 +61,25 @@ export const mapSlice = createSlice({
       let pathChunk = [];
 
       state.path = path.reduce((acc, pathItemName) => {
-        const itemDetails = itemsByName[pathItemName];
+        if (itemsByName[pathItemName]) {
+          const itemDetails = itemsByName[pathItemName];
 
-        if (shoppingListNames.includes(pathItemName)) {
-          const step = itemStep;
-          itemStep += 1;
+          if (shoppingListNames.includes(pathItemName)) {
+            const step = itemStep;
+            itemStep += 1;
 
-          if (!state.currentItemStep) state.currentItemStep = step;
+            pathChunk.push({ ...itemDetails, step });
+            acc.push(pathChunk);
 
-          pathChunk.push({ ...itemDetails, step });
-          acc.push(pathChunk);
-          pathChunk = [];
-        } else {
-          pathChunk.push(
-            { lat: itemDetails.lat, lng: itemDetails.lng, aisleNumber: itemDetails.aisleNumber },
-          );
+            if (!state.currentPath) state.currentPath = pathChunk;
+            if (!state.currentItem) state.currentItem = { ...itemDetails, step };
+
+            pathChunk = [];
+          } else {
+            pathChunk.push(
+              { lat: itemDetails.lat, lng: itemDetails.lng },
+            );
+          }
         }
 
         return acc;
@@ -91,6 +99,7 @@ export const {
   getPathStart,
   getPathSuccess,
   getPathFailure,
+  nextItem,
 } = mapSlice.actions;
 
 export const fetchPath = (items, itemsByName) => async (dispatch) => {
@@ -103,7 +112,9 @@ export const fetchPath = (items, itemsByName) => async (dispatch) => {
     dispatch(getPathStart());
     const { data } = await axios.post(url, {
       items: itemNames,
+      isSafe: false,
     });
+
     dispatch(getPathSuccess({ path: data.optimalNodePath, shoppingList, itemsByName }));
   } catch (error) {
     dispatch(getPathFailure(error));
@@ -112,9 +123,6 @@ export const fetchPath = (items, itemsByName) => async (dispatch) => {
 
 // selectors
 export const selectShoppingList = (state) => state.map.shoppingList;
-export const selectCurrentItem = (state) => state.map.path.find(
-  (path) => path.step === state.map.currentItemStep,
-);
 export const selectRemainingItemsCount = (state) => state.map.shoppingList.reduce((acc, curr) => {
   if (curr.inCart) {
     return acc + 1;

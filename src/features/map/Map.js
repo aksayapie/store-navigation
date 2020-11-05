@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import {
   GoogleMap, useJsApiLoader,
@@ -11,11 +14,11 @@ import './map.scss';
 import ListPopup from '../../components/listPopup/listPopup';
 import { polylineToPolygon } from '../../util/mapUtil';
 import Shelf from './Shelf';
-// import RouteLine from './RouteLine';
-import RouteMarker from './RouteMarker';
+// import RouteMarker from './RouteMarker';
 import Door from './Door';
 import AisleLabelMarker from './AisleLabelMarker';
 import RouteLine from './RouteLine';
+import RouteMarker from './RouteMarker';
 
 // TODO: add more extensive options
 const mapOptions = {
@@ -26,7 +29,7 @@ const mapOptions = {
 
 // TODO: hide item step label if zoom is far out enough (looks giant otherwise)
 const Map = ({
-  path, shelfPolygons, aisleNumberCoords,
+  path, shelfPolygons, aisleNumberCoords, currentItem, currentPath,
 }) => {
   // load the google map javascript scripts
   const { isLoaded } = useJsApiLoader({
@@ -63,28 +66,16 @@ const Map = ({
               )
           }
           {
-            // render lines if there is a path to render
-            path && path.length > 0 && (
-              <>
-                <RouteLine path={path.map((point) => ({
-                  lat: point.lat,
-                  lng: point.lng,
-                }))}
-                />
-                {path.map((pathPoint) => {
-                  if (!pathPoint.name) return null;
-                  return (
-                    <RouteMarker
-                      key={pathPoint.lat}
-                      step={pathPoint.step?.toString()}
-                      position={{ lat: pathPoint.lat, lng: pathPoint.lng }}
-                    />
-                  );
-                })}
-              </>
+            currentPath && <RouteLine path={currentPath} />
+          }
+          {
+            currentItem && (
+            <RouteMarker
+              step={currentItem.step.toString()}
+              position={{ lat: currentItem.lat, lng: currentItem.lng }}
+            />
             )
           }
-
           <Door paths={polylineToPolygon(ENTRANCE_DOOR, SCALE_DOOR)} color="#27ae60" />
           <Door paths={polylineToPolygon(EXIT_DOOR, SCALE_DOOR)} color="#c0392b" />
         </GoogleMap>
@@ -119,6 +110,18 @@ Map.propTypes = {
   //   inCart: PropTypes.bool.isRequired,
   //   step: PropTypes.number,
   // })),
+  currentItem: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    stock: PropTypes.bool.isRequired,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+    aisle: PropTypes.number.isRequired,
+    upc: PropTypes.string.isRequired,
+    imageURL: PropTypes.string,
+    inCart: PropTypes.bool.isRequired,
+    step: PropTypes.number,
+  }),
   aisleNumberCoords: PropTypes.arrayOf(PropTypes.shape({
     position: PropTypes.shape({
       lat: PropTypes.number.isRequired,

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  selectCurrentItem,
   selectRemainingItemsCount,
   calculateShelfPolygons,
   addStepsToShoppingList,
@@ -15,10 +14,9 @@ import Map from './Map';
 const MapPage = () => {
   const dispatch = useDispatch();
   const {
-    path, shelfPolygons, aisleNumberCoords, shoppingList,
+    path, shelfPolygons, aisleNumberCoords, shoppingList, currentPath, currentItem,
   } = useSelector((state) => state.map);
   const { items, itemsByName } = useSelector((state) => state.itemList);
-  const currentItem = useSelector(selectCurrentItem);
   const remainingItemsInShoppingListCount = useSelector(selectRemainingItemsCount);
 
   useEffect(() => {
@@ -42,6 +40,8 @@ const MapPage = () => {
         shelfPolygons={shelfPolygons}
         shoppingList={shoppingList}
         aisleNumberCoords={aisleNumberCoords}
+        currentItem={currentItem}
+        currentPath={currentPath}
       />
     </>
   );
