@@ -34,7 +34,12 @@ const RouteDirection = ({ currentItem }) => {
             <div className="product">
               <img src={ItemImage} alt={currentItem.name} />
               <div className="card-text">
-                <p>{currentItem.name}</p>
+                <p>
+                  {currentItem.name}
+                  <br />
+                  $
+                  {currentItem.price}
+                </p>
               </div>
             </div>
             <div className="footer">
