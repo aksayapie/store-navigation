@@ -9,6 +9,10 @@ import { addItemToCart } from '../ShoppingList/shoppingListSlice';
 import './ScanPage.scss';
 
 const ScanPage = () => {
+  const [title, setTitle] = useState('Scanner');
+  const [subText, setSubText] = useState(
+    'Center the viewer over a barcode to add an item to your list.',
+  );
   const [control, setControls] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [scannedItem, setItem] = useState(null);
@@ -24,23 +28,22 @@ const ScanPage = () => {
 
       // you can use the controls to stop() the scan or switchTorch() if available
       setControls(
-        await codeReader.decodeFromVideoDevice(
-          undefined,
-          previewElem,
-          (result) => {
-            // use the result and error values to choose your actions
-            // you can also use controls API in this scope like the controls
-            // returned from the method.
-            if (result) {
-              const foundItem = items.find((item) => item.UPC === result.text.substring(1));
-              if (foundItem) {
-                setItem(foundItem);
-                setIsOpen(true);
-                setItemName(foundItem.name);
-              }
+        await codeReader.decodeFromVideoDevice(undefined, previewElem, (result) => {
+          // use the result and error values to choose your actions
+          // you can also use controls API in this scope like the controls
+          // returned from the method.
+          if (result) {
+            const foundItem = items.find((item) => item.UPC === result.text.substring(1));
+            if (foundItem) {
+              setItem(foundItem);
+              setIsOpen(true);
+              setItemName(foundItem.name);
+            } else {
+              setTitle('No results');
+              setSubText('Try searching for products by name or entering the item number below.');
             }
-          },
-        ),
+          }
+        }),
       );
     };
 
@@ -63,8 +66,8 @@ const ScanPage = () => {
             <Icon source={MobileCancelMajor} />
           </Button>
         </Link>
-        <h1>Scanner</h1>
-        <p>Center the viewer over a barcode to add an item to your list</p>
+        <h1>{title}</h1>
+        <p>{subText}</p>
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -84,9 +87,9 @@ const ScanPage = () => {
       >
         <p>
           Would you like to add
-          {' \''}
+          {" '"}
           {scannedItemName}
-          {'\' '}
+          {"' "}
           to your cart?
         </p>
         <hr className="style-six" />
