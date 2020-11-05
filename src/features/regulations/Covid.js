@@ -29,9 +29,11 @@ function Covid({ setShowCovidProp, setShowShopModeProp }) {
           <strong>Face coverings are required </strong>
           for members and guests upon entry
           <Tooltip>
-            <Icon
-              source={CircleInformationMajor}
-            />
+            <div className="covid-icon">
+              <Icon
+                source={CircleInformationMajor}
+              />
+            </div>
           </Tooltip>
         </p>
       </div>
@@ -43,9 +45,11 @@ function Covid({ setShowCovidProp, setShowShopModeProp }) {
           <strong>Allow at least 6 feet of space </strong>
           between you and other customers
           <Tooltip>
-            <Icon
-              source={CircleInformationMajor}
-            />
+            <div className="covid-icon">
+              <Icon
+                source={CircleInformationMajor}
+              />
+            </div>
           </Tooltip>
         </p>
       </div>
@@ -57,9 +61,11 @@ function Covid({ setShowCovidProp, setShowShopModeProp }) {
           <strong>Reusable shopping bags </strong>
           are allowed as long as members pack the bags themselves
           <Tooltip>
-            <Icon
-              source={CircleInformationMajor}
-            />
+            <div className="covid-icon">
+              <Icon
+                source={CircleInformationMajor}
+              />
+            </div>
           </Tooltip>
         </p>
       </div>
