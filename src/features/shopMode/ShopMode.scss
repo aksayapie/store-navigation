@@ -1,4 +1,6 @@
 .shop-mode-container {
+  overflow:auto;
+  height: calc(100vh - 210px);
   h3 {
   font-size: 18px;
   font-weight: bold;
