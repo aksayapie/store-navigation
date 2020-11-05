@@ -7,7 +7,7 @@ import React from 'react';
 import {
   CircleTickMajor,
 } from '@shopify/polaris-icons';
-import { remoteItemFromConfirmed } from './shoppingListSlice';
+import { removeItemFromConfirmed } from './shoppingListSlice';
 import './ShoppingList.scss';
 
 function PopUpListItem(item) {
@@ -16,7 +16,7 @@ function PopUpListItem(item) {
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
-    dispatch(remoteItemFromConfirmed({ UPC }));
+    dispatch(removeItemFromConfirmed({ UPC }));
   };
   return (
     <div className="pop-up-item">

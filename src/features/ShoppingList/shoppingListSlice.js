@@ -6,9 +6,10 @@ export const shoppingListSlice = createSlice({
   initialState: {
     items,
     confirmedItemsInCart: [],
+    shoppingListUpdated: false,
   },
   reducers: {
-    remoteItemFromConfirmed(state, action) {
+    removeItemFromConfirmed(state, action) {
       const { UPC } = action.payload;
       const indexOfCurrentPost = state.confirmedItemsInCart.indexOf(
         state.confirmedItemsInCart.find((item) => item.UPC === UPC),
@@ -16,7 +17,7 @@ export const shoppingListSlice = createSlice({
       state.confirmedItemsInCart = [...state.confirmedItemsInCart.slice(0, indexOfCurrentPost),
         ...state.confirmedItemsInCart.slice(indexOfCurrentPost + 1)];
     },
-    remoteItemFromList(state, action) {
+    removeItemFromList(state, action) {
       const { UPC } = action.payload;
       const indexOfCurrentPost = state.items.indexOf(state.items.find((item) => item.UPC === UPC));
       state.items = [...state.items.slice(0, indexOfCurrentPost),
@@ -32,6 +33,10 @@ export const shoppingListSlice = createSlice({
           }
         },
       );
+      state.shoppingListUpdated = true;
+    },
+    setShoppingListUpdated(state, action) {
+      state.shoppingListUpdated = action.payload;
     },
     addItemToCart(state, action) {
       const itemsToBeAdded = action.payload;
@@ -59,7 +64,7 @@ export const selectItems = (state) => state.shoppingList.items;
 export const selectConfirmedItems = (state) => state.shoppingList.confirmedItemsInCart;
 
 export const {
-  remoteItemFromList, addItemToList, addItemToCart, remoteItemFromConfirmed,
+  removeItemFromList, addItemToList, addItemToCart, removeItemFromConfirmed, setShoppingListUpdated,
 } = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

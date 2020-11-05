@@ -24,7 +24,7 @@ import RouteMarker from './RouteMarker';
 const mapOptions = {
   disableDefaultUI: true,
   maxZoom: 20,
-  minZoom: 18,
+  minZoom: 19,
 };
 
 // TODO: hide item step label if zoom is far out enough (looks giant otherwise)

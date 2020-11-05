@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import sampleSize from 'lodash.samplesize';
 
 import getShelfPolygons, { getAisleLabelCoords } from '../../util/mapUtil';
 
 const initialState = {
   path: [],
-  shoppingList: [],
+  mapShoppingList: [],
   shelfPolygons: [],
   aisleNumberCoords: [],
   currentPath: null,
@@ -28,13 +27,6 @@ export const mapSlice = createSlice({
   name: 'map',
   initialState,
   reducers: {
-    addStepsToShoppingList(state) {
-      state.shoppingList = state.shoppingList.reduce((acc, curr, index) => {
-        curr.step = index + 1;
-        acc.push(curr);
-        return acc;
-      }, []);
-    },
     nextItem(state) {
       state.path = state.path.slice(1);
       const [currentPath] = state.path;
@@ -55,11 +47,11 @@ export const mapSlice = createSlice({
     getPathSuccess(state, action) {
       const { path, shoppingList, itemsByName } = action.payload;
 
-      state.shoppingList = shoppingList.map(
+      state.mapShoppingList = shoppingList.map(
         (item, index) => ({ ...item, step: index + 1, inCart: false }),
       );
 
-      const shoppingListNames = shoppingList.map((listItem) => listItem.name);
+      const mapShoppingListNames = shoppingList.map((listItem) => listItem.name);
 
       let itemStep = 1;
       let pathChunk = [];
@@ -68,7 +60,7 @@ export const mapSlice = createSlice({
         if (itemsByName[pathItemName]) {
           const itemDetails = itemsByName[pathItemName];
 
-          if (shoppingListNames.includes(pathItemName)) {
+          if (mapShoppingListNames.includes(pathItemName)) {
             const step = itemStep;
             itemStep += 1;
 
@@ -99,17 +91,15 @@ export const mapSlice = createSlice({
 export const {
   removeItem,
   calculateShelfPolygons,
-  addStepsToShoppingList,
   getPathStart,
   getPathSuccess,
   getPathFailure,
   nextItem,
 } = mapSlice.actions;
 
-export const fetchPath = (items, itemsByName) => async (dispatch) => {
+export const fetchPath = (itemsByName, shoppingList) => async (dispatch) => {
   const url = 'https://cors-anywhere.herokuapp.com/https://safe-thicket-64926.herokuapp.com/requestPath';
 
-  const shoppingList = sampleSize(items, 6);
   const itemNames = shoppingList.map((item) => item.name);
 
   try {
@@ -124,14 +114,5 @@ export const fetchPath = (items, itemsByName) => async (dispatch) => {
     dispatch(getPathFailure(error));
   }
 };
-
-// selectors
-export const selectShoppingList = (state) => state.map.shoppingList;
-export const selectRemainingItemsCount = (state) => state.map.shoppingList.reduce((acc, curr) => {
-  if (curr.inCart) {
-    return acc + 1;
-  }
-  return acc;
-}, 0);
 
 export default mapSlice.reducer;

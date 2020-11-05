@@ -4,7 +4,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import React from 'react';
-import { remoteItemFromList } from './shoppingListSlice';
+import { removeItemFromList } from './shoppingListSlice';
 import './ShoppingList.scss';
 
 function PopUpToBuyListItem(item) {
@@ -13,7 +13,7 @@ function PopUpToBuyListItem(item) {
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
-    dispatch(remoteItemFromList({ UPC }));
+    dispatch(removeItemFromList({ UPC }));
   };
 
   // const items = useSelector(selectItems);
