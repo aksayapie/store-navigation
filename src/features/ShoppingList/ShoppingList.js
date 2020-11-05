@@ -4,20 +4,22 @@ import { useSelector } from 'react-redux';
 import {
   ResourceList, Card, Button,
 } from '@shopify/polaris';
-import { selectItems, selectConfirmedItems } from './shoppingListSlice';
+import { selectItems } from './shoppingListSlice';
 import ShoppingItem from './shoppingItem';
 import PopUpListItem from './PopUpListItem';
+import PopUpToBuyList from './PopUpToBuyList';
 import './ShoppingList.scss';
 
 function ShoppingList({ isItemPopUpProp, isConfirmedList }) {
   let items = {};
-  if (isConfirmedList) {
-    items = useSelector(selectConfirmedItems);
-    console.log(items);
-  } else {
-    items = useSelector(selectItems);
-    console.log(items);
-  }
+  // if (isConfirmedList) {
+  //   items = useSelector(selectConfirmedItems);
+  //   console.log(items);
+  // } else {
+  //   items = useSelector(selectItems);
+  //   console.log(items);
+  // }
+  items = useSelector(selectItems);
   const resourceName = {
     singular: 'Shopping Item',
     plural: 'Shopping Items',
@@ -28,7 +30,11 @@ function ShoppingList({ isItemPopUpProp, isConfirmedList }) {
     listEmpty = false;
   }
   if (isItemPopUpProp) {
-    shopItemType = PopUpListItem;
+    if (isConfirmedList) {
+      shopItemType = PopUpListItem;
+    } else {
+      shopItemType = PopUpToBuyList;
+    }
   } else {
     shopItemType = ShoppingItem;
   }

@@ -1,13 +1,10 @@
 import {
-  Caption, ResourceItem, Stack, TextStyle, Thumbnail, Button, Icon,
+  Caption, ResourceItem, Stack, TextStyle, Thumbnail, Button,
 } from '@shopify/polaris';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
-import {
-  CircleTickMajor,
-} from '@shopify/polaris-icons';
-import { remoteItemFromList } from './shoppingListSlice';
+import { remoteItemFromList, selectItems } from './shoppingListSlice';
 import './ShoppingList.scss';
 
 function PopUpListItem(item) {
@@ -18,12 +15,21 @@ function PopUpListItem(item) {
   const onRemoveItemClicked = () => {
     dispatch(remoteItemFromList({ UPC }));
   };
+
+  const items = useSelector(selectItems);
+  let itemCounter = null;
+  items.forEach((value, i) => {
+    if (value.UPC === UPC) {
+      itemCounter = i + 1;
+    }
+  });
+
   return (
     <div className="pop-up-item">
       <ResourceItem id={UPC}>
         <Stack alignment="center">
-          <div className="confirmed-icon">
-            <Icon source={CircleTickMajor} />
+          <div className="item-counter-circle">
+            <div className="item-counter">{itemCounter}</div>
           </div>
           <div className="item-image">
             <Thumbnail source={imageURL} alt={name} size="large" />
@@ -48,12 +54,6 @@ function PopUpListItem(item) {
                 {shelfNumber}
               </p>
             </div>
-            {/* <div className="item-price">
-              <p>
-                $
-                {price}
-              </p>
-            </div> */}
           </div>
         </Stack>
         <Stack alignment="center" spacing="extraLoose">
