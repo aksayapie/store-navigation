@@ -8,7 +8,6 @@ import { QuestionMarkMajor, ChevronUpMinor, ChevronDownMinor } from '@shopify/po
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
-import ItemImage from '../../../assets/paper-towel.png';
 import './routeDirection.scss';
 import { nextItem } from '../mapSlice';
 import { removeItemFromList } from '../../ShoppingList/shoppingListSlice';
@@ -39,7 +38,7 @@ const RouteDirection = ({ currentItem }) => {
               <p>{`Walk to Aisle ${currentItem.aisleNumber}, Shelf ${currentItem.shelfNumber}`}</p>
             </div>
             <div className="product">
-              <img src={ItemImage} alt={currentItem.name} />
+              <img src={currentItem.imageURL} alt={currentItem.name} />
               <div className="card-text">
                 <p>
                   {currentItem.name}
