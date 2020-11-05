@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
@@ -10,6 +11,7 @@ import { useHistory } from 'react-router-dom';
 import ItemImage from '../../../assets/paper-towel.png';
 import './routeDirection.scss';
 import { nextItem } from '../mapSlice';
+import { removeItemFromList } from '../../ShoppingList/shoppingListSlice';
 
 const RouteDirection = ({ currentItem }) => {
   const dispatch = useDispatch();
@@ -19,6 +21,11 @@ const RouteDirection = ({ currentItem }) => {
   function setShowCard() {
     setShowFullCard(!showFullCard);
   }
+
+  const handleRemove = () => {
+    dispatch(nextItem());
+    dispatch(removeItemFromList({ UPC: currentItem.UPC }));
+  };
 
   return (
     <div className="route-direction">
@@ -39,7 +46,7 @@ const RouteDirection = ({ currentItem }) => {
             </div>
             <div className="footer">
               <ButtonGroup fullWidth>
-                <Button onClick={() => dispatch(nextItem())}>Remove Item</Button>
+                <Button onClick={handleRemove}>Remove Item</Button>
                 <Button primary onClick={() => history.push('/scan')}>Scan &amp; Confirm</Button>
                 <Tooltip
                   active={false}
@@ -94,7 +101,7 @@ RouteDirection.propTypes = {
     lng: PropTypes.number.isRequired,
     aisleNumber: PropTypes.number.isRequired,
     shelfNumber: PropTypes.number.isRequired,
-    upc: PropTypes.string.isRequired,
+    UPC: PropTypes.string.isRequired,
     imageURL: PropTypes.string,
     inCart: PropTypes.bool.isRequired,
     step: PropTypes.number.isRequired,
