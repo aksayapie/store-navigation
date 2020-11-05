@@ -107,19 +107,18 @@ const ListPopup = () => {
         </Sheet.Header>
         <br />
         <hr className="style-six" />
-        <br />
         <Sheet.Content>
           <div className="popupcontainer">
             <div className="popupbody">
-              <div className="list shopping-item-container" style={{ maxHeight: '300px' }}>
+              <div className="list shopping-item-container">
                 <DisplayText size="small">Up Next</DisplayText>
                 <ShoppingList isItemPopUpProp isConfirmedList={false} />
-              </div>
-              <div className="list shopping-item-container">
-                <DisplayText size="small">Confirmed Items in Cart</DisplayText>
-                <hr />
+                <div className="confirmed-display">
+                  <DisplayText size="small">Confirmed Items in Cart</DisplayText>
+                </div>
                 <ShoppingList isItemPopUpProp isConfirmedList />
               </div>
+              <hr className="style-six" />
               <div className="buttons">
                 <Button primary fullWidth size="slim">
                   Proceed to Checkout
