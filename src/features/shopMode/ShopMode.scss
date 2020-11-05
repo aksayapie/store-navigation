@@ -30,8 +30,10 @@
   
   .Polaris-Button--outline {
     border-radius: 60px;
-    margin-bottom: 2em;
+    margin-bottom: 2rem;
     color: #212B36;
+    padding-top: 0;
+    padding-bottom: 0;
   }
   
   .Polaris-Button--outline:hover{
