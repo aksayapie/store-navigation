@@ -29,7 +29,7 @@ const MapPage = () => {
 
   return (
     <>
-      {currentItem && (
+      {currentItem && currentPath && (
         <RouteDirecton currentItem={currentItem} />
       )}
       {

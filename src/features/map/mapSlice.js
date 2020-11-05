@@ -39,7 +39,11 @@ export const mapSlice = createSlice({
       state.path = state.path.slice(1);
       const [currentPath] = state.path;
       state.currentPath = currentPath;
-      state.currentItem = state.path[0][state.path[0].length - 1];
+      if (state.path[0]) {
+        state.currentItem = state.path[0][state.path[0].length - 1];
+      } else {
+        state.currentItem = null;
+      }
     },
     calculateShelfPolygons(state, action) {
       const itemLocations = action.payload;
@@ -105,7 +109,7 @@ export const {
 export const fetchPath = (items, itemsByName) => async (dispatch) => {
   const url = 'https://cors-anywhere.herokuapp.com/https://safe-thicket-64926.herokuapp.com/requestPath';
 
-  const shoppingList = sampleSize(items, 5);
+  const shoppingList = sampleSize(items, 6);
   const itemNames = shoppingList.map((item) => item.name);
 
   try {
