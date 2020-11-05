@@ -12,7 +12,7 @@ const items = [
   },
   {
     name: 'Bounce Dryer Sheets',
-    price: 3.3,
+    price: 3.39,
     inStock: true,
     lat: 40.655868749999996,
     lng: -74.00936326206141,
