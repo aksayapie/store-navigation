@@ -19,7 +19,6 @@ const RouteDirection = ({ currentItem }) => {
 
   function setShowCard() {
     setShowFullCard(!showFullCard);
-    console.log(showFullCard);
   }
 
   return (
