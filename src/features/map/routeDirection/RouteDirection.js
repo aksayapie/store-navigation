@@ -9,13 +9,12 @@ import { useHistory } from 'react-router-dom';
 
 import ItemImage from '../../../assets/paper-towel.png';
 import './routeDirection.scss';
-import { removeItem } from '../mapSlice';
+import { nextItem } from '../mapSlice';
 
 const RouteDirection = ({ currentItem }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [showFullCard, setShowFullCard] = useState(true);
-  // let showFullCard = true;
 
   function setShowCard() {
     setShowFullCard(!showFullCard);
@@ -28,27 +27,19 @@ const RouteDirection = ({ currentItem }) => {
           <Card.Section>
             <div className="title">
               <div className="item-counter-circle">
-                <div className="item-counter">1</div>
+                <span className="item-counter">{currentItem.step}</span>
               </div>
-              <p>Continue down Aisle 12</p>
+              <p>{`Walk to Aisle ${currentItem.aisleNumber}, Shelf ${currentItem.shelfNumber}`}</p>
             </div>
             <div className="product">
               <img src={ItemImage} alt={currentItem.name} />
               <div className="card-text">
                 <p>{currentItem.name}</p>
-                <p className="item-loc">
-                  Aisle
-                  <span> </span>
-                  {currentItem.aisle}
-                  , Shelf
-                  <span> </span>
-                  {currentItem.shelf}
-                </p>
               </div>
             </div>
             <div className="footer">
               <ButtonGroup fullWidth>
-                <Button onClick={() => dispatch(removeItem())}>Remove Item</Button>
+                <Button onClick={() => dispatch(nextItem())}>Remove Item</Button>
                 <Button primary onClick={() => history.push('/scan')}>Scan &amp; Confirm</Button>
                 <Tooltip
                   active={false}
@@ -75,11 +66,11 @@ const RouteDirection = ({ currentItem }) => {
         : (
           <Card>
             <Card.Section>
-              <div className="item-counter-circle">
-                <div className="item-counter">1</div>
-              </div>
-              <div className="short-card-text title">
-                <p>Continue down Aisle 12</p>
+              <div className="title">
+                <div className="item-counter-circle">
+                  <div className="item-counter">{currentItem.step}</div>
+                </div>
+                <p>{`Walk to Aisle ${currentItem.aisleNumber}, Shelf ${currentItem.shelfNumber}`}</p>
               </div>
             </Card.Section>
             <div className="up-button">
@@ -101,11 +92,12 @@ RouteDirection.propTypes = {
     stock: PropTypes.bool.isRequired,
     lat: PropTypes.number.isRequired,
     lng: PropTypes.number.isRequired,
-    aisle: PropTypes.number.isRequired,
-    shelf: PropTypes.number.isRequired,
+    aisleNumber: PropTypes.number.isRequired,
+    shelfNumber: PropTypes.number.isRequired,
     upc: PropTypes.string.isRequired,
     imageURL: PropTypes.string,
     inCart: PropTypes.bool.isRequired,
+    step: PropTypes.number.isRequired,
   }).isRequired,
 };
 

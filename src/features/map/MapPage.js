@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  selectCurrentItem,
-  selectShoppingList,
   selectRemainingItemsCount,
   calculateShelfPolygons,
   addStepsToShoppingList,
+  fetchPath,
 } from './mapSlice';
 import RouteDirecton from './routeDirection/RouteDirection';
 import CheckoutDirection from './checkoutDirection/CheckoutDirection';
@@ -14,20 +13,23 @@ import Map from './Map';
 
 const MapPage = () => {
   const dispatch = useDispatch();
-  const { path, shelfPolygons, aisleNumberCoords } = useSelector((state) => state.map);
-  const { items } = useSelector((state) => state.itemList);
-  const shoppingList = useSelector(selectShoppingList);
-  const currentItem = useSelector(selectCurrentItem);
+  const {
+    path, shelfPolygons, aisleNumberCoords, shoppingList, currentPath, currentItem,
+  } = useSelector((state) => state.map);
+  const { items, itemsByName } = useSelector((state) => state.itemList);
   const remainingItemsInShoppingListCount = useSelector(selectRemainingItemsCount);
 
   useEffect(() => {
-    if (items && items.length > 0) dispatch(calculateShelfPolygons(items));
-    dispatch(addStepsToShoppingList());
+    if (items && items.length > 0) {
+      dispatch(calculateShelfPolygons(items));
+      dispatch(fetchPath(items, itemsByName));
+      dispatch(addStepsToShoppingList());
+    }
   }, [items]);
 
   return (
     <>
-      {currentItem && (
+      {currentItem && currentPath && (
         <RouteDirecton currentItem={currentItem} />
       )}
       {
@@ -38,6 +40,8 @@ const MapPage = () => {
         shelfPolygons={shelfPolygons}
         shoppingList={shoppingList}
         aisleNumberCoords={aisleNumberCoords}
+        currentItem={currentItem}
+        currentPath={currentPath}
       />
     </>
   );

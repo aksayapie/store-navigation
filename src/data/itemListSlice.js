@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   items: null,
+  itemsByName: null, // normalization
   isLoading: false,
   error: null,
 };
@@ -22,7 +23,12 @@ export const itemListSlice = createSlice({
   reducers: {
     getItemsStart: startLoading,
     getItemsSuccess(state, action) {
-      state.items = action.payload;
+      const items = action.payload;
+      state.items = items;
+      state.itemsByName = items.reduce((acc, curr) => {
+        acc[curr.name] = curr;
+        return acc;
+      }, {});
       state.isLoading = false;
       state.error = null;
     },
@@ -36,7 +42,7 @@ export const { getItemsStart, getItemsSuccess, getItemsFailure } = itemListSlice
 export const fetchItems = () => async (dispatch) => {
   try {
     dispatch(getItemsStart());
-    const { data } = await axios.get('https://cors-anywhere.herokuapp.com/http://safe-thicket-64926.herokuapp.com/items/');
+    const { data } = await axios.get('https://cors-anywhere.herokuapp.com/https://safe-thicket-64926.herokuapp.com/items/');
     dispatch(getItemsSuccess(data.items));
   } catch (err) {
     dispatch(getItemsFailure(err.toString()));
