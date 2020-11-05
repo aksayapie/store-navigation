@@ -4,7 +4,7 @@
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 4rem;
+  margin-top: 2rem;
   left: 0;
   right: 0;
   border-radius: 10px;
@@ -48,6 +48,12 @@
       font-size: 1.75rem;
       text-transform: capitalize;
     }
+    .item-loc {
+      margin-top: 8px;
+    }
+  }
+  .Polaris-Card__Section {
+    padding-bottom: 0;
   }
 
   .footer {
@@ -56,5 +62,44 @@
     width: 90%;
     display: inline;
 
+  }
+  .item-counter-circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 0.2rem solid;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  .item-counter {
+    line-height: 1.2;
+  }
+  .up-button {
+    margin-top: 10px;
+    .Polaris-Button--plain {
+      width: 100%;
+    }
+    .Polaris-Icon {
+      height: 3rem;
+      width:3rem;
+    }
+    .Polaris-Button--plain svg {
+      fill: #637381;
+    }
+  }
+  .short-card-text {
+    display: inline-block;
+    p {
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 125%;
+
+      @media (min-width: 450px) {
+        font-size: 2.5rem;
+      }
+    }
   }
 }
