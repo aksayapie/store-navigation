@@ -62,6 +62,7 @@ h1 {
       border-bottom: 0.1rem solid var(--p-divider, #dfe3e8);
     }
     
+    
     .Polaris-ResourceItem__Content {
       margin-top: 27px; 
       margin-left: 35px;
@@ -116,5 +117,13 @@ h1 {
     .filler-stack-item {
       width: 90px;
     }
+  }
+}
+.shopping-list-card {
+  .no-items {
+    border-top: 0.1rem solid var(--p-divider, #dfe3e8);
+    padding-top: 20px;
+    font-weight: bold;
+    text-align: center;
   }
 }
