@@ -1,14 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import items from '../../data/tempData';
+import sampleSize from 'lodash.samplesize';
 
 export const shoppingListSlice = createSlice({
   name: 'shoppingList',
   initialState: {
-    items,
+    items: [],
     confirmedItemsInCart: [],
     shoppingListUpdated: false,
   },
   reducers: {
+    populateShoppingList(state, action) {
+      const itemList = action.payload;
+
+      // fill shopping list with 5 random items with images
+      state.items = sampleSize(itemList.filter((item) => item.imageURL.startsWith('https')), 5);
+      state.shoppingListUpdated = true;
+    },
     removeItemFromConfirmed(state, action) {
       const { UPC } = action.payload;
       const indexOfCurrentPost = state.confirmedItemsInCart.indexOf(
@@ -22,6 +29,7 @@ export const shoppingListSlice = createSlice({
       const indexOfCurrentPost = state.items.indexOf(state.items.find((item) => item.UPC === UPC));
       state.items = [...state.items.slice(0, indexOfCurrentPost),
         ...state.items.slice(indexOfCurrentPost + 1)];
+      state.shoppingListUpdated = true;
     },
     addItemToList(state, action) {
       const toBeAdded = action.payload;
@@ -64,7 +72,12 @@ export const selectItems = (state) => state.shoppingList.items;
 export const selectConfirmedItems = (state) => state.shoppingList.confirmedItemsInCart;
 
 export const {
-  removeItemFromList, addItemToList, addItemToCart, removeItemFromConfirmed, setShoppingListUpdated,
+  removeItemFromList,
+  addItemToList,
+  addItemToCart,
+  removeItemFromConfirmed,
+  setShoppingListUpdated,
+  populateShoppingList,
 } = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

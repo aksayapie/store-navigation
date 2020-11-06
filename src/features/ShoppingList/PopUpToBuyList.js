@@ -63,7 +63,7 @@ function PopUpToBuyListItem(item) {
           <div className="filler-stack-item" />
           <Button onClick={onRemoveItemClicked}>Delete Item</Button>
           <Link to="/scan" className="link">
-            <Button primary>Scan & Confirm</Button>
+            <Button primary>Scan &amp; Confirm</Button>
           </Link>
         </Stack>
       </ResourceItem>

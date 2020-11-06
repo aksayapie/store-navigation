@@ -12,14 +12,19 @@ import FrontPageShoppingList from './features/ShoppingList/FrontPageShoppingList
 import Method from './features/checkoutMethod/Method';
 import MainNavBar from './components/mainNavBar/MainNavBar';
 import { fetchItems } from './data/itemListSlice';
+import { populateShoppingList } from './features/ShoppingList/shoppingListSlice';
 
 function App() {
   const dispatch = useDispatch();
-  const { isLoading: itemsLoading } = useSelector((state) => state.itemList);
+  const { items, isLoading: itemsLoading } = useSelector((state) => state.itemList);
 
   useEffect(() => {
     dispatch(fetchItems());
   }, []);
+
+  useEffect(() => {
+    if (items && items.length > 0) dispatch(populateShoppingList(items));
+  }, [items]);
 
   return (
     <AppProvider i18n={enTranslations}>

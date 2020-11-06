@@ -14,6 +14,7 @@ const RouteMarker = ({ step, position }) => (
       anchor: new window.google.maps.Point(13, 13),
     }}
     position={position}
+    zIndex={1}
   />
 );
 

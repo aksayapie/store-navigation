@@ -42,9 +42,9 @@ const RouteDirection = ({ currentItem }) => {
               <div className="card-text">
                 <p>
                   {currentItem.name}
-                  <br />
-                  $
-                  {currentItem.price}
+                </p>
+                <p className="price">
+                  {`$${currentItem.price.toFixed(2)}`}
                 </p>
               </div>
             </div>

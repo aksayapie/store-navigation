@@ -50,6 +50,8 @@ export const mapSlice = createSlice({
       state.mapShoppingList = shoppingList.map(
         (item, index) => ({ ...item, step: index + 1, inCart: false }),
       );
+      state.currentPath = null;
+      state.currentItem = null;
 
       const mapShoppingListNames = shoppingList.map((listItem) => listItem.name);
 

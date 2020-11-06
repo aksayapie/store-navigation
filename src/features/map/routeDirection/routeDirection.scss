@@ -13,10 +13,11 @@
 
   .title {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
 
     p {
+      font-size: 2rem;
       font-weight: 600;
       line-height: 125%;
       margin-left: 3.5rem;
@@ -39,12 +40,12 @@
     }
 
     p {
-      margin-top: 2rem;
       font-size: 1.75rem;
       text-transform: capitalize;
     }
-    .item-loc {
-      margin-top: 8px;
+
+    .price {
+      margin-top: 0.5rem;
     }
   }
 
@@ -74,7 +75,7 @@
     text-align: center;
     font-weight: bold;
     font-size: 14px;
-    margin-right: 10px;
+    margin-top: 2px;
   }
   .item-counter {
     line-height: 1.2;
@@ -93,21 +94,9 @@
     }
   }
   .short-card-name {
+    margin-top: 0.5rem;
     p {
       font-weight: normal;
-    //margin-top: 5px;
     }
   }
-  // .short-card-text {
-  //   display: inline-block;
-  //   p {
-  //     font-size: 2rem;
-  //     font-weight: 600;
-  //     line-height: 125%;
-
-  //     @media (min-width: 450px) {
-  //       font-size: 2.5rem;
-  //     }
-  //   }
-  // }
 }

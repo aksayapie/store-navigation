@@ -19,9 +19,8 @@ const MapPage = () => {
   const { items: shoppingList, shoppingListUpdated } = useSelector((state) => state.shoppingList);
 
   useEffect(() => {
-    if (items && items.length > 0 && shoppingList) {
+    if (items && items.length > 0) {
       dispatch(calculateShelfPolygons(items));
-      dispatch(fetchPath(itemsByName, shoppingList));
     }
   }, [items]);
 
@@ -33,7 +32,7 @@ const MapPage = () => {
   }, [shoppingListUpdated]);
 
   return (
-    <>
+    <p>
       {currentItem && currentPath && (
         <RouteDirecton currentItem={currentItem} />
       )}
@@ -48,7 +47,7 @@ const MapPage = () => {
         currentItem={currentItem}
         currentPath={currentPath}
       />
-    </>
+    </p>
   );
 };
 export default MapPage;
