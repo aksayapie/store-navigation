@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import enTranslations from '@shopify/polaris/locales/en.json';
-import { AppProvider, Spinner } from '@shopify/polaris';
+import { AppProvider } from '@shopify/polaris';
 import { Switch, Route } from 'react-router-dom';
 
 import './App.scss';
@@ -16,25 +16,21 @@ import { populateShoppingList } from './features/ShoppingList/shoppingListSlice'
 
 function App() {
   const dispatch = useDispatch();
-  const {
-    itemsByName,
-    isLoading: itemsLoading,
-    itemsLoaded,
-  } = useSelector((state) => state.itemList);
+  const { items, isLoading: itemsLoading, itemsLoaded } = useSelector((state) => state.itemList);
 
   useEffect(() => {
     dispatch(fetchItems());
   }, []);
 
   useEffect(() => {
-    if (itemsLoaded) dispatch(populateShoppingList(itemsByName));
+    if (itemsLoaded) dispatch(populateShoppingList(items));
   }, [itemsLoaded]);
 
   return (
     <AppProvider i18n={enTranslations}>
       <div className="app" id="app">
         <MainNavBar />
-        {itemsLoading ? <Spinner accessibilityLabel="Spinner example" size="large" color="teal" /> : (
+        {itemsLoading ? <p>Loading...</p> : (
           <Switch>
             <Route path="/map">
               <MapPage />
