@@ -4,6 +4,7 @@ import axios from 'axios';
 const initialState = {
   items: null,
   itemsByName: null, // normalization
+  itemsLoaded: false,
   isLoading: false,
   error: null,
 };
@@ -21,6 +22,9 @@ export const itemListSlice = createSlice({
   name: 'itemList',
   initialState,
   reducers: {
+    setItemsLoaded(state, action) {
+      state.itemsLoaded = action.payload;
+    },
     getItemsStart: startLoading,
     getItemsSuccess(state, action) {
       const items = action.payload;
@@ -29,6 +33,7 @@ export const itemListSlice = createSlice({
         acc[curr.name] = curr;
         return acc;
       }, {});
+      state.itemsLoaded = true;
       state.isLoading = false;
       state.error = null;
     },
@@ -37,7 +42,12 @@ export const itemListSlice = createSlice({
 });
 
 // actions
-export const { getItemsStart, getItemsSuccess, getItemsFailure } = itemListSlice.actions;
+export const {
+  getItemsStart,
+  getItemsSuccess,
+  getItemsFailure,
+  setItemsLoaded,
+} = itemListSlice.actions;
 
 export const fetchItems = () => async (dispatch) => {
   try {

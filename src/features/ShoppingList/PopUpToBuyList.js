@@ -9,11 +9,11 @@ import './ShoppingList.scss';
 
 function PopUpToBuyListItem(item) {
   const {
-    UPC, name, imageURL, aisleNumber, shelfNumber, price,
+    UPC, name, imageURL, aisleNumber, shelfNumber, price, step,
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
-    dispatch(removeItemFromList({ UPC }));
+    dispatch(removeItemFromList(item));
   };
 
   // const items = useSelector(selectItems);
@@ -32,6 +32,7 @@ function PopUpToBuyListItem(item) {
             <div className="item-counter">1</div>
           </div> */}
           <div className="item-image">
+            <span>{step}</span>
             <img src={imageURL} alt={name} size="large" />
           </div>
           <div className="item-text">

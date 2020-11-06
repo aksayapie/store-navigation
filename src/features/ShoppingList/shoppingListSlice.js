@@ -6,7 +6,8 @@ export const shoppingListSlice = createSlice({
   initialState: {
     items: [],
     confirmedItemsInCart: [],
-    shoppingListUpdated: false,
+    requestNewPath: false,
+    shoppingListGenerated: false,
   },
   reducers: {
     populateShoppingList(state, action) {
@@ -14,7 +15,7 @@ export const shoppingListSlice = createSlice({
 
       // fill shopping list with 5 random items with images
       state.items = sampleSize(itemList.filter((item) => item.imageURL.startsWith('https')), 5);
-      state.shoppingListUpdated = true;
+      state.shoppingListGenerated = true;
     },
     addStepsToShoppingList(state, action) {
       const path = action.payload;
@@ -33,7 +34,12 @@ export const shoppingListSlice = createSlice({
       const indexOfCurrentPost = state.items.indexOf(state.items.find((item) => item.UPC === UPC));
       state.items = [...state.items.slice(0, indexOfCurrentPost),
         ...state.items.slice(indexOfCurrentPost + 1)];
-      state.shoppingListUpdated = true;
+
+      if (indexOfCurrentPost !== 0) {
+        state.requestNewPath = true;
+      } else {
+        state.requestNewPath = false;
+      }
     },
     addItemToList(state, action) {
       const toBeAdded = action.payload;
@@ -45,10 +51,13 @@ export const shoppingListSlice = createSlice({
           }
         },
       );
-      state.shoppingListUpdated = true;
+      state.requestNewPath = true;
     },
-    setShoppingListUpdated(state, action) {
-      state.shoppingListUpdated = action.payload;
+    setRequestNewPath(state, action) {
+      state.requestNewPath = action.payload;
+    },
+    setItemScanned(state, action) {
+      state.itemScanned = action.payload;
     },
     addItemToCart(state, action) {
       const itemsToBeAdded = action.payload;
@@ -58,25 +67,8 @@ export const shoppingListSlice = createSlice({
         if (foundInShoppingList.length === 0) acc.push(curr);
         return acc;
       }, []);
-      state.shoppingListUpdated = true;
 
-      // Object.keys(itemsToBeAdded).forEach(
-      //   (key) => {
-      //     const found = state.confirmedItemsInCart.findIndex(
-      //       (element) => element.UPC === itemsToBeAdded[key].UPC,
-      //     );
-      //     if (found < 0) {
-      //       const indexOfCurrentPost = state.items.indexOf(
-      //         state.items.find((item) => item.UPC === itemsToBeAdded[key].UPC),
-      //       );
-      //       if (indexOfCurrentPost > -1) {
-      //         state.items = [...state.items.slice(0, indexOfCurrentPost),
-      //           ...state.items.slice(indexOfCurrentPost + 1)];
-      //       }
-      //       state.confirmedItemsInCart.push(itemsToBeAdded[key]);
-      //     }
-      //   },
-      // );
+      state.requestNewPath = true;
     },
   },
 });
@@ -88,9 +80,10 @@ export const {
   addItemToList,
   addItemToCart,
   removeItemFromConfirmed,
-  setShoppingListUpdated,
+  setRequestNewPath,
   populateShoppingList,
   addStepsToShoppingList,
+  setItemScanned,
 } = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

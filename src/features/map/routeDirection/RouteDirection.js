@@ -23,7 +23,7 @@ const RouteDirection = ({ currentItem }) => {
 
   const handleRemove = () => {
     dispatch(nextItem());
-    dispatch(removeItemFromList({ UPC: currentItem.UPC }));
+    dispatch(removeItemFromList(currentItem));
   };
 
   return (

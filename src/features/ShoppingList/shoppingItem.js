@@ -12,7 +12,7 @@ function ShoppingItem(item) {
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
-    dispatch(removeItemFromList({ UPC }));
+    dispatch(removeItemFromList(item));
   };
   return (
     <div className="account-item">
