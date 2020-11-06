@@ -41,7 +41,7 @@ function PopUpListItem(item) {
             <div className="item-location">
               <div>
                 <p>
-                  {`Aisle ${aisleNumber}, Shelf ${{ shelfNumber }}`}
+                  {`Aisle ${aisleNumber}, Shelf ${shelfNumber}`}
                 </p>
               </div>
             </div>
