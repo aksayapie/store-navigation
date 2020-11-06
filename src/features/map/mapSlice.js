@@ -10,6 +10,7 @@ const initialState = {
   aisleNumberCoords: [],
   currentPath: null,
   currentItem: null,
+  pathUpdated: false,
   isLoading: false,
   error: null,
 };
@@ -41,6 +42,9 @@ export const mapSlice = createSlice({
       const itemLocations = action.payload;
       state.shelfPolygons = getShelfPolygons(itemLocations);
       state.aisleNumberCoords = getAisleLabelCoords(state.shelfPolygons);
+    },
+    setPathUpdated(state, action) {
+      state.pathUpdated = action.payload;
     },
     getPathStart: startLoading,
     getPathFailure: loadingFailed,
@@ -83,6 +87,7 @@ export const mapSlice = createSlice({
         return acc;
       }, []);
 
+      state.pathUpdated = true;
       state.isLoading = false;
       state.error = null;
     },
@@ -97,6 +102,7 @@ export const {
   getPathSuccess,
   getPathFailure,
   nextItem,
+  setPathUpdated,
 } = mapSlice.actions;
 
 export const fetchPath = (itemsByName, shoppingList) => async (dispatch) => {

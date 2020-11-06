@@ -16,6 +16,10 @@ export const shoppingListSlice = createSlice({
       state.items = sampleSize(itemList.filter((item) => item.imageURL.startsWith('https')), 5);
       state.shoppingListUpdated = true;
     },
+    addStepsToShoppingList(state, action) {
+      const path = action.payload;
+      state.items = path.map((pathChunk) => pathChunk[pathChunk.length - 1]);
+    },
     removeItemFromConfirmed(state, action) {
       const { UPC } = action.payload;
       const indexOfCurrentPost = state.confirmedItemsInCart.indexOf(
@@ -78,6 +82,7 @@ export const {
   removeItemFromConfirmed,
   setShoppingListUpdated,
   populateShoppingList,
+  addStepsToShoppingList,
 } = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;
