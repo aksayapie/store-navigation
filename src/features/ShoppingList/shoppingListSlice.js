@@ -69,6 +69,7 @@ export const shoppingListSlice = createSlice({
           }
         },
       );
+      state.shoppingListUpdated = true;
     },
   },
 });
