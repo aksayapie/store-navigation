@@ -1,7 +1,6 @@
 import {
   Caption, ResourceItem, Stack, TextStyle, Button, Icon,
 } from '@shopify/polaris';
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import React from 'react';
 import {
@@ -12,7 +11,7 @@ import './ShoppingList.scss';
 
 function PopUpListItem(item) {
   const {
-    UPC, name, imageURL, aisleNumber, shelfNumber,
+    UPC, name, imageURL, aisleNumber, shelfNumber, price,
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
@@ -43,6 +42,12 @@ function PopUpListItem(item) {
                 <input type="number" className="quantityDiv" placeholder="1" />
               </div>
             </Caption>
+            <div>
+              <p className="price">
+                Price: $
+                {price}
+              </p>
+            </div>
             <div className="item-location">
               <div>
                 <p>
@@ -50,20 +55,11 @@ function PopUpListItem(item) {
                 </p>
               </div>
             </div>
-            {/* <div className="item-price">
-              <p>
-                $
-                {price}
-              </p>
-            </div> */}
           </div>
         </Stack>
         <Stack alignment="center" spacing="extraLoose">
           <div className="filler-stack-item" />
           <Button onClick={onRemoveItemClicked}>Delete Item</Button>
-          <Link to="/scan" className="link">
-            <Button primary>Scan & Confirm</Button>
-          </Link>
         </Stack>
       </ResourceItem>
     </div>

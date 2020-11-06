@@ -39,8 +39,10 @@ function PopUpToBuyListItem(item) {
                 <p>Quantity:</p>
                 <input type="number" className="quantityDiv" placeholder="1" />
                 <br />
-                Price: $
-                {price}
+                <p className="price">
+                  Price: $
+                  {price}
+                </p>
               </div>
             </Caption>
             <div className="item-location">
