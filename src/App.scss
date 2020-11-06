@@ -4,4 +4,16 @@
   margin: 0 auto;
   overflow: auto;
   position: relative;
+  .Polaris-Spinner {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 80vh;
+    svg {
+      position: fixed;
+      fill: #005DAA;
+    }
+  }
 }
