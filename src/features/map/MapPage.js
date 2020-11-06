@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { Spinner } from '@shopify/polaris';
 import {
   calculateShelfPolygons,
   fetchPath,
@@ -57,7 +57,7 @@ const MapPage = () => {
     }
   }, [pathUpdated]);
 
-  return mapLoading ? <p>loading...</p> : (
+  return mapLoading ? <Spinner accessibilityLabel="Spinner example" size="large" color="teal" /> : (
     <>
       {currentItem && currentPath && (
         <RouteDirecton currentItem={currentItem} />
