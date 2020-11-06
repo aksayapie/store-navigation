@@ -11,15 +11,14 @@ import './checkoutDirection.scss';
 const CheckoutDirection = () => {
   const history = useHistory();
 
-  const { isLoading: itemsLoading } = useSelector((state) => state.itemList);
-  if (itemsLoading) {
-    console.log('Loading$$$$$$');
-  }
+  const { isLoading: itemsLoading, itemsLoaded } = useSelector((state) => state.itemList);
+  console.log(itemsLoading);
+  console.log(itemsLoaded);
   return (
     <div className="checkout-direction">
       <Card>
         <Card.Section>
-          {itemsLoading ? <Spinner accessibilityLabel="Spinner example" size="large" color="teal" />
+          {!itemsLoaded ? <Spinner accessibilityLabel="Spinner example" size="large" color="teal" />
             : (
               <div>
                 <div className="title">
