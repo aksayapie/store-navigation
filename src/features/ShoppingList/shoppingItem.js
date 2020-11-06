@@ -31,8 +31,7 @@ function ShoppingItem(item) {
             </Caption>
             <div className="item-price">
               <p>
-                $
-                {price}
+                {`$${price}`}
               </p>
             </div>
           </div>

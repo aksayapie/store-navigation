@@ -48,14 +48,11 @@ function PopUpToBuyListItem(item) {
               </div>
             </Caption>
             <div className="item-location">
-              <p>
-                Aisle
-                <span> </span>
-                {aisleNumber}
-                , Shelf
-                <span> </span>
-                {shelfNumber}
-              </p>
+              <div>
+                <p>
+                  {`Aisle ${aisleNumber}, Shelf ${shelfNumber}`}
+                </p>
+              </div>
             </div>
           </div>
         </Stack>
@@ -63,7 +60,7 @@ function PopUpToBuyListItem(item) {
           <div className="filler-stack-item" />
           <Button onClick={onRemoveItemClicked}>Delete Item</Button>
           <Link to="/scan" className="link">
-            <Button primary>Scan & Confirm</Button>
+            <Button primary>Scan &amp; Confirm</Button>
           </Link>
         </Stack>
       </ResourceItem>

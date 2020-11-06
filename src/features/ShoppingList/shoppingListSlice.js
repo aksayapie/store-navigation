@@ -1,14 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
-import items from '../../data/tempData';
+import sampleSize from 'lodash.samplesize';
 
 export const shoppingListSlice = createSlice({
   name: 'shoppingList',
   initialState: {
-    items,
+    items: [],
     confirmedItemsInCart: [],
     shoppingListUpdated: false,
   },
   reducers: {
+    populateShoppingList(state, action) {
+      const itemList = action.payload;
+
+      // fill shopping list with 5 random items with images
+      state.items = sampleSize(itemList.filter((item) => item.imageURL.startsWith('https')), 5);
+      state.shoppingListUpdated = true;
+    },
+    addStepsToShoppingList(state, action) {
+      const path = action.payload;
+      state.items = path.map((pathChunk) => pathChunk[pathChunk.length - 1]);
+    },
     removeItemFromConfirmed(state, action) {
       const { UPC } = action.payload;
       const indexOfCurrentPost = state.confirmedItemsInCart.indexOf(
@@ -22,6 +33,7 @@ export const shoppingListSlice = createSlice({
       const indexOfCurrentPost = state.items.indexOf(state.items.find((item) => item.UPC === UPC));
       state.items = [...state.items.slice(0, indexOfCurrentPost),
         ...state.items.slice(indexOfCurrentPost + 1)];
+      state.shoppingListUpdated = true;
     },
     addItemToList(state, action) {
       const toBeAdded = action.payload;
@@ -40,23 +52,31 @@ export const shoppingListSlice = createSlice({
     },
     addItemToCart(state, action) {
       const itemsToBeAdded = action.payload;
-      Object.keys(itemsToBeAdded).forEach(
-        (key) => {
-          const found = state.confirmedItemsInCart.findIndex(
-            (element) => element.UPC === itemsToBeAdded[key].UPC,
-          );
-          if (found < 0) {
-            const indexOfCurrentPost = state.items.indexOf(
-              state.items.find((item) => item.UPC === itemsToBeAdded[key].UPC),
-            );
-            if (indexOfCurrentPost > -1) {
-              state.items = [...state.items.slice(0, indexOfCurrentPost),
-                ...state.items.slice(indexOfCurrentPost + 1)];
-            }
-            state.confirmedItemsInCart.push(itemsToBeAdded[key]);
-          }
-        },
-      );
+      state.confirmedItemsInCart = [...state.confirmedItemsInCart, ...itemsToBeAdded];
+      state.items = state.items.reduce((acc, curr) => {
+        const foundInShoppingList = itemsToBeAdded.filter((item) => curr.name === item.name);
+        if (foundInShoppingList.length === 0) acc.push(curr);
+        return acc;
+      }, []);
+      state.shoppingListUpdated = true;
+
+      // Object.keys(itemsToBeAdded).forEach(
+      //   (key) => {
+      //     const found = state.confirmedItemsInCart.findIndex(
+      //       (element) => element.UPC === itemsToBeAdded[key].UPC,
+      //     );
+      //     if (found < 0) {
+      //       const indexOfCurrentPost = state.items.indexOf(
+      //         state.items.find((item) => item.UPC === itemsToBeAdded[key].UPC),
+      //       );
+      //       if (indexOfCurrentPost > -1) {
+      //         state.items = [...state.items.slice(0, indexOfCurrentPost),
+      //           ...state.items.slice(indexOfCurrentPost + 1)];
+      //       }
+      //       state.confirmedItemsInCart.push(itemsToBeAdded[key]);
+      //     }
+      //   },
+      // );
     },
   },
 });
@@ -64,7 +84,13 @@ export const selectItems = (state) => state.shoppingList.items;
 export const selectConfirmedItems = (state) => state.shoppingList.confirmedItemsInCart;
 
 export const {
-  removeItemFromList, addItemToList, addItemToCart, removeItemFromConfirmed, setShoppingListUpdated,
+  removeItemFromList,
+  addItemToList,
+  addItemToCart,
+  removeItemFromConfirmed,
+  setShoppingListUpdated,
+  populateShoppingList,
+  addStepsToShoppingList,
 } = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

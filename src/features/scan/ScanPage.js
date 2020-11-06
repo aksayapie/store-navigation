@@ -117,13 +117,11 @@ const ScanPage = () => {
           },
         }}
       >
-        <p>
-          Would you like to add
-          {" '"}
-          {scannedItemName}
-          {"' "}
-          to your cart?
-        </p>
+        <div>
+          <p>
+            {`Would you like to add ${scannedItemName} to your cart?`}
+          </p>
+        </div>
         <hr className="style-six" />
         <ButtonGroup>
           <Button onClick={() => setIsOpen(false)}>Cancel</Button>

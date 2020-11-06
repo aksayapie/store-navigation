@@ -45,7 +45,7 @@ const Map = ({
           zoom={20}
           // if there's a path, center the map to the first node
           // else center it to the center of the store
-          center={path?.length > 0 ? path[0] : CENTER}
+          center={currentPath && currentPath.length > 0 ? currentPath[0] : CENTER}
           options={mapOptions}
         >
           {

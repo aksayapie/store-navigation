@@ -14,7 +14,6 @@ const reducer = combineReducers({
   shopMode: shopModeReducer,
   itemList: itemsSlice,
 });
-// import postReducer from '../redux/reducer';
 
 const store = configureStore({
   reducer,
