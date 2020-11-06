@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   calculateShelfPolygons,
   fetchPath,
+  setPathUpdated,
 } from './mapSlice';
 import RouteDirecton from './routeDirection/RouteDirection';
 import CheckoutDirection from './checkoutDirection/CheckoutDirection';
@@ -42,6 +43,7 @@ const MapPage = () => {
   useEffect(() => {
     if (pathUpdated) {
       dispatch(addStepsToShoppingList(path));
+      dispatch(setPathUpdated(false));
     }
   }, [pathUpdated]);
 

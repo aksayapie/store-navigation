@@ -52,24 +52,31 @@ export const shoppingListSlice = createSlice({
     },
     addItemToCart(state, action) {
       const itemsToBeAdded = action.payload;
-      Object.keys(itemsToBeAdded).forEach(
-        (key) => {
-          const found = state.confirmedItemsInCart.findIndex(
-            (element) => element.UPC === itemsToBeAdded[key].UPC,
-          );
-          if (found < 0) {
-            const indexOfCurrentPost = state.items.indexOf(
-              state.items.find((item) => item.UPC === itemsToBeAdded[key].UPC),
-            );
-            if (indexOfCurrentPost > -1) {
-              state.items = [...state.items.slice(0, indexOfCurrentPost),
-                ...state.items.slice(indexOfCurrentPost + 1)];
-            }
-            state.confirmedItemsInCart.push(itemsToBeAdded[key]);
-          }
-        },
-      );
+      state.confirmedItemsInCart = [...state.confirmedItemsInCart, ...itemsToBeAdded];
+      state.items = state.items.reduce((acc, curr) => {
+        const foundInShoppingList = itemsToBeAdded.filter((item) => curr.name === item.name);
+        if (foundInShoppingList.length === 0) acc.push(curr);
+        return acc;
+      }, []);
       state.shoppingListUpdated = true;
+
+      // Object.keys(itemsToBeAdded).forEach(
+      //   (key) => {
+      //     const found = state.confirmedItemsInCart.findIndex(
+      //       (element) => element.UPC === itemsToBeAdded[key].UPC,
+      //     );
+      //     if (found < 0) {
+      //       const indexOfCurrentPost = state.items.indexOf(
+      //         state.items.find((item) => item.UPC === itemsToBeAdded[key].UPC),
+      //       );
+      //       if (indexOfCurrentPost > -1) {
+      //         state.items = [...state.items.slice(0, indexOfCurrentPost),
+      //           ...state.items.slice(indexOfCurrentPost + 1)];
+      //       }
+      //       state.confirmedItemsInCart.push(itemsToBeAdded[key]);
+      //     }
+      //   },
+      // );
     },
   },
 });
