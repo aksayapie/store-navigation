@@ -16,7 +16,11 @@ import { populateShoppingList } from './features/ShoppingList/shoppingListSlice'
 
 function App() {
   const dispatch = useDispatch();
-  const { items, isLoading: itemsLoading, itemsLoaded } = useSelector((state) => state.itemList);
+  const {
+    items,
+    isLoading: itemsLoading,
+    itemsLoaded,
+  } = useSelector((state) => state.itemList);
 
   useEffect(() => {
     dispatch(fetchItems());
