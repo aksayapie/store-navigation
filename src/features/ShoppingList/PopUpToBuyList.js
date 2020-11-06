@@ -16,28 +16,23 @@ function PopUpToBuyListItem(item) {
     dispatch(removeItemFromList(item));
   };
 
-  // const items = useSelector(selectItems);
-  // let itemCounter = null;
-  // items.forEach((value, i) => {
-  //   if (value.UPC === UPC) {
-  //     itemCounter = i + 1;
-  //   }
-  // });
+  function truncate(str, n) {
+    return (str.length > n) ? `${str.substr(0, n - 1)}...` : str;
+  }
 
   return (
     <div className="pop-up-item">
       <ResourceItem id={UPC}>
         <Stack alignment="center">
-          {/* <div className="item-counter-circle">
-            <div className="item-counter">1</div>
-          </div> */}
           <div className="item-image">
-            <span>{step}</span>
+            <div className="item-counter-circle">
+              <span className="item-counter">{step}</span>
+            </div>
             <img src={imageURL} alt={name} size="large" />
           </div>
           <div className="item-text">
             <h3>
-              <TextStyle variation="strong">{name}</TextStyle>
+              <TextStyle variation="strong">{truncate(name, 25)}</TextStyle>
             </h3>
             <Caption>
               <div className="item-quantity">
