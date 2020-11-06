@@ -46,7 +46,7 @@ function AutoCompleteSearchField({ handleCloseProp }) {
   };
 
   return (
-    <div className="search-container" style={{ height: '500px' }}>
+    <div className="search-container" style={{ height: '100%' }}>
       <div className="search-box">
         <TextField
           label="itemSearchTextField"
