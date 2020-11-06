@@ -31,6 +31,7 @@ const MapPage = () => {
   const {
     items: shoppingList, shoppingListGenerated, requestNewPath,
   } = useSelector((state) => state.shoppingList);
+  const { currShopMode } = useSelector((state) => state.shopMode);
 
   useEffect(() => {
     if (itemsLoaded) {
@@ -39,12 +40,12 @@ const MapPage = () => {
   }, [itemsLoaded]);
 
   useEffect(() => {
-    if (shoppingListGenerated) dispatch(fetchPath(itemsByName, shoppingList));
+    if (shoppingListGenerated) dispatch(fetchPath(currShopMode, itemsByName, shoppingList));
   }, [shoppingListGenerated]);
 
   useEffect(() => {
     if (requestNewPath) {
-      fetchPath(itemsByName, shoppingList);
+      dispatch(fetchPath(currShopMode, itemsByName, shoppingList));
       setRequestNewPath(false);
     }
   }, [requestNewPath]);

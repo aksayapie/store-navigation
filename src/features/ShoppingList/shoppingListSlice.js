@@ -37,6 +37,8 @@ export const shoppingListSlice = createSlice({
 
       if (indexOfCurrentPost !== 0) {
         state.requestNewPath = true;
+      } else {
+        state.requestNewPath = false;
       }
     },
     addItemToList(state, action) {

@@ -9,7 +9,7 @@ import './ShoppingList.scss';
 
 function PopUpToBuyListItem(item) {
   const {
-    UPC, name, imageURL, aisleNumber, shelfNumber, price,
+    UPC, name, imageURL, aisleNumber, shelfNumber, price, step,
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
@@ -32,6 +32,7 @@ function PopUpToBuyListItem(item) {
             <div className="item-counter">1</div>
           </div> */}
           <div className="item-image">
+            <span>{step}</span>
             <img src={imageURL} alt={name} size="large" />
           </div>
           <div className="item-text">

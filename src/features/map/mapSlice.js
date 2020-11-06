@@ -105,16 +105,18 @@ export const {
   setPathUpdated,
 } = mapSlice.actions;
 
-export const fetchPath = (itemsByName, shoppingList) => async (dispatch) => {
+export const fetchPath = (shoppingMode = 'quick', itemsByName, shoppingList) => async (dispatch) => {
   const url = 'https://cors-anywhere.herokuapp.com/https://safe-thicket-64926.herokuapp.com/requestPath';
 
   const itemNames = shoppingList.map((item) => item.name);
+
+  const isSafe = shoppingMode !== 'quick';
 
   try {
     dispatch(getPathStart());
     const { data } = await axios.post(url, {
       items: itemNames,
-      isSafe: false,
+      isSafe,
     });
 
     dispatch(getPathSuccess({ path: data.optimalNodePath, shoppingList, itemsByName }));
