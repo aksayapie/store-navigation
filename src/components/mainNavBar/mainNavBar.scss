@@ -1,7 +1,7 @@
 .nav-bar {
   position: relative;
   z-index: 2;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   .Polaris-Card {
     height: 55px;
     display: flex;
@@ -21,9 +21,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    }
+  }
   .costco-img {
-     flex: 4;
+    flex: 4;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,15 +32,15 @@
     flex: 1.5;
     text-align: center;
     margin-top: 7.5px;
-    color: #005DAA;
+    color: #005daa;
     .Polaris-Icon svg {
-      fill:#005DAA;
+      fill: #005daa;
     }
     .Polaris-Button--plain {
       height: 55px;
     }
   }
-  
+
   .Polaris-Button--primary {
     width: 50px;
     // background: #005DAA;

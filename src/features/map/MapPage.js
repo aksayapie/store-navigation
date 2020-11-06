@@ -10,10 +10,12 @@ import CheckoutDirection from './checkoutDirection/CheckoutDirection';
 import Map from './Map';
 import { setShoppingListUpdated } from '../ShoppingList/shoppingListSlice';
 
+// const Overlay = () => <div className="loading-overlay"><p>Loading...</p></div>;
+
 const MapPage = () => {
   const dispatch = useDispatch();
   const {
-    path, shelfPolygons, aisleNumberCoords, currentPath, currentItem,
+    path, shelfPolygons, aisleNumberCoords, currentPath, currentItem, isLoading: mapLoading,
   } = useSelector((state) => state.map);
   const { items, itemsByName } = useSelector((state) => state.itemList);
   const { items: shoppingList, shoppingListUpdated } = useSelector((state) => state.shoppingList);
@@ -31,8 +33,8 @@ const MapPage = () => {
     }
   }, [shoppingListUpdated]);
 
-  return (
-    <p>
+  return mapLoading ? <p>loading...</p> : (
+    <>
       {currentItem && currentPath && (
         <RouteDirecton currentItem={currentItem} />
       )}
@@ -47,7 +49,7 @@ const MapPage = () => {
         currentItem={currentItem}
         currentPath={currentPath}
       />
-    </p>
+    </>
   );
 };
 export default MapPage;

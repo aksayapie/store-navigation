@@ -48,14 +48,11 @@ function PopUpToBuyListItem(item) {
               </div>
             </Caption>
             <div className="item-location">
-              <p>
-                Aisle
-                <span> </span>
-                {aisleNumber}
-                , Shelf
-                <span> </span>
-                {shelfNumber}
-              </p>
+              <div>
+                <p>
+                  {`Aisle ${aisleNumber}, Shelf ${shelfNumber}`}
+                </p>
+              </div>
             </div>
           </div>
         </Stack>

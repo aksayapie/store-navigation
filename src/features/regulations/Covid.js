@@ -25,9 +25,11 @@ function Covid({ setShowCovidProp, setShowShopModeProp }) {
         <Thumbnail
           source={face}
         />
-        <p>
-          <strong>Face coverings are required </strong>
-          for members and guests upon entry
+        <div>
+          <p>
+            <strong>Face coverings are required </strong>
+            for members and guests upon entry
+          </p>
           <Tooltip>
             <div className="covid-icon">
               <Icon
@@ -35,15 +37,17 @@ function Covid({ setShowCovidProp, setShowShopModeProp }) {
               />
             </div>
           </Tooltip>
-        </p>
+        </div>
       </div>
       <div className="social-distance">
         <Thumbnail
           source={distance}
         />
-        <p>
-          <strong>Allow at least 6 feet of space </strong>
-          between you and other customers
+        <div>
+          <p>
+            <strong>Allow at least 6 feet of space </strong>
+            between you and other customers
+          </p>
           <Tooltip>
             <div className="covid-icon">
               <Icon
@@ -51,15 +55,17 @@ function Covid({ setShowCovidProp, setShowShopModeProp }) {
               />
             </div>
           </Tooltip>
-        </p>
+        </div>
       </div>
       <div className="reusable-bag">
         <Thumbnail
           source={shopping}
         />
-        <p>
-          <strong>Reusable shopping bags </strong>
-          are allowed as long as members pack the bags themselves
+        <div>
+          <p>
+            <strong>Reusable shopping bags </strong>
+            are allowed as long as members pack the bags themselves
+          </p>
           <Tooltip>
             <div className="covid-icon">
               <Icon
@@ -67,7 +73,7 @@ function Covid({ setShowCovidProp, setShowShopModeProp }) {
               />
             </div>
           </Tooltip>
-        </p>
+        </div>
       </div>
       <div className="shopping">
         <Button primary onClick={toNextScreen}>I Understand</Button>
