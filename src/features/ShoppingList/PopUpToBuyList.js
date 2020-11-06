@@ -13,7 +13,7 @@ function PopUpToBuyListItem(item) {
   } = item;
   const dispatch = useDispatch();
   const onRemoveItemClicked = () => {
-    dispatch(removeItemFromList({ UPC }));
+    dispatch(removeItemFromList(item));
   };
 
   // const items = useSelector(selectItems);

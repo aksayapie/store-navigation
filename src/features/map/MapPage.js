@@ -9,7 +9,10 @@ import {
 import RouteDirecton from './routeDirection/RouteDirection';
 import CheckoutDirection from './checkoutDirection/CheckoutDirection';
 import Map from './Map';
-import { setShoppingListUpdated, addStepsToShoppingList } from '../ShoppingList/shoppingListSlice';
+import {
+  setRequestNewPath,
+  addStepsToShoppingList,
+} from '../ShoppingList/shoppingListSlice';
 
 // const Overlay = () => <div className="loading-overlay"><p>Loading...</p></div>;
 
@@ -24,21 +27,27 @@ const MapPage = () => {
     isLoading: mapLoading,
     pathUpdated,
   } = useSelector((state) => state.map);
-  const { items, itemsByName } = useSelector((state) => state.itemList);
-  const { items: shoppingList, shoppingListUpdated } = useSelector((state) => state.shoppingList);
+  const { items, itemsByName, itemsLoaded } = useSelector((state) => state.itemList);
+  const {
+    items: shoppingList, shoppingListGenerated, requestNewPath,
+  } = useSelector((state) => state.shoppingList);
 
   useEffect(() => {
-    if (items && items.length > 0) {
+    if (itemsLoaded) {
       dispatch(calculateShelfPolygons(items));
     }
-  }, [items]);
+  }, [itemsLoaded]);
 
   useEffect(() => {
-    if (shoppingListUpdated) {
-      dispatch(fetchPath(itemsByName, shoppingList));
-      dispatch(setShoppingListUpdated(false));
+    if (shoppingListGenerated) dispatch(fetchPath(itemsByName, shoppingList));
+  }, [shoppingListGenerated]);
+
+  useEffect(() => {
+    if (requestNewPath) {
+      fetchPath(itemsByName, shoppingList);
+      setRequestNewPath(false);
     }
-  }, [shoppingListUpdated]);
+  }, [requestNewPath]);
 
   useEffect(() => {
     if (pathUpdated) {

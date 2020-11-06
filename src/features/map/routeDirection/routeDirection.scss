@@ -31,6 +31,7 @@
   .product {
     display: flex;
     margin: 1rem auto;
+    margin-top: 1.5rem;
     width: 85%;
 
     img {
@@ -75,7 +76,6 @@
     text-align: center;
     font-weight: bold;
     font-size: 14px;
-    margin-top: 2px;
   }
   .item-counter {
     line-height: 1.2;
