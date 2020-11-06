@@ -18,6 +18,11 @@ function PopUpListItem(item) {
   const onRemoveItemClicked = () => {
     dispatch(removeItemFromConfirmed({ UPC }));
   };
+
+  function truncate(str, n) {
+    return (str.length > n) ? `${str.substr(0, n - 1)}...` : str;
+  }
+
   return (
     <div className="pop-up-item">
       <ResourceItem id={UPC}>
@@ -30,7 +35,7 @@ function PopUpListItem(item) {
           </div>
           <div className="item-text">
             <h3>
-              <TextStyle variation="strong">{name}</TextStyle>
+              <TextStyle variation="strong">{truncate(name, 20)}</TextStyle>
             </h3>
             <Caption>
               <div className="item-quantity">

@@ -14,6 +14,11 @@ function ShoppingItem(item) {
   const onRemoveItemClicked = () => {
     dispatch(removeItemFromList(item));
   };
+
+  function truncate(str, n) {
+    return (str.length > n) ? `${str.substr(0, n - 1)}...` : str;
+  }
+
   return (
     <div className="account-item">
       <ResourceItem id={UPC}>
@@ -23,7 +28,7 @@ function ShoppingItem(item) {
           </div>
           <div>
             <h3>
-              <TextStyle variation="strong">{name}</TextStyle>
+              <TextStyle variation="strong">{truncate(name, 20)}</TextStyle>
             </h3>
             <Caption>
               Item #
