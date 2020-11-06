@@ -3,7 +3,7 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import {
-  GoogleMap, useJsApiLoader,
+  GoogleMap, useJsApiLoader, Circle,
 } from '@react-google-maps/api';
 import PropTypes from 'prop-types';
 
@@ -27,9 +27,46 @@ const mapOptions = {
   minZoom: 19,
 };
 
+const circleOptions = {
+  strokeColor: '#FF0000',
+  strokeOpacity: 0.8,
+  strokeWeight: 2,
+  fillColor: '#FF0000',
+  fillOpacity: 0.35,
+  clickable: false,
+  draggable: false,
+  editable: false,
+  visible: true,
+  radius: 2,
+  zIndex: 1,
+};
+
+const dangerZones = [
+  {
+    lat: 40.656101921579555,
+    lng: -74.00916212884418,
+  },
+  {
+    lat: 40.655868042803384,
+    lng: -74.0087714236776,
+  },
+  {
+    lat: 40.65534564334246,
+    lng: -74.0093332793219,
+  },
+  {
+    lat: 40.65558019266871,
+    lng: -74.00972830537023,
+  },
+  {
+    lat: 40.65568621196026,
+    lng: -74.0091830893094,
+  },
+];
+
 // TODO: hide item step label if zoom is far out enough (looks giant otherwise)
 const Map = ({
-  path, shelfPolygons, aisleNumberCoords, currentItem, currentPath,
+  path, shelfPolygons, aisleNumberCoords, currentItem, currentPath, currShopMode,
 }) => {
   // load the google map javascript scripts
   const { isLoaded } = useJsApiLoader({
@@ -47,11 +84,21 @@ const Map = ({
           // else center it to the center of the store
           center={currentPath && currentPath.length > 0 ? currentPath[0] : CENTER}
           options={mapOptions}
+          onClick={(e) => console.log({
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng(),
+          })}
         >
           {
             shelfPolygons.length > 0
               && shelfPolygons.map((shelfPolygon) => <Shelf paths={shelfPolygon} />)
           }
+          {currShopMode === 'safe' && dangerZones.map((zone) => (
+            <Circle
+              options={circleOptions}
+              center={zone}
+            />
+          ))}
 
           {
             aisleNumberCoords.length > 0

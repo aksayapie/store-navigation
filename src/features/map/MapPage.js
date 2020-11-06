@@ -72,6 +72,7 @@ const MapPage = () => {
         aisleNumberCoords={aisleNumberCoords}
         currentItem={currentItem}
         currentPath={currentPath}
+        currShopMode={currShopMode}
       />
     </>
   );

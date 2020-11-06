@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import sampleSize from 'lodash.samplesize';
 
 export const shoppingListSlice = createSlice({
   name: 'shoppingList',
@@ -11,10 +10,11 @@ export const shoppingListSlice = createSlice({
   },
   reducers: {
     populateShoppingList(state, action) {
-      const itemList = action.payload;
+      const itemsByName = action.payload;
 
       // fill shopping list with 5 random items with images
-      state.items = sampleSize(itemList.filter((item) => item.imageURL.startsWith('https')), 5);
+      const itemNames = ['canned beer', 'chocolate', 'frankfurter', 'frozen vegetables', 'sparkling wine'];
+      state.items = itemNames.map((item) => itemsByName[item]);
       state.shoppingListGenerated = true;
     },
     addStepsToShoppingList(state, action) {

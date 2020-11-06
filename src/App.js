@@ -16,14 +16,18 @@ import { populateShoppingList } from './features/ShoppingList/shoppingListSlice'
 
 function App() {
   const dispatch = useDispatch();
-  const { items, isLoading: itemsLoading, itemsLoaded } = useSelector((state) => state.itemList);
+  const {
+    itemsByName,
+    isLoading: itemsLoading,
+    itemsLoaded,
+  } = useSelector((state) => state.itemList);
 
   useEffect(() => {
     dispatch(fetchItems());
   }, []);
 
   useEffect(() => {
-    if (itemsLoaded) dispatch(populateShoppingList(items));
+    if (itemsLoaded) dispatch(populateShoppingList(itemsByName));
   }, [itemsLoaded]);
 
   return (
